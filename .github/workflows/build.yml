@@ -34,5 +34,20 @@ jobs:
         shell: bash -l {0}
         run: |
           coverage run --source=figura -m pytest
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-${{ matrix.python-version }}
+          path: ${{ github.workspace }}/.coverage
+
+  upload-to-codecov:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v2
+        files: ./coverage-3.8,./coverage-3.9,./coverage-3.10
