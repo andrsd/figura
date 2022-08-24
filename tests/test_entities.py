@@ -1,11 +1,8 @@
-import pytest
 from figura.entities import (
     Vertex,
     Edge,
     Wire,
-    Face,
-    Shell,
-    Solid
+    Face
 )
 
 
