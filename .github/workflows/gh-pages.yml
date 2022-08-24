@@ -1,0 +1,28 @@
+name: github-pages
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt install python3-sphinx python3-sphinx-rtd-theme
+      - name: Build doco
+        run: |
+          sphinx-build -c docs -b html -d docs/.doctrees docs html
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ github.workspace }}/docs/html

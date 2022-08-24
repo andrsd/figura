@@ -1,4 +1,6 @@
 __pycache__
 .pytest_cache/*
 htmlcov/*
+html/*
+docs/.doctrees
 .coverage

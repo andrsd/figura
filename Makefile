@@ -16,3 +16,6 @@ test:
 coverage:
 	@coverage run --source=$(SRC) -m pytest
 	@coverage html
+
+doc:
+	@sphinx-build -c docs -b html -d docs/.doctrees docs html
