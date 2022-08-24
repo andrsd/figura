@@ -49,5 +49,6 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v2
       - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v2
-        files: ./coverage-3.8,./coverage-3.9,./coverage-3.10
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage-3.8,./coverage-3.9,./coverage-3.10
