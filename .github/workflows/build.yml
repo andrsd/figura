@@ -20,7 +20,7 @@ jobs:
         shell: bash -l {0}
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest
+          pip install flake8 pytest coverage
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           conda install pythonocc-core
       - name: Lint with flake8
@@ -30,7 +30,9 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Test with pytest
+      - name: Run tests
         shell: bash -l {0}
         run: |
-          pytest
+          coverage run --source=figura -m pytest
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v2
