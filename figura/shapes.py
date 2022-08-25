@@ -8,12 +8,16 @@ from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeSolid
 )
 from OCC.Core.TopoDS import (
+    TopoDS_Shape,
     TopoDS_Vertex,
     TopoDS_Edge,
     TopoDS_Wire,
     TopoDS_Face,
     TopoDS_Shell,
     TopoDS_Solid
+)
+from OCC.Core.BRepAlgoAPI import (
+    BRepAlgoAPI_Fuse
 )
 from .gc import GeoCurve
 from .transformations import Mirror
@@ -23,7 +27,12 @@ class Shape(object):
 
     def __init__(self, shape=None):
         self._name = None
-        self._shape = shape
+        if shape is not None and isinstance(shape, TopoDS_Shape):
+            self._shape = shape
+        elif shape is None:
+            self._shape = shape
+        else:
+            raise TypeError("Wrong argument types")
 
     def name(self, value=None):
         if value is None:
@@ -39,6 +48,17 @@ class Shape(object):
     def mirror(self, axis):
         op = Mirror(axis)
         return self.__class__.from_obj(op.do(self))
+
+    def fuse(self, shape):
+        fuse = BRepAlgoAPI_Fuse(self.obj(), shape.obj())
+        fuse.Build()
+        if not fuse.IsDone():
+            raise SystemExit("Objects were not fused")
+        return Shape.from_obj(fuse.Shape())
+
+    @classmethod
+    def from_obj(cls, obj):
+        return cls(obj)
 
 
 class Vertex(Shape):

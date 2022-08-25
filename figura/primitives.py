@@ -5,12 +5,16 @@ from OCC.Core.BRepPrimAPI import (
     BRepPrimAPI_MakePrism,
     BRepPrimAPI_MakeCone
 )
+from OCC.Core.BRepAlgoAPI import (
+    BRepAlgoAPI_Fuse
+)
 from OCC.Core.TopoDS import (
     TopoDS_Shape
 )
 from .geometry import (
     Axis2
 )
+from .shapes import (Shape)
 
 
 class Primitive(object):
@@ -28,6 +32,20 @@ class Primitive(object):
 
     def shape(self):
         raise NotImplementedError()
+
+    def fuse(self, shape):
+        fuse = None
+        if isinstance(shape, Primitive):
+            fuse = BRepAlgoAPI_Fuse(self.shape(), shape.shape())
+        elif isinstance(shape, Shape):
+            fuse = BRepAlgoAPI_Fuse(self.shape(), shape.obj())
+        else:
+            raise TypeError("Wrong argument types")
+
+        fuse.Build()
+        if not fuse.IsDone():
+            raise SystemExit("Objects were not fused")
+        return Shape.from_obj(fuse.Shape())
 
 
 class Box(Primitive):
