@@ -5,7 +5,8 @@ from OCC.Core.gp import (
     gp_Dir,
     gp_Ax1,
     gp_Ax2,
-    gp_OX
+    gp_OX,
+    gp_DZ
 )
 from OCC.Core.IFSelect import IFSelect_RetDone
 
@@ -46,6 +47,11 @@ class Geometry(object):
         pt = Point.from_obj(ax1.Location())
         dir = Direction.from_obj(ax1.Direction())
         return Axis1(pt, dir)
+
+    @staticmethod
+    def DZ():
+        dir = gp_DZ()
+        return Direction.from_obj(dir)
 
 
 class Point(object):
