@@ -94,9 +94,9 @@ class Prism(Primitive):
 
     def __init__(self, shape, vec):
         super().__init__()
-        if not hasattr(shape, shape):
-            raise SystemExit("'shape' must have a 'shape' method")
-        shp = shape.shape()
+        if not hasattr(shape, "obj"):
+            raise SystemExit("'shape' must have a 'obj' method")
+        shp = shape.obj()
         if not isinstance(shp, TopoDS_Shape):
             raise SystemExit("'shape' is not a TopoDS_Shape")
         self._prism = BRepPrimAPI_MakePrism(shp, vec.obj())

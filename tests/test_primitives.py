@@ -5,12 +5,35 @@ from figura.geometry import (
     Axis2
 )
 from figura.primitives import (
+    Primitive,
     Box,
     Cylinder,
     Sphere,
     Prism,
     Cone
 )
+
+
+def test_name():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 2, 3)
+    box = Box(pt1, pt2)
+    box.name("box")
+    assert box.name() == "box"
+
+
+def test_wrong_name_type():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 2, 3)
+    box = Box(pt1, pt2)
+    with pytest.raises(TypeError):
+        box.name(123)
+
+
+def test_shape():
+    p = Primitive()
+    with pytest.raises(NotImplementedError):
+        p.shape()
 
 
 def test_box():

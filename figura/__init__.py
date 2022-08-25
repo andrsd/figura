@@ -1,5 +1,5 @@
 from .geometry import Geometry
-from .entities import (Vertex, Edge, Wire, Face, Shell, Solid)
+from .shapes import (Vertex, Edge, Wire, Face, Shell, Solid)
 from .primitives import (Box, Cylinder, Sphere, Prism)
 
 __all__ = [

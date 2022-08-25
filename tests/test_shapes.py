@@ -1,4 +1,4 @@
-from figura.entities import (
+from figura.shapes import (
     Vertex,
     Edge,
     Wire,
