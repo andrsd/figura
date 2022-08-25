@@ -82,7 +82,8 @@ class Point(object):
         return Point(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
-        return "{}(x={}, y={}, z={})".format(self.__class__, self.x, self.y, self.z)
+        return "{}(x={}, y={}, z={})".format(
+            self.__class__, self.x, self.y, self.z)
 
 
 class Vector(object):
@@ -113,7 +114,8 @@ class Vector(object):
         return Point(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
-        return "{}(x={}, y={}, z={})".format(self.__class__, self.x, self.y, self.z)
+        return "{}(x={}, y={}, z={})".format(
+            self.__class__, self.x, self.y, self.z)
 
 
 class Direction(object):
@@ -144,7 +146,8 @@ class Direction(object):
         return Direction(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
-        return "{}(x={}, y={}, z={})".format(self.__class__, self.x, self.y, self.z)
+        return "{}(x={}, y={}, z={})".format(
+            self.__class__, self.x, self.y, self.z)
 
 
 class Axis1(object):

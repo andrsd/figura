@@ -9,7 +9,6 @@ from figura.primitives import (
     Box,
     Cylinder,
     Sphere,
-    Prism,
     Cone
 )
 

@@ -178,7 +178,7 @@ class Solid(Shape):
         super().__init__()
         if isinstance(arg1, list):
             solid = BRepBuilderAPI_MakeSolid()
-            for sh in shells:
+            for sh in arg1:
                 solid.Add(sh.obj())
             solid.Build()
             if not solid.IsDone():
