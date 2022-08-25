@@ -3,7 +3,9 @@ from OCC.Core.gp import (
     gp_Pnt,
     gp_Vec,
     gp_Dir,
-    gp_Ax2
+    gp_Ax1,
+    gp_Ax2,
+    gp_OX
 )
 from OCC.Core.IFSelect import IFSelect_RetDone
 
@@ -38,6 +40,13 @@ class Geometry(object):
         step_writer.Transfer(self.shape, step.STEPControl_AsIs)
         step_writer.Write(file_name)
 
+    @staticmethod
+    def OX():
+        ax1 = gp_OX()
+        pt = Point.from_obj(ax1.Location())
+        dir = Direction.from_obj(ax1.Direction())
+        return Axis1(pt, dir)
+
 
 class Point(object):
     """
@@ -61,6 +70,13 @@ class Point(object):
 
     def obj(self):
         return self._pnt
+
+    @classmethod
+    def from_obj(cls, obj):
+        return Point(obj.X(), obj.Y(), obj.Z())
+
+    def __str__(self):
+        return "{}(x={}, y={}, z={})".format(self.__class__, self.x, self.y, self.z)
 
 
 class Vector(object):
@@ -86,6 +102,13 @@ class Vector(object):
     def obj(self):
         return self._vec
 
+    @classmethod
+    def from_obj(cls, obj):
+        return Point(obj.X(), obj.Y(), obj.Z())
+
+    def __str__(self):
+        return "{}(x={}, y={}, z={})".format(self.__class__, self.x, self.y, self.z)
+
 
 class Direction(object):
     """
@@ -109,6 +132,36 @@ class Direction(object):
 
     def obj(self):
         return self._dir
+
+    @classmethod
+    def from_obj(cls, obj):
+        return Direction(obj.X(), obj.Y(), obj.Z())
+
+    def __str__(self):
+        return "{}(x={}, y={}, z={})".format(self.__class__, self.x, self.y, self.z)
+
+
+class Axis1(object):
+
+    def __init__(self, pt, dir):
+        if not isinstance(pt, Point):
+            raise TypeError("'pt' must be a 'Point'")
+        if not isinstance(dir, Direction):
+            raise TypeError("'dir' must be a 'Direction'")
+        self._location = pt
+        self._direction = dir
+        self._ax1 = gp_Ax1(pt.obj(), dir.obj())
+
+    @property
+    def location(self):
+        return self._location
+
+    @property
+    def direction(self):
+        return self._direction
+
+    def obj(self):
+        return self._ax1
 
 
 class Axis2(object):
