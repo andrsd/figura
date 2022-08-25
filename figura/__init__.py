@@ -1,6 +1,7 @@
 from .geometry import Geometry
 from .shapes import (Vertex, Edge, Wire, Face, Shell, Solid)
 from .primitives import (Box, Cylinder, Sphere, Prism)
+from .gc import (Segment, ArcOfCircle)
 
 __all__ = [
     'Geometry',
@@ -13,5 +14,7 @@ __all__ = [
     'Box',
     'Cylinder',
     'Sphere',
-    'Prism'
+    'Prism',
+    'Segment',
+    'ArcOfCircle'
 ]
