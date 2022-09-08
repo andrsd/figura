@@ -42,6 +42,9 @@ class Shape(object):
         else:
             raise TypeError("'value' must be a 'string'.")
 
+    def shape(self):
+        return self._shape
+
     def obj(self):
         return self._shape
 
