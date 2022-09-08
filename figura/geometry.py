@@ -63,6 +63,16 @@ class Geometry(object):
         return Axis1(pt, dir)
 
     @staticmethod
+    def DX():
+        dir = gp_DX()
+        return Direction.from_obj(dir)
+
+    @staticmethod
+    def DY():
+        dir = gp_DY()
+        return Direction.from_obj(dir)
+
+    @staticmethod
     def DZ():
         dir = gp_DZ()
         return Direction.from_obj(dir)
