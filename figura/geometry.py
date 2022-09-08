@@ -49,6 +49,20 @@ class Geometry(object):
         return Axis1(pt, dir)
 
     @staticmethod
+    def OY():
+        ax1 = gp_OY()
+        pt = Point.from_obj(ax1.Location())
+        dir = Direction.from_obj(ax1.Direction())
+        return Axis1(pt, dir)
+
+    @staticmethod
+    def OZ():
+        ax1 = gp_OZ()
+        pt = Point.from_obj(ax1.Location())
+        dir = Direction.from_obj(ax1.Direction())
+        return Axis1(pt, dir)
+
+    @staticmethod
     def DZ():
         dir = gp_DZ()
         return Direction.from_obj(dir)
