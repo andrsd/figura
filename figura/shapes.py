@@ -22,6 +22,9 @@ from OCC.Core.BRepAlgoAPI import (
 from OCC.Core.BRepPrimAPI import (
     BRepPrimAPI_MakePrism
 )
+from OCC.Core.BRepFilletAPI import BRepFilletAPI_MakeFillet
+from OCC.Core.TopExp import TopExp_Explorer
+from OCC.Core.TopAbs import TopAbs_EDGE
 from .gc import GeoCurve
 from .transformations import Mirror
 
@@ -64,6 +67,21 @@ class Shape(object):
             return Shape.from_obj(fuse.Shape())
         else:
             raise TypeError("`shape` object does not have `shape()` method")
+
+    def edges(self):
+        exp = TopExp_Explorer(self.shape(), TopAbs_EDGE)
+        edgs = []
+        while exp.More():
+            e = exp.Current()
+            edgs.append(Edge.from_obj(e))
+            exp.Next()
+        return edgs
+
+    def fillet(self, edges, radius):
+        fillet = BRepFilletAPI_MakeFillet(self.shape())
+        for e in edges:
+            fillet.Add(radius, e.shape())
+        return Shape.from_obj(fillet.Shape())
 
     @classmethod
     def from_obj(cls, obj):
