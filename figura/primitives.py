@@ -35,10 +35,8 @@ class Primitive(object):
 
     def fuse(self, shape):
         fuse = None
-        if isinstance(shape, Primitive):
+        if hasattr(shape, 'shape'):
             fuse = BRepAlgoAPI_Fuse(self.shape(), shape.shape())
-        elif isinstance(shape, Shape):
-            fuse = BRepAlgoAPI_Fuse(self.shape(), shape.obj())
         else:
             raise TypeError("Wrong argument types")
 

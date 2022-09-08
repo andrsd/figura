@@ -19,6 +19,9 @@ from OCC.Core.TopoDS import (
 from OCC.Core.BRepAlgoAPI import (
     BRepAlgoAPI_Fuse
 )
+from OCC.Core.BRepPrimAPI import (
+    BRepPrimAPI_MakePrism
+)
 from .gc import GeoCurve
 from .transformations import Mirror
 
@@ -53,11 +56,14 @@ class Shape(object):
         return self.__class__.from_obj(op.do(self))
 
     def fuse(self, shape):
-        fuse = BRepAlgoAPI_Fuse(self.obj(), shape.obj())
-        fuse.Build()
-        if not fuse.IsDone():
-            raise SystemExit("Objects were not fused")
-        return Shape.from_obj(fuse.Shape())
+        if hasattr(shape, 'shape'):
+            fuse = BRepAlgoAPI_Fuse(self.shape(), shape.shape())
+            fuse.Build()
+            if not fuse.IsDone():
+                raise SystemExit("Objects were not fused")
+            return Shape.from_obj(fuse.Shape())
+        else:
+            raise TypeError("`shape` object does not have `shape()` method")
 
     @classmethod
     def from_obj(cls, obj):
@@ -150,6 +156,13 @@ class Face(Shape):
             self._shape = arg1
         else:
             raise TypeError("Wrong argument types")
+
+    def extrude(self, vec):
+        prism = BRepPrimAPI_MakePrism(self._shape, vec.obj())
+        prism.Build()
+        if not prism.IsDone():
+            raise SystemExit("extrude failed")
+        return Shape.from_obj(prism.Shape())
 
     @classmethod
     def from_obj(cls, obj):
