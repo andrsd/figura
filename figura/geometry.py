@@ -88,25 +88,52 @@ class Point(object):
     """
 
     def __init__(self, x, y, z):
+        """
+        Construct a 3D point from its coordinates
+
+        :param x: X-coordinate
+        :param y: Y-coordinate
+        :param z: Z-coordinate
+        """
         self._pnt = gp_Pnt(x, y, z)
 
     @property
     def x(self):
+        """
+        X-coordinate of this point
+        """
         return self._pnt.X()
 
     @property
     def y(self):
+        """
+        Y-coordinate of this point
+        """
         return self._pnt.Y()
 
     @property
     def z(self):
+        """
+        Z-coordinate of this point
+        """
         return self._pnt.Z()
 
     def obj(self):
+        """
+        Get the underlying OpenCascade object
+
+        :return: The underlying OpenCascade object
+        """
         return self._pnt
 
     @classmethod
     def from_obj(cls, obj):
+        """
+        Construct ``figura`` object from an OpenCascade ``gp_Pnt`` object
+
+        :param obj: OpenCascade ``gp_Pnt`` object
+        :return: :class:`.Point` object
+        """
         return Point(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
@@ -124,21 +151,41 @@ class Vector(object):
 
     @property
     def x(self):
+        """
+        X-coordinate of this vector
+        """
         return self._vec.X()
 
     @property
     def y(self):
+        """
+        Y-coordinate of this vector
+        """
         return self._vec.Y()
 
     @property
     def z(self):
+        """
+        Z-coordinate of this vector
+        """
         return self._vec.Z()
 
     def obj(self):
+        """
+        Get the underlying OpenCascade object
+
+        :return: The underlying OpenCascade object
+        """
         return self._vec
 
     @classmethod
     def from_obj(cls, obj):
+        """
+        Construct ``figura`` object from an OpenCascade ``gp_Vec`` object
+
+        :param obj: OpenCascade ``gp_Vec`` object
+        :return: :class:`.Vector` object
+        """
         return Vector(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
@@ -156,21 +203,41 @@ class Direction(object):
 
     @property
     def x(self):
+        """
+        X-coordinate of this unit vector
+        """
         return self._dir.X()
 
     @property
     def y(self):
+        """
+        Y-coordinate of this unit vector
+        """
         return self._dir.Y()
 
     @property
     def z(self):
+        """
+        Z-coordinate of this unit vector
+        """
         return self._dir.Z()
 
     def obj(self):
+        """
+        Get the underlying OpenCascade object
+
+        :return: The underlying OpenCascade object
+        """
         return self._dir
 
     @classmethod
     def from_obj(cls, obj):
+        """
+        Construct ``figura`` object from an OpenCascade ``gp_Dir`` object
+
+        :param obj: OpenCascade ``gp_Dir`` object
+        :return: :class:`.Direction` object
+        """
         return Direction(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
@@ -191,13 +258,24 @@ class Axis1(object):
 
     @property
     def location(self):
+        """
+        Location of this axis
+        """
         return self._location
 
     @property
     def direction(self):
+        """
+        Direction of this axis
+        """
         return self._direction
 
     def obj(self):
+        """
+        Get the underlying OpenCascade object
+
+        :return: The underlying OpenCascade object
+        """
         return self._ax1
 
 
@@ -214,11 +292,22 @@ class Axis2(object):
 
     @property
     def location(self):
+        """
+        Location of this axis
+        """
         return self._location
 
     @property
     def direction(self):
+        """
+        Direction of this axis
+        """
         return self._direction
 
     def obj(self):
+        """
+        Get the underlying OpenCascade object
+
+        :return: The underlying OpenCascade object
+        """
         return self._ax2
