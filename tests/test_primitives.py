@@ -5,7 +5,6 @@ from figura.geometry import (
     Axis2
 )
 from figura.primitives import (
-    Primitive,
     Box,
     Cylinder,
     Sphere,
@@ -27,12 +26,6 @@ def test_wrong_name_type():
     box = Box(pt1, pt2)
     with pytest.raises(TypeError):
         box.name(123)
-
-
-def test_shape():
-    p = Primitive()
-    with pytest.raises(NotImplementedError):
-        p.shape()
 
 
 def test_box():
