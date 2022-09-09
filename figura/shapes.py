@@ -23,8 +23,9 @@ from OCC.Core.BRepPrimAPI import (
     BRepPrimAPI_MakePrism
 )
 from OCC.Core.BRepFilletAPI import BRepFilletAPI_MakeFillet
+from OCC.Core.TopoDS import topods
 from OCC.Core.TopExp import TopExp_Explorer
-from OCC.Core.TopAbs import TopAbs_EDGE
+from OCC.Core.TopAbs import TopAbs_EDGE, TopAbs_FACE
 from .gc import GeoCurve
 from .transformations import Mirror
 
@@ -76,6 +77,15 @@ class Shape(object):
             edgs.append(Edge.from_obj(e))
             exp.Next()
         return edgs
+
+    def faces(self):
+        exp = TopExp_Explorer(self.shape(), TopAbs_FACE)
+        fcs = []
+        while exp.More():
+            f = exp.Current()
+            fcs.append(Face.from_obj(topods.Face(f)))
+            exp.Next()
+        return fcs
 
     def fillet(self, edges, radius):
         fillet = BRepFilletAPI_MakeFillet(self.shape())
