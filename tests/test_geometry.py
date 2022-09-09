@@ -3,6 +3,7 @@ from figura.geometry import (
     Point,
     Vector,
     Direction,
+    Axis1,
     Axis2,
     Geometry
 )
@@ -104,6 +105,34 @@ def test_direction():
 
     s = str(dir)
     assert s == "<class 'figura.geometry.Direction'>(x=0.2672612419124244, y=0.5345224838248488, z=0.8017837257372732)"
+
+
+def test_axis1():
+    pt = Point(0, 1, 0)
+    dir_x = Direction(1, 0, 0)
+    ax1 = Axis1(pt, dir_x)
+    assert ax1.location.x == 0
+    assert ax1.location.y == 1
+    assert ax1.location.z == 0
+
+    assert ax1.direction.x == 1
+    assert ax1.direction.y == 0
+    assert ax1.direction.z == 0
+
+    assert ax1.obj().Location().IsEqual(gp_Pnt(0, 1, 0), 1e-15)
+    assert ax1.obj().Direction().IsEqual(gp_Dir(1, 0, 0), 1e-15)
+
+
+def test_axis1_not_a_point():
+    with pytest.raises(TypeError):
+        dir_x = Direction(1, 0, 0)
+        Axis1("a", dir_x)
+
+
+def test_axis1_not_a_dir():
+    with pytest.raises(TypeError):
+        pt = Point(0, 1, 0)
+        Axis1(pt, "a")
 
 
 def test_axis2():
