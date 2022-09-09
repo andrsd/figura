@@ -53,6 +53,27 @@ def test_origin_z():
     assert oz.direction.z == 1
 
 
+def test_direction_x():
+    dx = Geometry.DX()
+    assert dx.x == 1
+    assert dx.y == 0
+    assert dx.z == 0
+
+
+def test_direction_y():
+    dy = Geometry.DY()
+    assert dy.x == 0
+    assert dy.y == 1
+    assert dy.z == 0
+
+
+def test_direction_z():
+    dz = Geometry.DZ()
+    assert dz.x == 0
+    assert dz.y == 0
+    assert dz.z == 1
+
+
 def test_point():
     pt = Point(1, 2, 3)
     assert pt.x == 1
