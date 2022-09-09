@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Shapes" href="shapes.html" />
-    <link rel="prev" title="Welcome to figura’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Bottle" href="tutorials/bottle.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,7 +84,11 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/bottle.html">Bottle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Geometry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shapes.html">Shapes</a></li>
@@ -304,6 +308,51 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="figura.geometry.Plane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.geometry.</span></span><span class="sig-name descname"><span class="pre">Plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.geometry.Plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a plane with location <cite>pt</cite> and normal direction <cite>normal</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg1</strong> – Point <a class="reference internal" href="#figura.geometry.Point" title="figura.geometry.Point"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></a></p></li>
+<li><p><strong>arg2</strong> – Normal <a class="reference internal" href="#figura.geometry.Direction" title="figura.geometry.Direction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Direction</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.geometry.Plane.from_obj">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.geometry.Plane.from_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct <code class="docutils literal notranslate"><span class="pre">figura</span></code> object from an OpenCascade <code class="docutils literal notranslate"><span class="pre">gp_Pln</span></code> object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> – OpenCascade <code class="docutils literal notranslate"><span class="pre">gp_Pln</span></code> object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#figura.geometry.Plane" title="figura.geometry.Plane"><code class="xref py py-class docutils literal notranslate"><span class="pre">Plane</span></code></a> object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.geometry.Plane.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#figura.geometry.Plane.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location of this plane</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.geometry.Plane.obj">
+<span class="sig-name descname"><span class="pre">obj</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.geometry.Plane.obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the underlying OpenCascade object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The underlying OpenCascade object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="figura.geometry.Point">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.geometry.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.geometry.Point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a 3D point from its coordinates</p>
@@ -423,7 +472,7 @@
         <a href="shapes.html" class="btn btn-neutral float-right" title="Shapes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to figura’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorials/bottle.html" class="btn btn-neutral float-left" title="Bottle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
