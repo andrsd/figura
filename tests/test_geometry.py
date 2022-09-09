@@ -81,6 +81,8 @@ def test_point():
     assert pt.z == 3
     assert pt.obj().IsEqual(gp_Pnt(1, 2, 3), 1e-15)
 
+    s = str(pt)
+    assert s == "<class 'figura.geometry.Point'>(x=1.0, y=2.0, z=3.0)"
 
 def test_vector():
     vec = Vector(1, 2, 3)
@@ -89,6 +91,9 @@ def test_vector():
     assert vec.z == 3
     assert vec.obj().IsEqual(gp_Vec(1, 2, 3), 1e-15, 1e-15)
 
+    s = str(vec)
+    assert s == "<class 'figura.geometry.Vector'>(x=1.0, y=2.0, z=3.0)"
+
 
 def test_direction():
     dir = Direction(1, 2, 3)
@@ -96,6 +101,9 @@ def test_direction():
     assert dir.y == 0.5345224838248488
     assert dir.z == 0.8017837257372732
     assert dir.obj().IsEqual(gp_Dir(1, 2, 3), 1e-15)
+
+    s = str(dir)
+    assert s == "<class 'figura.geometry.Direction'>(x=0.2672612419124244, y=0.5345224838248488, z=0.8017837257372732)"
 
 
 def test_axis2():
