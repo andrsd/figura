@@ -3,7 +3,14 @@ Welcome to figura's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Tutorials
+   :glob:
+
+   tutorials/*
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents
 
    geometry
    shapes

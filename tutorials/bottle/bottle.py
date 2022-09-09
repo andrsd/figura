@@ -1,0 +1,53 @@
+HEIGHT = 50
+WIDTH = 70
+THICKNESS = 30
+
+pt1 = Point(-WIDTH / 2., 0, 0)
+pt2 = Point(-WIDTH / 2., -THICKNESS / 4., 0)
+pt3 = Point(0, -THICKNESS / 2., 0)
+pt4 = Point(WIDTH / 2., -THICKNESS / 4., 0)
+pt5 = Point(WIDTH / 2., 0, 0)
+
+arc = ArcOfCircle(pt2, pt3, pt4)
+segment1 = Segment(pt1, pt2)
+segment2 = Segment(pt4, pt5)
+
+edge1 = Edge(segment1)
+edge2 = Edge(arc)
+edge3 = Edge(segment2)
+wire = Wire([edge1, edge2, edge3])
+
+x_axis = Geometry.OX()
+mirrored_wire = wire.mirror(x_axis)
+
+wire_profile = Wire([wire, mirrored_wire])
+
+face_profile = Face(wire_profile)
+
+prism_vec = Vector(0, 0, HEIGHT)
+body = face_profile.extrude(prism_vec)
+
+edges = body.edges()
+body = body.fillet(edges, THICKNESS / 12.0)
+
+neck_location = Point(0, 0, HEIGHT)
+neck_axis = Geometry.DZ()
+neck_ax2 = Axis2(neck_location, neck_axis)
+
+neck_radius = THICKNESS / 4.
+neck_height = HEIGHT / 10
+neck = Cylinder(neck_ax2, neck_radius, neck_height)
+
+body = body.fuse(neck)
+
+z_max = -1.
+top_face = None
+for face in body.faces():
+    if face.is_plane():
+        plane = face.plane()
+        if plane.location.z > z_max:
+            z_max = plane.location.z
+            top_face = face
+body = body.hollow([top_face], -THICKNESS / 50, 1e-3)
+
+export = [body]
