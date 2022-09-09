@@ -6,7 +6,7 @@ The `python version <python_bottle_tut>`_ of the same tutorial using `pythonocc-
 
 In this tutorial, we will build a model of this bottle:
 
-.. image:: pics/bottle.png
+.. image:: pics/bottle-drawing.png
 
 1. We first define some parameters:
 
@@ -134,6 +134,7 @@ In this tutorial, we will build a model of this bottle:
 
       body = body.hollow([top_face], -THICKNESS / 50, 1e-3)
 
+   .. image:: pics/bottle.png
 
 5.  This last segment is specific to ``figura`` and is not part of the original tutorial.
     This is the way how we tell the code which shapes should be exported into the output file.
