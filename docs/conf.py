@@ -18,3 +18,8 @@ html_show_sourcelink = False
 extensions = [
     'sphinx.ext.autodoc'
 ]
+
+autoclass_content = "init"
+autodoc_default_options = {
+    'undoc-members': True
+}
