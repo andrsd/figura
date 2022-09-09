@@ -6,7 +6,7 @@ Welcome to figura's documentation!
    :caption: Contents:
 
    geometry
-   entities
+   shapes
    primitives
 
 
