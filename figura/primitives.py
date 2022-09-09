@@ -23,6 +23,12 @@ class Box(Shape):
     """
 
     def __init__(self, pt1, pt2):
+        """
+        Construct a box from 2 corner points
+
+        :param pt1: First corner :class:`.Point`
+        :param pt2: Second corner :class:`.Point`
+        """
         self._box = BRepPrimAPI_MakeBox(pt1.obj(), pt2.obj())
         self._box.Build()
         if not self._box.IsDone():
@@ -30,9 +36,19 @@ class Box(Shape):
         super().__init__(self._box.Shape())
 
     def shell(self):
+        """
+        Get the underlying OpenCascade object that represent the shell of this box
+
+        :return: Underlying OpenCascade object
+        """
         return self._box.Shell()
 
     def solid(self):
+        """
+        Get the underlying OpenCascade object that represent the solid of this box
+
+        :return: Underlying OpenCascade object
+        """
         return self._box.Solid()
 
 
