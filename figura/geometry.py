@@ -6,6 +6,8 @@ from OCC.Core.gp import (
     gp_Ax1,
     gp_Ax2,
     gp_OX,
+    gp_OY,
+    gp_OZ,
     gp_DZ
 )
 from OCC.Core.IFSelect import IFSelect_RetDone

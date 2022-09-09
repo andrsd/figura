@@ -20,6 +20,39 @@ assets_dir = os.path.join(
 )
 
 
+def test_origin_x():
+    ox = Geometry.OX()
+    assert ox.location.x == 0
+    assert ox.location.y == 0
+    assert ox.location.z == 0
+
+    assert ox.direction.x == 1
+    assert ox.direction.y == 0
+    assert ox.direction.z == 0
+
+
+def test_origin_y():
+    oy = Geometry.OY()
+    assert oy.location.x == 0
+    assert oy.location.y == 0
+    assert oy.location.z == 0
+
+    assert oy.direction.x == 0
+    assert oy.direction.y == 1
+    assert oy.direction.z == 0
+
+
+def test_origin_z():
+    oz = Geometry.OZ()
+    assert oz.location.x == 0
+    assert oz.location.y == 0
+    assert oz.location.z == 0
+
+    assert oz.direction.x == 0
+    assert oz.direction.y == 0
+    assert oz.direction.z == 1
+
+
 def test_point():
     pt = Point(1, 2, 3)
     assert pt.x == 1
