@@ -139,7 +139,7 @@ class Vector(object):
 
     @classmethod
     def from_obj(cls, obj):
-        return Point(obj.X(), obj.Y(), obj.Z())
+        return Vector(obj.X(), obj.Y(), obj.Z())
 
     def __str__(self):
         return "{}(x={}, y={}, z={})".format(
