@@ -160,7 +160,7 @@
 <p>This is reimplementation of the <a class="reference external" href="bottle_tut">Bottle tutorial</a> from OpenCasdade reference manual.
 The <a class="reference external" href="python_bottle_tut">python version</a> of the same tutorial using <a class="reference external" href="https://github.com/tpaviot/pythonocc-core">pythonocc-core</a> for your reference.</p>
 <p>In this tutorial, we will build a model of this bottle:</p>
-<img alt="../_images/bottle.png" src="../_images/bottle.png" />
+<img alt="../_images/bottle-drawing.png" src="../_images/bottle-drawing.png" />
 <ol class="arabic">
 <li><p>We first define some parameters:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HEIGHT</span> <span class="o">=</span> <span class="mi">50</span>
@@ -259,6 +259,7 @@ We can achieve this with the following simple code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">body</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">hollow</span><span class="p">([</span><span class="n">top_face</span><span class="p">],</span> <span class="o">-</span><span class="n">THICKNESS</span> <span class="o">/</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
 </pre></div>
 </div>
+<img alt="../_images/bottle.png" src="../_images/bottle.png" />
 </li>
 <li><p>This last segment is specific to <code class="docutils literal notranslate"><span class="pre">figura</span></code> and is not part of the original tutorial.
 This is the way how we tell the code which shapes should be exported into the output file.</p>
