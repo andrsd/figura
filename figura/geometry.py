@@ -10,7 +10,8 @@ from OCC.Core.gp import (
     gp_OZ,
     gp_DX,
     gp_DY,
-    gp_DZ
+    gp_DZ,
+    gp_Pln
 )
 from OCC.Core.IFSelect import IFSelect_RetDone
 
@@ -311,3 +312,61 @@ class Axis2(object):
         :return: The underlying OpenCascade object
         """
         return self._ax2
+
+
+class Plane(object):
+    """
+    Describes a plane
+
+    A plane is positioned in space with a coordinate system (a gp_Ax3 object), such that the plane is defined by the
+    origin, "X Direction" and "Y Direction" of this coordinate system, which is the "local coordinate system" of the
+    plane. The "main Direction" of the coordinate system is a vector normal to the plane. It gives the plane an implicit
+    orientation such that the plane is said to be "direct", if the coordinate system is right-handed, or "indirect" in
+    the other case. Note: when a `gp_Pln` plane is converted into a `Geom_Plane` plane, some implicit properties of its
+    local coordinate system are used explicitly:
+
+    - its origin defines the origin of the two parameters of the planar surface,
+    - its implicit orientation is also that of the Geom_Plane. See Also `gce_MakePln` which provides functions for more
+      complex plane constructions, Geom_Plane which provides additional functions for constructing planes and works,
+      in particular, with the parametric equations of planes
+    """
+
+    def __init__(self, pt, normal):
+        """
+        Construct a plane with location `pt` and normal direction `normal`
+
+        :param arg1: Point :py:class:`.Point`
+        :param arg2: Normal :py:class:`.Direction`
+        """
+        if isinstance(pt, Point) and isinstance(normal, Direction):
+            self._location = pt
+            self._pln = gp_Pln(pt.obj(), normal.obj())
+        else:
+            raise TypeError("Wrong argument types")
+
+    @property
+    def location(self):
+        """
+        Location of this plane
+        """
+        return self._location
+
+    def obj(self):
+        """
+        Get the underlying OpenCascade object
+
+        :return: The underlying OpenCascade object
+        """
+        return self._pln
+
+    @classmethod
+    def from_obj(cls, obj):
+        """
+        Construct ``figura`` object from an OpenCascade ``gp_Pln`` object
+
+        :param obj: OpenCascade ``gp_Pln`` object
+        :return: :class:`.Plane` object
+        """
+        pt = Point.from_obj(obj.Location())
+        normal = Direction.from_obj(obj.Axis().Direction())
+        return Plane(pt, normal)
