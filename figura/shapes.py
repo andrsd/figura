@@ -23,10 +23,13 @@ from OCC.Core.BRepPrimAPI import (
     BRepPrimAPI_MakePrism
 )
 from OCC.Core.BRepFilletAPI import BRepFilletAPI_MakeFillet
+from OCC.Core.GeomAbs import GeomAbs_Plane
+from OCC.Core.BRepAdaptor import BRepAdaptor_Surface
 from OCC.Core.TopoDS import topods
 from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Core.TopAbs import TopAbs_EDGE, TopAbs_FACE
 from .gc import GeoCurve
+from .geometry import Plane
 from .transformations import Mirror
 
 
@@ -191,6 +194,14 @@ class Face(Shape):
         if not prism.IsDone():
             raise SystemExit("extrude failed")
         return Shape.from_obj(prism.Shape())
+
+    def is_plane(self):
+        surf = BRepAdaptor_Surface(self._shape, True)
+        surf_type = surf.GetType()
+        return surf_type == GeomAbs_Plane
+
+    def plane(self):
+        return Plane.from_obj(BRepAdaptor_Surface(self._shape, True).Plane())
 
     @classmethod
     def from_obj(cls, obj):
