@@ -85,6 +85,13 @@ def test_point():
     s = str(pt)
     assert s == "<class 'figura.geometry.Point'>(x=1.0, y=2.0, z=3.0)"
 
+    gp = gp_Pnt(3, 2, 1)
+    p = Point.from_obj(gp)
+    assert p.x == 3
+    assert p.y == 2
+    assert p.z == 1
+
+
 def test_vector():
     vec = Vector(1, 2, 3)
     assert vec.x == 1
@@ -94,6 +101,12 @@ def test_vector():
 
     s = str(vec)
     assert s == "<class 'figura.geometry.Vector'>(x=1.0, y=2.0, z=3.0)"
+
+    gv = gp_Vec(3, 2, 1)
+    v = Vector.from_obj(gv)
+    assert v.x == 3
+    assert v.y == 2
+    assert v.z == 1
 
 
 def test_direction():
@@ -105,6 +118,12 @@ def test_direction():
 
     s = str(dir)
     assert s == "<class 'figura.geometry.Direction'>(x=0.2672612419124244, y=0.5345224838248488, z=0.8017837257372732)"
+
+    gd = gp_Dir(3, 2, 1)
+    d = Direction.from_obj(gd)
+    assert d.x == 0.8017837257372732
+    assert d.y == 0.5345224838248488
+    assert d.z == 0.2672612419124244
 
 
 def test_axis1():
