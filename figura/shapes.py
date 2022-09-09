@@ -19,6 +19,9 @@ from OCC.Core.TopoDS import (
 from OCC.Core.BRepAlgoAPI import (
     BRepAlgoAPI_Fuse
 )
+from OCC.Core.BRepOffsetAPI import (
+    BRepOffsetAPI_MakeThickSolid
+)
 from OCC.Core.BRepPrimAPI import (
     BRepPrimAPI_MakePrism
 )
@@ -28,6 +31,7 @@ from OCC.Core.BRepAdaptor import BRepAdaptor_Surface
 from OCC.Core.TopoDS import topods
 from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Core.TopAbs import TopAbs_EDGE, TopAbs_FACE
+from OCC.Core.TopTools import TopTools_ListOfShape
 from .gc import GeoCurve
 from .geometry import Plane
 from .transformations import Mirror
@@ -95,6 +99,18 @@ class Shape(object):
         for e in edges:
             fillet.Add(radius, e.shape())
         return Shape.from_obj(fillet.Shape())
+
+    def hollow(self, faces_to_remove, thickness, tolerance):
+        # TODO: check that `faces_to_remove` is a iterable object
+        rem_faces = TopTools_ListOfShape()
+        for face in faces_to_remove:
+            if isinstance(face, Face):
+                rem_faces.Append(face.shape())
+
+        thick_solid = BRepOffsetAPI_MakeThickSolid()
+        thick_solid.MakeThickSolidByJoin(self._shape, rem_faces, thickness, tolerance)
+        thick_solid.Build()
+        return Shape.from_obj(thick_solid.Shape())
 
     @classmethod
     def from_obj(cls, obj):
