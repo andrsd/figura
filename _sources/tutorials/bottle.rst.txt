@@ -146,7 +146,7 @@ In this tutorial, we will build a model of this bottle:
 
 The complete script is:
 
-.. literalinclude:: ../../tutorials/bottle/bottle.py
+.. literalinclude:: ../../tutorials/bottle/bottle.figura
 
 
 .. _bottle_tut: https://dev.opencascade.org/doc/overview/html/occt__tutorial.html
