@@ -171,11 +171,6 @@
 <dt class="sig sig-object py" id="figura.shapes.Face">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="figura.shapes.Face.extrude">
-<span class="sig-name descname"><span class="pre">extrude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face.extrude" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Face.from_obj">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face.from_obj" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -196,8 +191,18 @@
 <dt class="sig sig-object py" id="figura.shapes.Shape">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.cut">
+<span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.cut" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Shape.edges">
 <span class="sig-name descname"><span class="pre">edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.edges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.extrude">
+<span class="sig-name descname"><span class="pre">extrude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.extrude" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -223,6 +228,11 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Shape.hollow">
 <span class="sig-name descname"><span class="pre">hollow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">faces_to_remove</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.hollow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.intersect">
+<span class="sig-name descname"><span class="pre">intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.intersect" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
