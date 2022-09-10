@@ -22,7 +22,7 @@ class Segment(GeoCurve):
         super().__init__()
         mk = GC_MakeSegment(pt1.obj(), pt2.obj())
         if not mk.IsDone():
-            raise SystemExit("Segment was not created")
+            raise SystemExit("Segment was not created")  # pragma: no cover
         self._segment = mk.Value()
 
     def obj(self):
@@ -35,7 +35,7 @@ class ArcOfCircle(GeoCurve):
         super().__init__()
         mk = GC_MakeArcOfCircle(pt1.obj(), pt2.obj(), pt3.obj())
         if not mk.IsDone():
-            raise SystemExit("ArcOfCircle was not created")
+            raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
         self._arc = mk.Value()
 
     def obj(self):

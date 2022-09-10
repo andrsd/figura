@@ -73,7 +73,7 @@ class Shape(object):
             fuse = BRepAlgoAPI_Fuse(self.shape(), shape.shape())
             fuse.Build()
             if not fuse.IsDone():
-                raise SystemExit("Objects were not fused")
+                raise SystemExit("Objects were not fused")  # pragma: no cover
             return Shape.from_obj(fuse.Shape())
         else:
             raise TypeError("`shape` object does not have `shape()` method")
@@ -83,7 +83,7 @@ class Shape(object):
             cut = BRepAlgoAPI_Cut(self.shape(), tool.shape())
             cut.Build()
             if not cut.IsDone():
-                raise SystemExit("Object was not cut")
+                raise SystemExit("Object was not cut")  # pragma: no cover
             return Shape.from_obj(cut.Shape())
         else:
             raise TypeError("`tool` object does not have `shape()` method")
@@ -93,7 +93,7 @@ class Shape(object):
             isect = BRepAlgoAPI_Common(self.shape(), tool.shape())
             isect.Build()
             if not isect.IsDone():
-                raise SystemExit("Object was not intersected")
+                raise SystemExit("Object was not intersected")  # pragma: no cover
             return Shape.from_obj(isect.Shape())
         else:
             raise TypeError("`tool` object does not have `shape()` method")
@@ -138,7 +138,7 @@ class Shape(object):
         prism = BRepPrimAPI_MakePrism(self._shape, vec.obj())
         prism.Build()
         if not prism.IsDone():
-            raise SystemExit("extrude failed")
+            raise SystemExit("extrude failed")  # pragma: no cover
         return Shape.from_obj(prism.Shape())
 
     @classmethod
@@ -160,7 +160,7 @@ class Vertex(Shape):
             vertex = BRepBuilderAPI_MakeVertex(pt)
             vertex.Build()
             if not vertex.IsDone():
-                raise SystemExit("Vertex was not created")
+                raise SystemExit("Vertex was not created")  # pragma: no cover
             self._shape = vertex.Vertex()
         else:
             raise TypeError("Wrong argument types")
@@ -187,7 +187,7 @@ class Edge(Shape):
         if edge is not None:
             edge.Build()
             if not edge.IsDone():
-                raise SystemExit("Edge was not created")
+                raise SystemExit("Edge was not created")  # pragma: no cover
             self._shape = edge.Edge()
 
     @classmethod
@@ -206,7 +206,7 @@ class Wire(Shape):
                     wire.Add(item.obj())
             wire.Build()
             if not wire.IsDone():
-                raise SystemExit("Wire was not created")
+                raise SystemExit("Wire was not created")  # pragma: no cover
             self._shape = wire.Wire()
         elif isinstance(arg1, TopoDS_Wire):
             self._shape = arg1
@@ -226,7 +226,7 @@ class Face(Shape):
             face = BRepBuilderAPI_MakeFace(arg1.obj())
             face.Build()
             if not face.IsDone():
-                raise SystemExit("Face was not created")
+                raise SystemExit("Face was not created")  # pragma: no cover
             self._shape = face.Face()
         elif isinstance(arg1, TopoDS_Face):
             self._shape = arg1
@@ -257,7 +257,7 @@ class Shell(Shape):
             shell = BRepBuilderAPI_MakeShell()
             shell.Build()
             if not shell.IsDone():
-                raise SystemExit("Shell was not created")
+                raise SystemExit("Shell was not created")  # pragma: no cover
             self._shape = shell.Shell()
 
     @classmethod
@@ -275,7 +275,7 @@ class Solid(Shape):
                 solid.Add(sh.obj())
             solid.Build()
             if not solid.IsDone():
-                raise SystemExit("Solid was not created")
+                raise SystemExit("Solid was not created")  # pragma: no cover
             self._shape = solid.Solid()
         elif isinstance(arg1, TopoDS_Solid):
             self._shape = arg1

@@ -32,7 +32,7 @@ class Box(Shape):
         self._box = BRepPrimAPI_MakeBox(pt1.obj(), pt2.obj())
         self._box.Build()
         if not self._box.IsDone():
-            raise SystemExit("Box was not created")
+            raise SystemExit("Box was not created")  # pragma: no cover
         super().__init__(self._box.Shape())
 
     def shell(self):
@@ -50,7 +50,7 @@ class Cylinder(Shape):
         self._cylinder = BRepPrimAPI_MakeCylinder(axis.obj(), radius, height)
         self._cylinder.Build()
         if not self._cylinder.IsDone():
-            raise SystemExit("Cylinder was not created")
+            raise SystemExit("Cylinder was not created")  # pragma: no cover
         super().__init__(self._cylinder.Shape())
 
     def shell(self):
@@ -66,7 +66,7 @@ class Sphere(Shape):
         self._sphere = BRepPrimAPI_MakeSphere(center.obj(), radius)
         self._sphere.Build()
         if not self._sphere.IsDone():
-            raise SystemExit("Sphere was not created")
+            raise SystemExit("Sphere was not created")  # pragma: no cover
         super().__init__(self._sphere.Shape())
 
     def shell(self):
@@ -87,7 +87,7 @@ class Prism(Shape):
         self._prism = BRepPrimAPI_MakePrism(shp, vec.obj())
         self._prism.Build()
         if not self._prism.IsDone():
-            raise SystemExit("Prism was not created")
+            raise SystemExit("Prism was not created")  # pragma: no cover
         super().__init__(self._prism.Shape())
 
 
@@ -99,7 +99,7 @@ class Cone(Shape):
         self._cone = BRepPrimAPI_MakeCone(axis.obj(), radius1, radius2, height)
         self._cone.Build()
         if not self._cone.IsDone():
-            raise SystemExit("Cone was not created")
+            raise SystemExit("Cone was not created")  # pragma: no cover
         super().__init__(self._cone.Shape())
 
     def shell(self):
