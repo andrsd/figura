@@ -139,3 +139,12 @@ def test_fillet():
 
     edges = box.edges()
     box = box.fillet(edges, 0.1)
+
+
+def test_hollow():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+
+    face = box.faces()[0]
+    box = box.hollow([face], 0.1, 1e-3)
