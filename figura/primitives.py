@@ -43,15 +43,6 @@ class Box(Shape):
         """
         return self._box.Shell()
 
-    def solid(self):
-        """
-        Get the underlying OpenCascade object that represent the solid of this box
-
-        :return: Underlying OpenCascade object
-        """
-        return self._box.Solid()
-
-
 
 class Cylinder(Shape):
 

@@ -39,19 +39,24 @@ def test_wrong_name_type():
 def test_box():
     pt1 = Point(0, 0, 0)
     pt2 = Point(1, 2, 3)
-    Box(pt1, pt2)
+    box = Box(pt1, pt2)
+    shell = box.shell()
 
 
 def test_cylinder():
     pt = Point(0, 0, 0)
     dir = Direction(0, 0, 1)
     axis = Axis2(pt, dir)
-    Cylinder(axis, 0.5, 2)
+    cyl = Cylinder(axis, 0.5, 2)
+    shell = cyl.shell()
+    solid = cyl.solid()
 
 
 def test_sphere():
     pt = Point(0, 0, 0)
-    Sphere(pt, 2)
+    sph = Sphere(pt, 2)
+    shell = sph.shell()
+    solid = sph.solid()
 
 
 def test_prism():
@@ -71,4 +76,6 @@ def test_cone():
     pt = Point(0, 0, 0)
     dir = Direction(0, 0, 1)
     axis = Axis2(pt, dir)
-    Cone(axis, 2, 0.5, 5)
+    cone = Cone(axis, 2, 0.5, 5)
+    shell = cone.shell()
+    solid = cone.solid()
