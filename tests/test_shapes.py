@@ -130,3 +130,12 @@ def test_faces():
 
     faces = box.faces()
     assert len(faces) == 6
+
+
+def test_fillet():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+
+    edges = box.edges()
+    box = box.fillet(edges, 0.1)
