@@ -6,7 +6,8 @@ from figura.shapes import (
     Face
 )
 from figura.geometry import (
-    Point
+    Point,
+    Geometry
 )
 from figura.primitives import (
     Box
@@ -43,6 +44,13 @@ def test_face():
     edge3 = Edge(v3, v1)
     wire = Wire([edge1, edge2, edge3])
     Face(wire)
+
+
+def test_mirror():
+    pt1 = Vertex(0, 1, 0)
+
+    x_axis = Geometry.OX()
+    mirrored_pt = pt1.mirror(x_axis)
 
 
 def test_fuse():
