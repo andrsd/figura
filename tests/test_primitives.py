@@ -1,6 +1,13 @@
 import pytest
+from figura.shapes import (
+    Vertex,
+    Edge,
+    Face,
+    Wire
+)
 from figura.geometry import (
     Point,
+    Vector,
     Direction,
     Axis2
 )
@@ -8,7 +15,8 @@ from figura.primitives import (
     Box,
     Cylinder,
     Sphere,
-    Cone
+    Cone,
+    Prism
 )
 
 
@@ -47,7 +55,16 @@ def test_sphere():
 
 
 def test_prism():
-    pass
+    pt1 = Vertex(0, 0, 0)
+    pt2 = Vertex(1, 0, 0)
+    pt3 = Vertex(0, 1, 0)
+    edge1 = Edge(pt1, pt2)
+    edge2 = Edge(pt2, pt3)
+    edge3 = Edge(pt3, pt1)
+    wire = Wire([edge1, edge2, edge3])
+    face = Face(wire)
+    vec = Vector(0, 0, 1)
+    prism = Prism(face, vec)
 
 
 def test_cone():
