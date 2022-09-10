@@ -148,3 +148,16 @@ def test_hollow():
 
     face = box.faces()[0]
     box = box.hollow([face], 0.1, 1e-3)
+
+
+def test_plane():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+
+    face = box.faces()[0]
+    assert face.is_plane() == True
+    plane = face.plane()
+    assert plane.location.x == 0
+    assert plane.location.y == 0
+    assert plane.location.z == 0
