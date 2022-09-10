@@ -45,6 +45,27 @@ def test_face():
     Face(wire)
 
 
+def test_fuse():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 4, 1)
+    box1 = Box(pt1, pt2)
+
+    pt3 = Point(1, 1, 0)
+    pt4 = Point(3, 3, 1)
+    tool = Box(pt3, pt4)
+
+    res = box1.fuse(tool)
+
+
+def test_fuse_wrong_tool_type():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box1 = Box(pt1, pt2)
+
+    with pytest.raises(TypeError):
+        res = box1.cut(Point(1, 1, 1))
+
+
 def test_cut():
     pt1 = Point(0, 0, 0)
     pt2 = Point(1, 1, 1)
