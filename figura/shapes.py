@@ -134,6 +134,13 @@ class Shape(object):
         thick_solid.Build()
         return Shape.from_obj(thick_solid.Shape())
 
+    def extrude(self, vec):
+        prism = BRepPrimAPI_MakePrism(self._shape, vec.obj())
+        prism.Build()
+        if not prism.IsDone():
+            raise SystemExit("extrude failed")
+        return Shape.from_obj(prism.Shape())
+
     @classmethod
     def from_obj(cls, obj):
         return cls(obj)
@@ -225,13 +232,6 @@ class Face(Shape):
             self._shape = arg1
         else:
             raise TypeError("Wrong argument types")
-
-    def extrude(self, vec):
-        prism = BRepPrimAPI_MakePrism(self._shape, vec.obj())
-        prism.Build()
-        if not prism.IsDone():
-            raise SystemExit("extrude failed")
-        return Shape.from_obj(prism.Shape())
 
     def is_plane(self):
         surf = BRepAdaptor_Surface(self._shape, True)
