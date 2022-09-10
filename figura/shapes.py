@@ -17,7 +17,8 @@ from OCC.Core.TopoDS import (
     TopoDS_Solid
 )
 from OCC.Core.BRepAlgoAPI import (
-    BRepAlgoAPI_Fuse
+    BRepAlgoAPI_Fuse,
+    BRepAlgoAPI_Cut
 )
 from OCC.Core.BRepOffsetAPI import (
     BRepOffsetAPI_MakeThickSolid
@@ -75,6 +76,16 @@ class Shape(object):
             return Shape.from_obj(fuse.Shape())
         else:
             raise TypeError("`shape` object does not have `shape()` method")
+
+    def cut(self, tool):
+        if hasattr(tool, 'shape'):
+            cut = BRepAlgoAPI_Cut(self.shape(), tool.shape())
+            cut.Build()
+            if not cut.IsDone():
+                raise SystemExit("Object was not cut")
+            return Shape.from_obj(cut.Shape())
+        else:
+            raise TypeError("`tool` object does not have `shape()` method")
 
     def edges(self):
         exp = TopExp_Explorer(self.shape(), TopAbs_EDGE)

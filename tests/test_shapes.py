@@ -1,8 +1,15 @@
+import pytest
 from figura.shapes import (
     Vertex,
     Edge,
     Wire,
     Face
+)
+from figura.geometry import (
+    Point
+)
+from figura.primitives import (
+    Box
 )
 
 
@@ -36,3 +43,23 @@ def test_face():
     edge3 = Edge(v3, v1)
     wire = Wire([edge1, edge2, edge3])
     Face(wire)
+
+
+def test_cut():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box1 = Box(pt1, pt2)
+
+    pt3 = Point(0.5, 0.5, 1)
+    tool = Box(pt1, pt3)
+
+    res = box1.cut(tool)
+
+
+def test_cut_wrong_tool_type():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box1 = Box(pt1, pt2)
+
+    with pytest.raises(TypeError):
+        res = box1.cut(Point(1, 1, 1))
