@@ -121,3 +121,12 @@ def test_edges():
 
     edges = box.edges()
     assert len(edges) == 24
+
+
+def test_faces():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+
+    faces = box.faces()
+    assert len(faces) == 6
