@@ -7,6 +7,7 @@ from figura.shapes import (
 )
 from figura.geometry import (
     Point,
+    Vector,
     Geometry
 )
 from figura.primitives import (
@@ -161,3 +162,9 @@ def test_plane():
     assert plane.location.x == 0
     assert plane.location.y == 0
     assert plane.location.z == 0
+
+
+def test_extrude():
+    pt1 = Vertex(0, 0, 0)
+    vec = Vector(1, 0, 0)
+    edge = pt1.extrude(vec)
