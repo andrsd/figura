@@ -168,3 +168,11 @@ def test_extrude():
     pt1 = Vertex(0, 0, 0)
     vec = Vector(1, 0, 0)
     edge = pt1.extrude(vec)
+
+
+def test_revolve():
+    pt1 = Vertex(1, -0.5, 0)
+    pt2 = Vertex(1, 0.5, 0)
+    edge = Edge(pt1, pt2)
+    oz = Geometry.OZ()
+    cyl = edge.revolve(oz)

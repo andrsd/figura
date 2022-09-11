@@ -1,3 +1,4 @@
+import math
 from OCC.Core.gp import gp_Pnt
 from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeVertex,
@@ -25,7 +26,8 @@ from OCC.Core.BRepOffsetAPI import (
     BRepOffsetAPI_MakeThickSolid
 )
 from OCC.Core.BRepPrimAPI import (
-    BRepPrimAPI_MakePrism
+    BRepPrimAPI_MakePrism,
+    BRepPrimAPI_MakeRevol
 )
 from OCC.Core.BRepFilletAPI import BRepFilletAPI_MakeFillet
 from OCC.Core.GeomAbs import GeomAbs_Plane
@@ -35,7 +37,10 @@ from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Core.TopAbs import TopAbs_EDGE, TopAbs_FACE
 from OCC.Core.TopTools import TopTools_ListOfShape
 from .gc import GeoCurve
-from .geometry import Plane
+from .geometry import (
+    Plane,
+    Axis1
+)
 from .transformations import Mirror
 
 
@@ -140,6 +145,16 @@ class Shape(object):
         if not prism.IsDone():
             raise SystemExit("extrude failed")  # pragma: no cover
         return Shape.from_obj(prism.Shape())
+
+    def revolve(self, axis, angle=2.*math.pi):
+        if isinstance(axis, Axis1):
+            rev = BRepPrimAPI_MakeRevol(self._shape, axis.obj(), angle)
+            rev.Build()
+            if not rev.IsDone():
+                raise SystemExit("revolve failed")  # pragma: no cover
+            return Shape.from_obj(rev.Shape())
+        else:
+            raise TypeError("Wrong argument types")
 
     @classmethod
     def from_obj(cls, obj):
