@@ -1,4 +1,3 @@
-import OCC.Core.STEPControl as step
 from OCC.Core.gp import (
     gp_Pnt,
     gp_Vec,
@@ -13,38 +12,12 @@ from OCC.Core.gp import (
     gp_DZ,
     gp_Pln
 )
-from OCC.Core.IFSelect import IFSelect_RetDone
 
 
 class Geometry(object):
 
     def __init__(self):
         self.shape = None
-
-    def write(self, file_name, format="STEP"):
-        if format == "STEP":
-            self._write_step_file(file_name)
-        else:
-            raise SystemError("Unknown format '{}'".format(format))
-
-    def read(self, file_name, format="STEP"):
-        if format == "STEP":
-            self._read_step_file(file_name)
-        else:
-            raise SystemError("Unknown format '{}'".format(format))
-
-    def _read_step_file(self, file_name):
-        step_reader = step.STEPControl_Reader()
-        if step_reader.ReadFile(file_name) != IFSelect_RetDone:
-            raise SystemExit("Unable to load '{}'".format(file_name))
-        step_reader.NbRootsForTransfer()
-        step_reader.TransferRoot()
-        self.shape = step_reader.OneShape()
-
-    def _write_step_file(self, file_name):
-        step_writer = step.STEPControl_Writer()
-        step_writer.Transfer(self.shape, step.STEPControl_AsIs)
-        step_writer.Write(file_name)
 
     @staticmethod
     def OX():

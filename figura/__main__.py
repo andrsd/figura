@@ -4,7 +4,6 @@ from figura import *
 import os
 import sys
 import types
-import OCC.Core.STEPControl as step
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
 
@@ -26,18 +25,12 @@ def load_file(file_name):
 def save_file(shapes, file_name, file_format='step'):
     fmt = file_format.lower()
     if fmt == 'step':
-        save_file_step(shapes, file_name)
+        step = STEPFile(file_name)
+        step.write(shapes)
     elif fmt == 'stl':
         save_file_stl(shapes, file_name, binary=True)
     else:
         raise SystemExit("Unknown format {}.".format(file_format))
-
-
-def save_file_step(shapes, file_name):
-    step_writer = step.STEPControl_Writer()
-    for shp in shapes:
-        step_writer.Transfer(shp.shape(), step.STEPControl_AsIs)
-    step_writer.Write(file_name)
 
 
 def save_file_stl(shapes, file_name, binary=True):

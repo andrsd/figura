@@ -12,13 +12,6 @@ from OCC.Core.gp import (
     gp_Vec,
     gp_Dir
 )
-import os
-
-
-assets_dir = os.path.join(
-    os.path.dirname(os.path.realpath(__file__)),
-    "assets"
-)
 
 
 def test_origin_x():
@@ -180,20 +173,3 @@ def test_axis2_not_a_dir():
     with pytest.raises(TypeError):
         pt = Point(0, 1, 0)
         Axis2(pt, "a")
-
-
-def test_read_step():
-    geo = Geometry()
-    geo.read(os.path.join(assets_dir, "cube.step"))
-
-
-def test_read_non_existent_step():
-    geo = Geometry()
-    with pytest.raises(SystemExit):
-        geo.read(os.path.join(assets_dir, "non-existent.step"))
-
-
-def test_read_unknown():
-    geo = Geometry()
-    with pytest.raises(SystemError):
-        geo.read(os.path.join(assets_dir, "cube.step"), format="ASDF")
