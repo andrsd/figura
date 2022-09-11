@@ -15,6 +15,7 @@ Welcome to figura's documentation!
    geometry
    shapes
    primitives
+   io
 
 
 Indices and tables

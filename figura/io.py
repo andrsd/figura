@@ -7,9 +7,19 @@ from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
 class STEPFile:
 
     def __init__(self, file_name):
+        """
+        STEP file
+
+        :param file_name: The name of the STEP file
+        """
         self._file_name = file_name
 
     def read(self):
+        """
+        Read the file
+
+        :return: The shape that is contained on the STEP file
+        """
         step_reader = step.STEPControl_Reader()
         if step_reader.ReadFile(self._file_name) != IFSelect_RetDone:
             raise SystemExit("Unable to load '{}'".format(self._file_name))
@@ -18,6 +28,11 @@ class STEPFile:
         return step_reader.OneShape()
 
     def write(self, shapes):
+        """
+        Write shapes into the file
+
+        :param shapes: List of shapes
+        """
         step_writer = step.STEPControl_Writer()
         for shp in shapes:
             step_writer.Transfer(shp.shape(), step.STEPControl_AsIs)
@@ -27,6 +42,12 @@ class STEPFile:
 class STLFile:
 
     def __init__(self, file_name, binary=True):
+        """
+        STL file
+
+        :param file_name:  The name of the STL file
+        :param binary: True for binary format, False for ASCII
+        """
         self._file_name = file_name
         self._binary = binary
         # meshing params
@@ -34,6 +55,11 @@ class STLFile:
         self._angular_deflection = 0.1
 
     def write(self, shapes):
+        """
+        Write shapes into the file
+
+        :param shapes: List of shapes
+        """
         writer = StlAPI_Writer()
         writer.SetASCIIMode(not self._binary)
         for idx, shp in enumerate(shapes):
