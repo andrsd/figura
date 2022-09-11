@@ -1,7 +1,8 @@
 import pytest
 import os
 from figura.io import (
-    STEPFile
+    STEPFile,
+    STLFile
 )
 from figura.primitives import (
     Box
@@ -35,3 +36,12 @@ def test_step_write():
 
     step = STEPFile(os.path.join("cube.step"))
     step.write([box])
+
+
+def test_stl_write():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+
+    stl = STLFile(os.path.join("cube"))
+    stl.write([box])

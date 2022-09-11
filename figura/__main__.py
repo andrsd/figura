@@ -4,8 +4,6 @@ from figura import *
 import os
 import sys
 import types
-from OCC.Core.StlAPI import StlAPI_Writer
-from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
 
 
 def load_file(file_name):
@@ -28,27 +26,10 @@ def save_file(shapes, file_name, file_format='step'):
         step = STEPFile(file_name)
         step.write(shapes)
     elif fmt == 'stl':
-        save_file_stl(shapes, file_name, binary=True)
+        stl = STLFile(file_name)
+        stl.write(shapes)
     else:
         raise SystemExit("Unknown format {}.".format(file_format))
-
-
-def save_file_stl(shapes, file_name, binary=True):
-    # meshing params
-    linear_deflection = 0.9
-    angular_deflection = 0.1
-
-    writer = StlAPI_Writer()
-    writer.SetASCIIMode(not binary)
-    for idx, shp in enumerate(shapes):
-        mesh = BRepMesh_IncrementalMesh(shp.shape(), linear_deflection, False, angular_deflection, True)
-        mesh.Perform()
-        if not mesh.IsDone():
-            raise SystemExit("Mesh is not done.")
-        fn = "{}.{}.stl".format(file_name, idx)
-        success = writer.Write(shp.shape(), fn)
-        if not success:
-            raise SystemExit("Failed to write STL file")
 
 
 def main():
