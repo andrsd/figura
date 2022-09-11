@@ -1,0 +1,4 @@
+pt1 = Point(0, 0, 0)
+pt2 = Point(1, 1, 1)
+box = Box(pt1, pt2)
+export = [box]
