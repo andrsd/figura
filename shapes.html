@@ -27,6 +27,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -91,7 +92,52 @@
 <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Shapes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Shapes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Edge.from_obj"><code class="docutils literal notranslate"><span class="pre">Edge.from_obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Face"><code class="docutils literal notranslate"><span class="pre">Face</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Face.from_obj"><code class="docutils literal notranslate"><span class="pre">Face.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Face.is_plane"><code class="docutils literal notranslate"><span class="pre">Face.is_plane()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Face.plane"><code class="docutils literal notranslate"><span class="pre">Face.plane()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Shape"><code class="docutils literal notranslate"><span class="pre">Shape</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.cut"><code class="docutils literal notranslate"><span class="pre">Shape.cut()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.edges"><code class="docutils literal notranslate"><span class="pre">Shape.edges()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.extrude"><code class="docutils literal notranslate"><span class="pre">Shape.extrude()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.faces"><code class="docutils literal notranslate"><span class="pre">Shape.faces()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.fillet"><code class="docutils literal notranslate"><span class="pre">Shape.fillet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.from_obj"><code class="docutils literal notranslate"><span class="pre">Shape.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.fuse"><code class="docutils literal notranslate"><span class="pre">Shape.fuse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.hollow"><code class="docutils literal notranslate"><span class="pre">Shape.hollow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.intersect"><code class="docutils literal notranslate"><span class="pre">Shape.intersect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.mirror"><code class="docutils literal notranslate"><span class="pre">Shape.mirror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.name"><code class="docutils literal notranslate"><span class="pre">Shape.name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.obj"><code class="docutils literal notranslate"><span class="pre">Shape.obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.revolve"><code class="docutils literal notranslate"><span class="pre">Shape.revolve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.shape"><code class="docutils literal notranslate"><span class="pre">Shape.shape()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Shell"><code class="docutils literal notranslate"><span class="pre">Shell</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shell.from_obj"><code class="docutils literal notranslate"><span class="pre">Shell.from_obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Solid"><code class="docutils literal notranslate"><span class="pre">Solid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Solid.from_obj"><code class="docutils literal notranslate"><span class="pre">Solid.from_obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Vertex"><code class="docutils literal notranslate"><span class="pre">Vertex</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Vertex.from_obj"><code class="docutils literal notranslate"><span class="pre">Vertex.from_obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Wire"><code class="docutils literal notranslate"><span class="pre">Wire</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Wire.from_obj"><code class="docutils literal notranslate"><span class="pre">Wire.from_obj()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="primitives.html">Primitives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">Input/Output</a></li>
 </ul>

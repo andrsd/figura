@@ -27,6 +27,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -90,7 +91,60 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Geometry</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Geometry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Axis1"><code class="docutils literal notranslate"><span class="pre">Axis1</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Axis1.direction"><code class="docutils literal notranslate"><span class="pre">Axis1.direction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Axis1.location"><code class="docutils literal notranslate"><span class="pre">Axis1.location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Axis1.obj"><code class="docutils literal notranslate"><span class="pre">Axis1.obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Axis2"><code class="docutils literal notranslate"><span class="pre">Axis2</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Axis2.direction"><code class="docutils literal notranslate"><span class="pre">Axis2.direction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Axis2.location"><code class="docutils literal notranslate"><span class="pre">Axis2.location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Axis2.obj"><code class="docutils literal notranslate"><span class="pre">Axis2.obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Direction"><code class="docutils literal notranslate"><span class="pre">Direction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Direction.from_obj"><code class="docutils literal notranslate"><span class="pre">Direction.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Direction.obj"><code class="docutils literal notranslate"><span class="pre">Direction.obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Direction.x"><code class="docutils literal notranslate"><span class="pre">Direction.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Direction.y"><code class="docutils literal notranslate"><span class="pre">Direction.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Direction.z"><code class="docutils literal notranslate"><span class="pre">Direction.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Geometry.DX"><code class="docutils literal notranslate"><span class="pre">Geometry.DX()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Geometry.DY"><code class="docutils literal notranslate"><span class="pre">Geometry.DY()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Geometry.DZ"><code class="docutils literal notranslate"><span class="pre">Geometry.DZ()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Geometry.OX"><code class="docutils literal notranslate"><span class="pre">Geometry.OX()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Geometry.OY"><code class="docutils literal notranslate"><span class="pre">Geometry.OY()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Geometry.OZ"><code class="docutils literal notranslate"><span class="pre">Geometry.OZ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Plane"><code class="docutils literal notranslate"><span class="pre">Plane</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Plane.from_obj"><code class="docutils literal notranslate"><span class="pre">Plane.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Plane.location"><code class="docutils literal notranslate"><span class="pre">Plane.location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Plane.obj"><code class="docutils literal notranslate"><span class="pre">Plane.obj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Point.from_obj"><code class="docutils literal notranslate"><span class="pre">Point.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Point.obj"><code class="docutils literal notranslate"><span class="pre">Point.obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Point.z"><code class="docutils literal notranslate"><span class="pre">Point.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.geometry.Vector"><code class="docutils literal notranslate"><span class="pre">Vector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Vector.from_obj"><code class="docutils literal notranslate"><span class="pre">Vector.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Vector.obj"><code class="docutils literal notranslate"><span class="pre">Vector.obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Vector.x"><code class="docutils literal notranslate"><span class="pre">Vector.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Vector.y"><code class="docutils literal notranslate"><span class="pre">Vector.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.geometry.Vector.z"><code class="docutils literal notranslate"><span class="pre">Vector.z</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="shapes.html">Shapes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="primitives.html">Primitives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">Input/Output</a></li>
