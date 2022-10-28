@@ -1,6 +1,10 @@
 from OCC.Core.GC import (
     GC_MakeArcOfCircle,
-    GC_MakeSegment
+    GC_MakeSegment,
+    GC_MakeCircle
+)
+from .geometry import (
+    Direction
 )
 
 
@@ -40,3 +44,16 @@ class ArcOfCircle(GeoCurve):
 
     def obj(self):
         return self._arc
+
+
+class Circle(GeoCurve):
+
+    def __init__(self, center, radius, norm = Direction(0, 0, 1)):
+        super().__init__()
+        mk = GC_MakeCircle(center.obj(), norm.obj(), radius)
+        if not mk.IsDone():
+            raise SystemExit("Circle was not created")  # pragma: no cover
+        self._circle = mk.Value()
+
+    def obj(self):
+        return self._circle
