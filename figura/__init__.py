@@ -3,6 +3,7 @@ from .shapes import (Shape, Vertex, Edge, Wire, Face, Shell, Solid)
 from .primitives import (Box, Cylinder, Sphere, Prism)
 from .gc import (Segment, ArcOfCircle, Circle)
 from .io import (STEPFile, STLFile)
+from ._version import __version__
 
 __all__ = [
     'Geometry',
