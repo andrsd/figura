@@ -1,13 +1,15 @@
 import pytest
 from figura.gc import (
     Segment,
-    ArcOfCircle
+    ArcOfCircle,
+    Circle
 )
 from figura.geometry import (
     Point
 )
 from OCC.Core.Geom import (
-    Geom_TrimmedCurve
+    Geom_TrimmedCurve,
+    Geom_Circle
 )
 
 def test_segment():
@@ -25,3 +27,10 @@ def test_arcofcircle():
     seg = ArcOfCircle(pt1, pt2, pt3)
 
     assert isinstance(seg.obj(), Geom_TrimmedCurve)
+
+
+def test_circle():
+    ctr = Point(0, 0, 0)
+    seg = Circle(ctr, 1.)
+
+    assert isinstance(seg.obj(), Geom_Circle)
