@@ -6,7 +6,8 @@ from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeWire,
     BRepBuilderAPI_MakeFace,
     BRepBuilderAPI_MakeShell,
-    BRepBuilderAPI_MakeSolid
+    BRepBuilderAPI_MakeSolid,
+    BRepBuilderAPI_MakePolygon
 )
 from OCC.Core.TopoDS import (
     TopoDS_Shape,
@@ -39,7 +40,8 @@ from OCC.Core.TopTools import TopTools_ListOfShape
 from .gc import GeoCurve
 from .geometry import (
     Plane,
-    Axis1
+    Axis1,
+    Point
 )
 from .transformations import Mirror
 
@@ -294,6 +296,30 @@ class Solid(Shape):
             self._shape = solid.Solid()
         elif isinstance(arg1, TopoDS_Solid):
             self._shape = arg1
+        else:
+            raise TypeError("Wrong argument types")
+
+    @classmethod
+    def from_obj(cls, obj):
+        return cls(obj)
+
+
+class Polygon(Wire):
+
+    def __init__(self, arg1, closed=True):
+        if isinstance(arg1, list):
+            if len(arg1) < 3:
+                raise SystemExit("Polygon needs at least 3 points")
+            poly = BRepBuilderAPI_MakePolygon()
+            for item in arg1:
+                if isinstance(item, Point):
+                    poly.Add(item.obj())
+            if closed:
+                poly.Close()
+            poly.Build()
+            if not poly.IsDone():
+                raise SystemExit("Polygon was not created")  # pragma: no cover
+            super().__init__(poly.Wire())
         else:
             raise TypeError("Wrong argument types")
 
