@@ -304,24 +304,30 @@ class Solid(Shape):
         return cls(obj)
 
 
-class Polygon(Wire):
+class Polygon(Shape):
 
     def __init__(self, arg1, closed=True):
         if isinstance(arg1, list):
             if len(arg1) < 3:
                 raise SystemExit("Polygon needs at least 3 points")
-            poly = BRepBuilderAPI_MakePolygon()
+            self._polygon = BRepBuilderAPI_MakePolygon()
             for item in arg1:
                 if isinstance(item, Point):
-                    poly.Add(item.obj())
+                    self._polygon.Add(item.obj())
             if closed:
-                poly.Close()
-            poly.Build()
-            if not poly.IsDone():
+                self._polygon.Close()
+            self._polygon.Build()
+            if not self._polygon.IsDone():
                 raise SystemExit("Polygon was not created")  # pragma: no cover
-            super().__init__(poly.Wire())
+            super().__init__(shape=self._polygon.Shape())
         else:
             raise TypeError("Wrong argument types")
+
+    def edge(self):
+        return Edge.from_obj(self._polygon.Edge())
+
+    def wire(self):
+        return Wire.from_obj(self._polygon.Wire())
 
     @classmethod
     def from_obj(cls, obj):
