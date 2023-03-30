@@ -223,7 +223,7 @@ class Line(Edge):
 
 class Circle(Edge):
 
-    def __init__(self, center, radius, norm = Direction(0, 0, 1)):
+    def __init__(self, center, radius, norm=Direction(0, 0, 1)):
         super().__init__()
         mk = GC_MakeCircle(center.obj(), norm.obj(), radius)
         if not mk.IsDone():
