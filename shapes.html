@@ -61,6 +61,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.from_obj"><code class="docutils literal notranslate"><span class="pre">Point.from_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.pnt"><code class="docutils literal notranslate"><span class="pre">Point.pnt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.z"><code class="docutils literal notranslate"><span class="pre">Point.z</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Polygon.edge"><code class="docutils literal notranslate"><span class="pre">Polygon.edge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Polygon.from_obj"><code class="docutils literal notranslate"><span class="pre">Polygon.from_obj()</span></code></a></li>
@@ -79,7 +87,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.intersect"><code class="docutils literal notranslate"><span class="pre">Shape.intersect()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.mirror"><code class="docutils literal notranslate"><span class="pre">Shape.mirror()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.name"><code class="docutils literal notranslate"><span class="pre">Shape.name()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.obj"><code class="docutils literal notranslate"><span class="pre">Shape.obj()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.revolve"><code class="docutils literal notranslate"><span class="pre">Shape.revolve()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.shape"><code class="docutils literal notranslate"><span class="pre">Shape.shape()</span></code></a></li>
 </ul>
@@ -90,10 +97,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Solid"><code class="docutils literal notranslate"><span class="pre">Solid</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Solid.from_obj"><code class="docutils literal notranslate"><span class="pre">Solid.from_obj()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Vertex"><code class="docutils literal notranslate"><span class="pre">Vertex</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Vertex.from_obj"><code class="docutils literal notranslate"><span class="pre">Vertex.from_obj()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Wire"><code class="docutils literal notranslate"><span class="pre">Wire</span></code></a><ul>
@@ -177,6 +180,39 @@
 <dd></dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Point">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.from_obj">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.from_obj" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.pnt">
+<span class="sig-name descname"><span class="pre">pnt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.pnt" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Point.x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#figura.shapes.Point.x" title="Permalink to this definition"></a></dt>
+<dd><p>X-coordinate of this point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Point.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#figura.shapes.Point.y" title="Permalink to this definition"></a></dt>
+<dd><p>Y-coordinate of this point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Point.z">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#figura.shapes.Point.z" title="Permalink to this definition"></a></dt>
+<dd><p>Z-coordinate of this point</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="figura.shapes.Polygon">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Polygon" title="Permalink to this definition"></a></dt>
 <dd><dl class="py method">
@@ -255,11 +291,6 @@
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="figura.shapes.Shape.obj">
-<span class="sig-name descname"><span class="pre">obj</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.obj" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Shape.revolve">
 <span class="sig-name descname"><span class="pre">revolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.283185307179586</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.revolve" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -287,16 +318,6 @@
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Solid.from_obj">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Solid.from_obj" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="figura.shapes.Vertex">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Vertex" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
-<dt class="sig sig-object py" id="figura.shapes.Vertex.from_obj">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Vertex.from_obj" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
