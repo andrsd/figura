@@ -9,4 +9,4 @@ tuts_dir = os.path.join(
 
 def test_bottle():
     file = os.path.join(tuts_dir, "bottle/bottle.figura")
-    shapes = load_file(file)
+    load_file(file)
