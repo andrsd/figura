@@ -1,12 +1,11 @@
 import pytest
 from figura.shapes import (
-    Vertex,
+    Point,
     Line,
     Face,
     Wire
 )
 from figura.geometry import (
-    Point,
     Vector,
     Direction,
     Axis2
@@ -60,9 +59,9 @@ def test_sphere():
 
 
 def test_prism():
-    pt1 = Vertex(0, 0, 0)
-    pt2 = Vertex(1, 0, 0)
-    pt3 = Vertex(0, 1, 0)
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 0, 0)
+    pt3 = Point(0, 1, 0)
     edge1 = Line(pt1, pt2)
     edge2 = Line(pt2, pt3)
     edge3 = Line(pt3, pt1)

@@ -1,11 +1,13 @@
 import pytest
 from figura.geometry import (
-    Point,
     Vector,
     Direction,
     Axis1,
     Axis2,
     Geometry
+)
+from figura.shapes import (
+    Point
 )
 from OCC.Core.gp import (
     gp_Pnt,
@@ -66,23 +68,6 @@ def test_direction_z():
     assert dz.x == 0
     assert dz.y == 0
     assert dz.z == 1
-
-
-def test_point():
-    pt = Point(1, 2, 3)
-    assert pt.x == 1
-    assert pt.y == 2
-    assert pt.z == 3
-    assert pt.obj().IsEqual(gp_Pnt(1, 2, 3), 1e-15)
-
-    s = str(pt)
-    assert s == "<class 'figura.geometry.Point'>(x=1.0, y=2.0, z=3.0)"
-
-    gp = gp_Pnt(3, 2, 1)
-    p = Point.from_obj(gp)
-    assert p.x == 3
-    assert p.y == 2
-    assert p.z == 1
 
 
 def test_vector():

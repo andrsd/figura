@@ -1,5 +1,4 @@
 from OCC.Core.gp import (
-    gp_Pnt,
     gp_Vec,
     gp_Dir,
     gp_Ax1,
@@ -12,7 +11,8 @@ from OCC.Core.gp import (
     gp_DZ,
     gp_Pln
 )
-
+# from .shapes import Point
+import figura
 
 class Geometry(object):
 
@@ -22,21 +22,21 @@ class Geometry(object):
     @staticmethod
     def OX():
         ax1 = gp_OX()
-        pt = Point.from_obj(ax1.Location())
+        pt = figura.shapes.Point.from_obj(ax1.Location())
         dir = Direction.from_obj(ax1.Direction())
         return Axis1(pt, dir)
 
     @staticmethod
     def OY():
         ax1 = gp_OY()
-        pt = Point.from_obj(ax1.Location())
+        pt = figura.shapes.Point.from_obj(ax1.Location())
         dir = Direction.from_obj(ax1.Direction())
         return Axis1(pt, dir)
 
     @staticmethod
     def OZ():
         ax1 = gp_OZ()
-        pt = Point.from_obj(ax1.Location())
+        pt = figura.shapes.Point.from_obj(ax1.Location())
         dir = Direction.from_obj(ax1.Direction())
         return Axis1(pt, dir)
 
@@ -54,65 +54,6 @@ class Geometry(object):
     def DZ():
         dir = gp_DZ()
         return Direction.from_obj(dir)
-
-
-class Point(object):
-    """
-    Defines 3D cartesian point
-    """
-
-    def __init__(self, x, y, z):
-        """
-        Construct a 3D point from its coordinates
-
-        :param x: X-coordinate
-        :param y: Y-coordinate
-        :param z: Z-coordinate
-        """
-        self._pnt = gp_Pnt(x, y, z)
-
-    @property
-    def x(self):
-        """
-        X-coordinate of this point
-        """
-        return self._pnt.X()
-
-    @property
-    def y(self):
-        """
-        Y-coordinate of this point
-        """
-        return self._pnt.Y()
-
-    @property
-    def z(self):
-        """
-        Z-coordinate of this point
-        """
-        return self._pnt.Z()
-
-    def obj(self):
-        """
-        Get the underlying OpenCascade object
-
-        :return: The underlying OpenCascade object
-        """
-        return self._pnt
-
-    @classmethod
-    def from_obj(cls, obj):
-        """
-        Construct ``figura`` object from an OpenCascade ``gp_Pnt`` object
-
-        :param obj: OpenCascade ``gp_Pnt`` object
-        :return: :class:`.Point` object
-        """
-        return Point(obj.X(), obj.Y(), obj.Z())
-
-    def __str__(self):
-        return "{}(x={}, y={}, z={})".format(
-            self.__class__, self.x, self.y, self.z)
 
 
 class Vector(object):
@@ -222,13 +163,13 @@ class Direction(object):
 class Axis1(object):
 
     def __init__(self, pt, dir):
-        if not isinstance(pt, Point):
+        if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
         if not isinstance(dir, Direction):
             raise TypeError("'dir' must be a 'Direction'")
         self._location = pt
         self._direction = dir
-        self._ax1 = gp_Ax1(pt.obj(), dir.obj())
+        self._ax1 = gp_Ax1(pt.pnt(), dir.obj())
 
     @property
     def location(self):
@@ -256,13 +197,13 @@ class Axis1(object):
 class Axis2(object):
 
     def __init__(self, pt, dir):
-        if not isinstance(pt, Point):
+        if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
         if not isinstance(dir, Direction):
             raise TypeError("'dir' must be a 'Direction'")
         self._location = pt
         self._direction = dir
-        self._ax2 = gp_Ax2(pt.obj(), dir.obj())
+        self._ax2 = gp_Ax2(pt.pnt(), dir.obj())
 
     @property
     def location(self):
@@ -311,9 +252,9 @@ class Plane(object):
         :param arg1: Point :py:class:`.Point`
         :param arg2: Normal :py:class:`.Direction`
         """
-        if isinstance(pt, Point) and isinstance(normal, Direction):
+        if isinstance(pt, figura.shapes.Point) and isinstance(normal, Direction):
             self._location = pt
-            self._pln = gp_Pln(pt.obj(), normal.obj())
+            self._pln = gp_Pln(pt.pnt(), normal.obj())
         else:
             raise TypeError("Wrong argument types")
 
@@ -340,6 +281,6 @@ class Plane(object):
         :param obj: OpenCascade ``gp_Pln`` object
         :return: :class:`.Plane` object
         """
-        pt = Point.from_obj(obj.Location())
+        pt = figura.shapes.Point.from_obj(obj.Location())
         normal = Direction.from_obj(obj.Axis().Direction())
         return Plane(pt, normal)

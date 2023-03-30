@@ -7,7 +7,7 @@ from figura.io import (
 from figura.primitives import (
     Box
 )
-from figura.geometry import (
+from figura.shapes import (
     Point
 )
 

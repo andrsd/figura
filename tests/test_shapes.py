@@ -1,6 +1,6 @@
 import pytest
 from figura.shapes import (
-    Vertex,
+    Point,
     Wire,
     Face,
     Line,
@@ -8,40 +8,56 @@ from figura.shapes import (
     ArcOfCircle
 )
 from figura.geometry import (
-    Point,
     Vector,
     Geometry
 )
 from figura.primitives import (
     Box
 )
+from OCC.Core.gp import (
+    gp_Pnt
+)
 
 
-def test_vertex():
-    v = Vertex(1, 2, 3)
-    v.name("pt1")
-    assert v.name() == "pt1"
+def test_point():
+    pt = Point(1, 2, 3)
+    pt.name("pt1")
+    assert pt.name() == "pt1"
+
+    assert pt.x == 1
+    assert pt.y == 2
+    assert pt.z == 3
+    assert pt.pnt().IsEqual(gp_Pnt(1, 2, 3), 1e-15)
+
+    s = str(pt)
+    assert s == "<class 'figura.shapes.Point'>(x=1.0, y=2.0, z=3.0)"
+
+    gp = gp_Pnt(3, 2, 1)
+    p = Point.from_obj(gp)
+    assert p.x == 3
+    assert p.y == 2
+    assert p.z == 1
 
 
 def test_line():
-    v1 = Vertex(0, 0, 0)
-    v2 = Vertex(1, 0, 0)
+    v1 = Point(0, 0, 0)
+    v2 = Point(1, 0, 0)
     Line(v1, v2)
 
 
 def test_wire():
-    v1 = Vertex(0, 0, 0)
-    v2 = Vertex(1, 0, 0)
-    v3 = Vertex(2, 0, 0)
+    v1 = Point(0, 0, 0)
+    v2 = Point(1, 0, 0)
+    v3 = Point(2, 0, 0)
     edge1 = Line(v1, v2)
     edge2 = Line(v2, v3)
     Wire([edge1, edge2])
 
 
 def test_face():
-    v1 = Vertex(0, 0, 0)
-    v2 = Vertex(1, 0, 0)
-    v3 = Vertex(2, 0, 0)
+    v1 = Point(0, 0, 0)
+    v2 = Point(1, 0, 0)
+    v3 = Point(2, 0, 0)
     edge1 = Line(v1, v2)
     edge2 = Line(v2, v3)
     edge3 = Line(v3, v1)
@@ -50,7 +66,7 @@ def test_face():
 
 
 def test_mirror():
-    pt1 = Vertex(0, 1, 0)
+    pt1 = Point(0, 1, 0)
 
     x_axis = Geometry.OX()
     pt1.mirror(x_axis)
@@ -74,7 +90,7 @@ def test_fuse_wrong_tool_type():
     box1 = Box(pt1, pt2)
 
     with pytest.raises(TypeError):
-        box1.cut(Point(1, 1, 1))
+        box1.cut(Geometry.OX())
 
 
 def test_cut():
@@ -94,7 +110,7 @@ def test_cut_wrong_tool_type():
     box1 = Box(pt1, pt2)
 
     with pytest.raises(TypeError):
-        box1.cut(Point(1, 1, 1))
+        box1.cut(Geometry.OX())
 
 
 def test_intersect():
@@ -115,7 +131,7 @@ def test_intersect_wrong_tool_type():
     box1 = Box(pt1, pt2)
 
     with pytest.raises(TypeError):
-        box1.intersect(Point(1, 1, 1))
+        box1.intersect(Geometry.OX())
 
 
 def test_edges():
@@ -168,23 +184,17 @@ def test_plane():
 
 
 def test_extrude():
-    pt1 = Vertex(0, 0, 0)
+    pt1 = Point(0, 0, 0)
     vec = Vector(1, 0, 0)
     pt1.extrude(vec)
 
 
 def test_revolve():
-    pt1 = Vertex(1, -0.5, 0)
-    pt2 = Vertex(1, 0.5, 0)
+    pt1 = Point(1, -0.5, 0)
+    pt2 = Point(1, 0.5, 0)
     edge = Line(pt1, pt2)
     oz = Geometry.OZ()
     edge.revolve(oz)
-
-
-def test_line_pt():
-    pt1 = Point(0, 0, 0)
-    pt2 = Point(1, 0, 0)
-    Line(pt1, pt2)
 
 
 def test_circle():

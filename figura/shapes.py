@@ -41,12 +41,12 @@ from OCC.Core.GC import (
     GC_MakeCircle,
     GC_MakeArcOfCircle
 )
-from .geometry import (
-    Plane,
-    Axis1,
-    Point,
-    Direction
-)
+import figura
+# from .geometry import (
+#     Plane,
+#     Axis1,
+#     Direction
+# )
 from .transformations import Mirror
 
 
@@ -76,7 +76,7 @@ class Shape(object):
         return self._shape
 
     def mirror(self, axis):
-        op = Mirror(axis)
+        op = figura.transformations.Mirror(axis)
         return self.__class__.from_obj(op.do(self))
 
     def fuse(self, shape):
@@ -153,7 +153,7 @@ class Shape(object):
         return Shape.from_obj(prism.Shape())
 
     def revolve(self, axis, angle=2.*math.pi):
-        if isinstance(axis, Axis1):
+        if isinstance(axis, figura.geometry.Axis1):
             rev = BRepPrimAPI_MakeRevol(self._shape, axis.obj(), angle)
             rev.Build()
             if not rev.IsDone():
@@ -167,24 +167,60 @@ class Shape(object):
         return cls(obj)
 
 
-class Vertex(Shape):
+class Point(Shape):
     """
-    Vertex
+    Point
     """
 
     def __init__(self, x=None, y=None, z=None):
         super().__init__()
         if isinstance(x, TopoDS_Vertex):
+            self._pnt = None
             self._shape = x
-        elif x is not None and y is not None and z is not None:
-            pt = gp_Pnt(x, y, z)
-            vertex = BRepBuilderAPI_MakeVertex(pt)
+        elif isinstance(x, gp_Pnt):
+            self._pnt = x
+            vertex = BRepBuilderAPI_MakeVertex(self._pnt)
             vertex.Build()
             if not vertex.IsDone():
-                raise SystemExit("Vertex was not created")  # pragma: no cover
+                raise SystemExit("Point was not created")  # pragma: no cover
+            self._shape = vertex.Vertex()
+        elif x is not None and y is not None and z is not None:
+            self._pnt = gp_Pnt(x, y, z)
+            vertex = BRepBuilderAPI_MakeVertex(self._pnt)
+            vertex.Build()
+            if not vertex.IsDone():
+                raise SystemExit("Point was not created")  # pragma: no cover
             self._shape = vertex.Vertex()
         else:
             raise TypeError("Wrong argument types")
+
+    def pnt(self):
+        return self._pnt
+
+    @property
+    def x(self):
+        """
+        X-coordinate of this point
+        """
+        return self._pnt.X()
+
+    @property
+    def y(self):
+        """
+        Y-coordinate of this point
+        """
+        return self._pnt.Y()
+
+    @property
+    def z(self):
+        """
+        Z-coordinate of this point
+        """
+        return self._pnt.Z()
+
+    def __str__(self):
+        return "{}(x={}, y={}, z={})".format(
+            self.__class__, self.x, self.y, self.z)
 
     @classmethod
     def from_obj(cls, obj):
@@ -213,9 +249,7 @@ class Line(Edge):
 
     def __init__(self, pt1, pt2):
         super().__init__()
-        if isinstance(pt1, Vertex) and isinstance(pt2, Vertex):
-            self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.obj(), pt2.obj()))
-        elif isinstance(pt1, Point) and isinstance(pt2, Point):
+        if isinstance(pt1, Point) and isinstance(pt2, Point):
             self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.obj(), pt2.obj()))
         else:
             raise TypeError("Wrong argument types")
@@ -223,9 +257,9 @@ class Line(Edge):
 
 class Circle(Edge):
 
-    def __init__(self, center, radius, norm=Direction(0, 0, 1)):
+    def __init__(self, center, radius, norm=figura.geometry.Direction(0, 0, 1)):
         super().__init__()
-        mk = GC_MakeCircle(center.obj(), norm.obj(), radius)
+        mk = GC_MakeCircle(center.pnt(), norm.obj(), radius)
         if not mk.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
         self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
@@ -235,7 +269,7 @@ class ArcOfCircle(Edge):
 
     def __init__(self, pt1, pt2, pt3):
         super().__init__()
-        mk = GC_MakeArcOfCircle(pt1.obj(), pt2.obj(), pt3.obj())
+        mk = GC_MakeArcOfCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
         if not mk.IsDone():
             raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
         self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
@@ -285,7 +319,7 @@ class Face(Shape):
         return surf_type == GeomAbs_Plane
 
     def plane(self):
-        return Plane.from_obj(BRepAdaptor_Surface(self._shape, True).Plane())
+        return figura.geometry.Plane.from_obj(BRepAdaptor_Surface(self._shape, True).Plane())
 
     @classmethod
     def from_obj(cls, obj):
