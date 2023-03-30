@@ -5,9 +5,6 @@ from OCC.Core.BRepPrimAPI import (
     BRepPrimAPI_MakePrism,
     BRepPrimAPI_MakeCone
 )
-from OCC.Core.BRepAlgoAPI import (
-    BRepAlgoAPI_Fuse
-)
 from OCC.Core.TopoDS import (
     TopoDS_Shape
 )

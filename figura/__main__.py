@@ -1,8 +1,6 @@
 # Front end for figura
 
 from figura import *
-import os
-import sys
 import types
 
 
@@ -33,7 +31,6 @@ def save_file(shapes, file_name, file_format='step'):
 
 
 def main():
-    import OCC.Core.STEPControl as step
     import argparse
 
     parser = argparse.ArgumentParser()
