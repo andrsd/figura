@@ -1,6 +1,6 @@
 # Front end for figura
 
-from figura import *
+from figura import STEPFile, STLFile
 import types
 
 
