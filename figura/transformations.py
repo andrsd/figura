@@ -24,5 +24,5 @@ class Mirror(Transformation):
             raise SystemError("ax1 must be 'Axis1'")
 
     def do(self, shape):
-        brep_trsf = BRepBuilderAPI_Transform(shape.obj(), self._trsf)
+        brep_trsf = BRepBuilderAPI_Transform(shape.shape(), self._trsf)
         return brep_trsf.Shape()

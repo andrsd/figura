@@ -26,7 +26,7 @@ class Box(Shape):
         :param pt1: First corner :class:`.Point`
         :param pt2: Second corner :class:`.Point`
         """
-        self._box = BRepPrimAPI_MakeBox(pt1.obj(), pt2.obj())
+        self._box = BRepPrimAPI_MakeBox(pt1.pnt(), pt2.pnt())
         self._box.Build()
         if not self._box.IsDone():
             raise SystemExit("Box was not created")  # pragma: no cover
@@ -60,7 +60,7 @@ class Cylinder(Shape):
 class Sphere(Shape):
 
     def __init__(self, center, radius):
-        self._sphere = BRepPrimAPI_MakeSphere(center.obj(), radius)
+        self._sphere = BRepPrimAPI_MakeSphere(center.pnt(), radius)
         self._sphere.Build()
         if not self._sphere.IsDone():
             raise SystemExit("Sphere was not created")  # pragma: no cover
@@ -76,9 +76,9 @@ class Sphere(Shape):
 class Prism(Shape):
 
     def __init__(self, shape, vec):
-        if not hasattr(shape, "obj"):
-            raise SystemExit("'shape' must have a 'obj' method")
-        shp = shape.obj()
+        if not hasattr(shape, "shape"):
+            raise SystemExit("'shape' must have a 'shape' method")
+        shp = shape.shape()
         if not isinstance(shp, TopoDS_Shape):
             raise SystemExit("'shape' is not a TopoDS_Shape")
         self._prism = BRepPrimAPI_MakePrism(shp, vec.obj())
