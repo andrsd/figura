@@ -1,14 +1,14 @@
 # Front end for figura
 
-from figura import *
-import os
-import sys
+from figura import STEPFile, STLFile
 import types
 
 
 def load_file(file_name):
     with open(file_name) as fp:
-        code = compile(fp.read(), file_name, "exec")
+        src = "from figura import *\n"
+        src += fp.read()
+        code = compile(src, file_name, "exec")
     module = types.ModuleType("<script>")
     exec(code, globals(), module.__dict__)
 
@@ -33,7 +33,6 @@ def save_file(shapes, file_name, file_format='step'):
 
 
 def main():
-    import OCC.Core.STEPControl as step
     import argparse
 
     parser = argparse.ArgumentParser()

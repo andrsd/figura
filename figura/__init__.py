@@ -1,9 +1,7 @@
 from .geometry import (Point, Direction, Vector, Axis1, Axis2, Plane, Geometry)
-from .shapes import (Shape, Vertex, Edge, Wire, Face, Shell, Solid, Polygon)
+from .shapes import (Shape, Vertex, Edge, Wire, Face, Shell, Solid, Polygon, Line, ArcOfCircle, Circle)
 from .primitives import (Box, Cylinder, Sphere, Prism)
-from .gc import (Segment, ArcOfCircle, Circle)
 from .io import (STEPFile, STLFile)
-from ._version import __version__
 
 __all__ = [
     'Geometry',
@@ -25,7 +23,7 @@ __all__ = [
     'Cylinder',
     'Sphere',
     'Prism',
-    'Segment',
+    'Line',
     'ArcOfCircle',
     'Circle',
     'STEPFile',

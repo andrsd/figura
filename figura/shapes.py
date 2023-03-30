@@ -37,11 +37,15 @@ from OCC.Core.TopoDS import topods
 from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Core.TopAbs import TopAbs_EDGE, TopAbs_FACE
 from OCC.Core.TopTools import TopTools_ListOfShape
-from .gc import GeoCurve
+from OCC.Core.GC import (
+    GC_MakeCircle,
+    GC_MakeArcOfCircle
+)
 from .geometry import (
     Plane,
     Axis1,
-    Point
+    Point,
+    Direction
 )
 from .transformations import Mirror
 
@@ -189,27 +193,52 @@ class Vertex(Shape):
 
 class Edge(Shape):
 
-    def __init__(self, arg1=None, arg2=None):
+    def __init__(self, arg1=None):
         super().__init__()
-        edge = None
-        if isinstance(arg1, Vertex) and isinstance(arg2, Vertex):
-            edge = BRepBuilderAPI_MakeEdge(arg1.obj(), arg2.obj())
-        elif isinstance(arg1, GeoCurve):
-            edge = BRepBuilderAPI_MakeEdge(arg1.obj())
-        elif isinstance(arg1, TopoDS_Edge):
+        if isinstance(arg1, TopoDS_Edge):
             self._shape = arg1
-        else:
-            raise TypeError("Wrong argument types")
 
-        if edge is not None:
-            edge.Build()
-            if not edge.IsDone():
-                raise SystemExit("Edge was not created")  # pragma: no cover
-            self._shape = edge.Edge()
+    def _build_edge(self, edge):
+        edge.Build()
+        if not edge.IsDone():
+            raise SystemExit("Edge was not created")  # pragma: no cover
+        return edge.Edge()
 
     @classmethod
     def from_obj(cls, obj):
         return cls(obj)
+
+
+class Line(Edge):
+
+    def __init__(self, pt1, pt2):
+        super().__init__()
+        if isinstance(pt1, Vertex) and isinstance(pt2, Vertex):
+            self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.obj(), pt2.obj()))
+        elif isinstance(pt1, Point) and isinstance(pt2, Point):
+            self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.obj(), pt2.obj()))
+        else:
+            raise TypeError("Wrong argument types")
+
+
+class Circle(Edge):
+
+    def __init__(self, center, radius, norm=Direction(0, 0, 1)):
+        super().__init__()
+        mk = GC_MakeCircle(center.obj(), norm.obj(), radius)
+        if not mk.IsDone():
+            raise SystemExit("Circle was not created")  # pragma: no cover
+        self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+
+
+class ArcOfCircle(Edge):
+
+    def __init__(self, pt1, pt2, pt3):
+        super().__init__()
+        mk = GC_MakeArcOfCircle(pt1.obj(), pt2.obj(), pt3.obj())
+        if not mk.IsDone():
+            raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
+        self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
 
 
 class Wire(Shape):
