@@ -6,7 +6,9 @@ import types
 
 def load_file(file_name):
     with open(file_name) as fp:
-        code = compile(fp.read(), file_name, "exec")
+        src = "from figura import *\n"
+        src += fp.read()
+        code = compile(src, file_name, "exec")
     module = types.ModuleType("<script>")
     exec(code, globals(), module.__dict__)
 
