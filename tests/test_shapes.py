@@ -117,6 +117,7 @@ def test_intersect_wrong_tool_type():
     with pytest.raises(TypeError):
         box1.intersect(Point(1, 1, 1))
 
+
 def test_edges():
     pt1 = Point(0, 0, 0)
     pt2 = Point(1, 1, 1)
