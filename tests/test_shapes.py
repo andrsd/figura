@@ -160,7 +160,7 @@ def test_plane():
     box = Box(pt1, pt2)
 
     face = box.faces()[0]
-    assert face.is_plane() == True
+    assert face.is_plane()
     plane = face.plane()
     assert plane.location.x == 0
     assert plane.location.y == 0
