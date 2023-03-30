@@ -72,9 +72,6 @@ class Shape(object):
     def shape(self):
         return self._shape
 
-    def obj(self):
-        return self._shape
-
     def mirror(self, axis):
         op = figura.transformations.Mirror(axis)
         return self.__class__.from_obj(op.do(self))
@@ -250,7 +247,7 @@ class Line(Edge):
     def __init__(self, pt1, pt2):
         super().__init__()
         if isinstance(pt1, Point) and isinstance(pt2, Point):
-            self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.obj(), pt2.obj()))
+            self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.pnt(), pt2.pnt()))
         else:
             raise TypeError("Wrong argument types")
 
@@ -283,7 +280,7 @@ class Wire(Shape):
             wire = BRepBuilderAPI_MakeWire()
             for item in arg1:
                 if isinstance(item, Edge) or isinstance(item, Wire):
-                    wire.Add(item.obj())
+                    wire.Add(item.shape())
             wire.Build()
             if not wire.IsDone():
                 raise SystemExit("Wire was not created")  # pragma: no cover
@@ -303,7 +300,7 @@ class Face(Shape):
     def __init__(self, arg1):
         super().__init__()
         if isinstance(arg1, Wire):
-            face = BRepBuilderAPI_MakeFace(arg1.obj())
+            face = BRepBuilderAPI_MakeFace(arg1.shape())
             face.Build()
             if not face.IsDone():
                 raise SystemExit("Face was not created")  # pragma: no cover
@@ -352,7 +349,7 @@ class Solid(Shape):
         if isinstance(arg1, list):
             solid = BRepBuilderAPI_MakeSolid()
             for sh in arg1:
-                solid.Add(sh.obj())
+                solid.Add(sh.shape())
             solid.Build()
             if not solid.IsDone():
                 raise SystemExit("Solid was not created")  # pragma: no cover
@@ -376,7 +373,7 @@ class Polygon(Shape):
             self._polygon = BRepBuilderAPI_MakePolygon()
             for item in arg1:
                 if isinstance(item, Point):
-                    self._polygon.Add(item.obj())
+                    self._polygon.Add(item.shape())
             if closed:
                 self._polygon.Close()
             self._polygon.Build()
