@@ -9,13 +9,10 @@ pt4 = Point(WIDTH / 2., -THICKNESS / 4., 0)
 pt5 = Point(WIDTH / 2., 0, 0)
 
 arc = ArcOfCircle(pt2, pt3, pt4)
-segment1 = Segment(pt1, pt2)
-segment2 = Segment(pt4, pt5)
+segment1 = Line(pt1, pt2)
+segment2 = Line(pt4, pt5)
 
-edge1 = Edge(segment1)
-edge2 = Edge(arc)
-edge3 = Edge(segment2)
-wire = Wire([edge1, edge2, edge3])
+wire = Wire([segment1, arc, segment2])
 
 x_axis = Geometry.OX()
 mirrored_wire = wire.mirror(x_axis)

@@ -1,9 +1,11 @@
 import pytest
 from figura.shapes import (
     Vertex,
-    Edge,
     Wire,
-    Face
+    Face,
+    Line,
+    Circle,
+    ArcOfCircle
 )
 from figura.geometry import (
     Point,
@@ -21,18 +23,18 @@ def test_vertex():
     assert v.name() == "pt1"
 
 
-def test_edge():
+def test_line():
     v1 = Vertex(0, 0, 0)
     v2 = Vertex(1, 0, 0)
-    Edge(v1, v2)
+    Line(v1, v2)
 
 
 def test_wire():
     v1 = Vertex(0, 0, 0)
     v2 = Vertex(1, 0, 0)
     v3 = Vertex(2, 0, 0)
-    edge1 = Edge(v1, v2)
-    edge2 = Edge(v2, v3)
+    edge1 = Line(v1, v2)
+    edge2 = Line(v2, v3)
     Wire([edge1, edge2])
 
 
@@ -40,9 +42,9 @@ def test_face():
     v1 = Vertex(0, 0, 0)
     v2 = Vertex(1, 0, 0)
     v3 = Vertex(2, 0, 0)
-    edge1 = Edge(v1, v2)
-    edge2 = Edge(v2, v3)
-    edge3 = Edge(v3, v1)
+    edge1 = Line(v1, v2)
+    edge2 = Line(v2, v3)
+    edge3 = Line(v3, v1)
     wire = Wire([edge1, edge2, edge3])
     Face(wire)
 
@@ -173,6 +175,24 @@ def test_extrude():
 def test_revolve():
     pt1 = Vertex(1, -0.5, 0)
     pt2 = Vertex(1, 0.5, 0)
-    edge = Edge(pt1, pt2)
+    edge = Line(pt1, pt2)
     oz = Geometry.OZ()
     cyl = edge.revolve(oz)
+
+
+def test_line_pt():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 0, 0)
+    seg = Line(pt1, pt2)
+
+
+def test_circle():
+    ctr = Point(0, 0, 0)
+    seg = Circle(ctr, 1.)
+
+
+def test_arcofcircle():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 0)
+    pt3 = Point(2, 0, 0)
+    seg = ArcOfCircle(pt1, pt2, pt3)

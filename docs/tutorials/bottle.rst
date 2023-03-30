@@ -18,7 +18,7 @@ In this tutorial, we will build a model of this bottle:
 
 2. To build the body, we will need to define the bottom face first.
 
-   The following code will create three ``segments`` - two straight and one curved side.
+   The following code will create three ``edges`` - two straight and one curved side.
 
    .. code::
 
@@ -29,18 +29,10 @@ In this tutorial, we will build a model of this bottle:
       pt5 = Point(WIDTH / 2., 0, 0)
 
       arc = ArcOfCircle(pt2, pt3, pt4)
-      segment1 = Segment(pt1, pt2)
-      segment2 = Segment(pt4, pt5)
+      segment1 = Line(pt1, pt2)
+      segment2 = Line(pt4, pt5)
 
    .. image:: pics/bottom-face-sketch-half.png
-
-   Then, we convert the segments into ``edges``
-
-   .. code::
-
-      edge1 = Edge(segment1)
-      edge2 = Edge(arc)
-      edge3 = Edge(segment2)
 
    Now, we connect the edges into a ``wire``, so we can work with it as with a single piece of geometry.
 
