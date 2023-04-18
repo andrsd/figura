@@ -86,6 +86,11 @@ def test_vector():
     assert v.y == 2
     assert v.z == 1
 
+    opposite_vec = -vec
+    assert opposite_vec.x == -1
+    assert opposite_vec.y == -2
+    assert opposite_vec.z == -3
+
 
 def test_direction():
     dir = Direction(1, 2, 3)
@@ -102,6 +107,11 @@ def test_direction():
     assert d.x == 0.8017837257372732
     assert d.y == 0.5345224838248488
     assert d.z == 0.2672612419124244
+
+    opposite_dir = -dir
+    assert opposite_dir.x == -0.2672612419124244
+    assert opposite_dir.y == -0.5345224838248488
+    assert opposite_dir.z == -0.8017837257372732
 
 
 def test_axis1():
