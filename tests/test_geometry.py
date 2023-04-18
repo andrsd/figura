@@ -108,6 +108,11 @@ def test_direction():
     assert d.y == 0.5345224838248488
     assert d.z == 0.2672612419124244
 
+    opposite_dir = -dir
+    assert opposite_dir.x == -0.2672612419124244
+    assert opposite_dir.y == -0.5345224838248488
+    assert opposite_dir.z == -0.8017837257372732
+
 
 def test_axis1():
     pt = Point(0, 1, 0)

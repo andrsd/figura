@@ -158,6 +158,9 @@ class Direction(object):
         """
         return Direction(obj.X(), obj.Y(), obj.Z())
 
+    def __neg__(self):
+        return Direction(-self.x, -self.y, -self.z)
+
     def __str__(self):
         return "{}(x={}, y={}, z={})".format(
             self.__class__, self.x, self.y, self.z)
