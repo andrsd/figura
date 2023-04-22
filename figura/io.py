@@ -1,8 +1,13 @@
-import OCC.Core.STEPControl as step
+from OCC.Core.STEPControl import (STEPControl_AsIs, STEPControl_Reader)
+from OCC.Core.STEPCAFControl import STEPCAFControl_Writer
 from OCC.Core.IFSelect import IFSelect_RetDone
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
 from OCC.Core.Interface import Interface_Static
+from OCC.Core.XCAFDoc import XCAFDoc_DocumentTool
+from OCC.Core.TDocStd import TDocStd_Document
+from OCC.Core.TDataStd import TDataStd_Name
+from OCC.Core.TCollection import TCollection_ExtendedString
 import unicodedata
 import string
 import figura
@@ -24,7 +29,7 @@ class STEPFile:
 
         :return: The shape that is contained on the STEP file
         """
-        step_reader = step.STEPControl_Reader()
+        step_reader = STEPControl_Reader()
         if step_reader.ReadFile(self._file_name) != IFSelect_RetDone:
             raise SystemExit("Unable to load '{}'".format(self._file_name))
         step_reader.NbRootsForTransfer()
@@ -37,11 +42,19 @@ class STEPFile:
 
         :param shapes: List of shapes
         """
-        step_writer = step.STEPControl_Writer()
-        Interface_Static.SetCVal("write.step.unit", figura.model.units.upper())
+        doc = TDocStd_Document(TCollection_ExtendedString("figura-doc"))
+
+        shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
         for shp in shapes:
-            step_writer.Transfer(shp.shape(), step.STEPControl_AsIs)
-        step_writer.Write(self._file_name)
+            label = shape_tool.AddShape(shp.shape())
+            if shp.name is not None:
+                TDataStd_Name.Set(label, TCollection_ExtendedString(shp.name))
+
+        writer = STEPCAFControl_Writer()
+        Interface_Static.SetCVal("write.step.unit", figura.model.units.upper())
+        writer.SetNameMode(True)
+        writer.Transfer(doc, STEPControl_AsIs)
+        writer.Write(self._file_name)
 
 
 class STLFile:
