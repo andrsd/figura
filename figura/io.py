@@ -2,6 +2,8 @@ import OCC.Core.STEPControl as step
 from OCC.Core.IFSelect import IFSelect_RetDone
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
+import unicodedata
+import string
 
 
 class STEPFile:
@@ -48,7 +50,10 @@ class STLFile:
         :param file_name:  The name of the STL file
         :param binary: True for binary format, False for ASCII
         """
-        self._file_name = file_name
+        if file_name.endswith('.stl'):
+            self._file_name = file_name[:-4]
+        else:
+            self._file_name = file_name
         self._binary = binary
         # meshing params
         self._linear_deflection = 0.9
@@ -67,7 +72,15 @@ class STLFile:
             mesh.Perform()
             if not mesh.IsDone():
                 raise SystemExit("Mesh is not done.")  # pragma: no cover
-            fn = "{}.{}.stl".format(self._file_name, idx)
+            if shp.name is None:
+                fn = "{}.{}.stl".format(self._file_name, idx)
+            else:
+                fn = "{} - {}.stl".format(self._file_name, self._clean_shape_name(shp.name))
             success = writer.Write(shp.shape(), fn)
             if not success:
                 raise SystemExit("Failed to write STL file")  # pragma: no cover
+
+    def _clean_shape_name(self, file_name):
+        valid_filename_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+        cleaned_file_name = unicodedata.normalize('NFKD', file_name).encode('ASCII', 'ignore').decode('ascii')
+        return ''.join(c for c in cleaned_file_name if c in valid_filename_chars)
