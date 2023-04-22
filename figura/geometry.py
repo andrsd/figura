@@ -14,6 +14,7 @@ from OCC.Core.gp import (
 # from .shapes import Point
 import figura
 
+
 class Geometry(object):
 
     def __init__(self):
@@ -23,37 +24,37 @@ class Geometry(object):
     def OX():
         ax1 = gp_OX()
         pt = figura.shapes.Point.from_obj(ax1.Location())
-        dir = Direction.from_obj(ax1.Direction())
-        return Axis1(pt, dir)
+        direction = Direction.from_obj(ax1.Direction())
+        return Axis1(pt, direction)
 
     @staticmethod
     def OY():
         ax1 = gp_OY()
         pt = figura.shapes.Point.from_obj(ax1.Location())
-        dir = Direction.from_obj(ax1.Direction())
-        return Axis1(pt, dir)
+        direction = Direction.from_obj(ax1.Direction())
+        return Axis1(pt, direction)
 
     @staticmethod
     def OZ():
         ax1 = gp_OZ()
         pt = figura.shapes.Point.from_obj(ax1.Location())
-        dir = Direction.from_obj(ax1.Direction())
-        return Axis1(pt, dir)
+        direction = Direction.from_obj(ax1.Direction())
+        return Axis1(pt, direction)
 
     @staticmethod
     def DX():
-        dir = gp_DX()
-        return Direction.from_obj(dir)
+        direction = gp_DX()
+        return Direction.from_obj(direction)
 
     @staticmethod
     def DY():
-        dir = gp_DY()
-        return Direction.from_obj(dir)
+        direction = gp_DY()
+        return Direction.from_obj(direction)
 
     @staticmethod
     def DZ():
-        dir = gp_DZ()
-        return Direction.from_obj(dir)
+        direction = gp_DZ()
+        return Direction.from_obj(direction)
 
 
 class Vector(object):
@@ -168,14 +169,14 @@ class Direction(object):
 
 class Axis1(object):
 
-    def __init__(self, pt, dir):
+    def __init__(self, pt, direction):
         if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
-        if not isinstance(dir, Direction):
+        if not isinstance(direction, Direction):
             raise TypeError("'dir' must be a 'Direction'")
         self._location = pt
-        self._direction = dir
-        self._ax1 = gp_Ax1(pt.pnt(), dir.obj())
+        self._direction = direction
+        self._ax1 = gp_Ax1(pt.pnt(), direction.obj())
 
     @property
     def location(self):
@@ -202,14 +203,14 @@ class Axis1(object):
 
 class Axis2(object):
 
-    def __init__(self, pt, dir):
+    def __init__(self, pt, direction):
         if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
-        if not isinstance(dir, Direction):
+        if not isinstance(direction, Direction):
             raise TypeError("'dir' must be a 'Direction'")
         self._location = pt
-        self._direction = dir
-        self._ax2 = gp_Ax2(pt.pnt(), dir.obj())
+        self._direction = direction
+        self._ax2 = gp_Ax2(pt.pnt(), direction.obj())
 
     @property
     def location(self):
@@ -255,8 +256,8 @@ class Plane(object):
         """
         Construct a plane with location `pt` and normal direction `normal`
 
-        :param arg1: Point :py:class:`.Point`
-        :param arg2: Normal :py:class:`.Direction`
+        :param pt: Point :py:class:`.Point`
+        :param normal: Normal :py:class:`.Direction`
         """
         if isinstance(pt, figura.shapes.Point) and isinstance(normal, Direction):
             self._location = pt

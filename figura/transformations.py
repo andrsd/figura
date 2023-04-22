@@ -16,6 +16,7 @@ class Transformation(object):
 class Mirror(Transformation):
 
     def __init__(self, ax1):
+        super().__init__()
         self._trsf = None
         if isinstance(ax1, Axis1):
             self._trsf = gp_Trsf()
