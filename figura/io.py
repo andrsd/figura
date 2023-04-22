@@ -4,10 +4,11 @@ from OCC.Core.IFSelect import IFSelect_RetDone
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
 from OCC.Core.Interface import Interface_Static
-from OCC.Core.XCAFDoc import XCAFDoc_DocumentTool
+from OCC.Core.XCAFDoc import (XCAFDoc_DocumentTool, XCAFDoc_ColorGen)
 from OCC.Core.TDocStd import TDocStd_Document
 from OCC.Core.TDataStd import TDataStd_Name
 from OCC.Core.TCollection import TCollection_ExtendedString
+from OCC.Core.Quantity import Quantity_Color, Quantity_TypeOfColor
 import unicodedata
 import string
 import figura
@@ -45,10 +46,18 @@ class STEPFile:
         doc = TDocStd_Document(TCollection_ExtendedString("figura-doc"))
 
         shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
+        color_tool = XCAFDoc_DocumentTool.ColorTool(doc.Main())
         for shp in shapes:
             label = shape_tool.AddShape(shp.shape())
             if shp.name is not None:
                 TDataStd_Name.Set(label, TCollection_ExtendedString(shp.name))
+
+            if shp.color is not None:
+                r = shp.color[0]
+                g = shp.color[1]
+                b = shp.color[2]
+                color = Quantity_Color(r, g, b, Quantity_TypeOfColor.Quantity_TOC_RGB)
+                color_tool.SetColor(label, color, XCAFDoc_ColorGen)
 
         writer = STEPCAFControl_Writer()
         Interface_Static.SetCVal("write.step.unit", figura.model.units.upper())

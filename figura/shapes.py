@@ -54,6 +54,7 @@ class Shape(object):
 
     def __init__(self, shape=None):
         self._name = None
+        self._color = None
         if shape is not None and isinstance(shape, TopoDS_Shape):
             self._shape = shape
         elif shape is None:
@@ -71,6 +72,20 @@ class Shape(object):
             self._name = value
         else:
             raise TypeError("'value' must be a 'string'.")
+
+    @property
+    def color(self):
+        return self._color
+
+    @color.setter
+    def color(self, value):
+        if isinstance(value, list) and len(value) == 3:
+            self._color = value
+        elif isinstance(value, tuple) and len(value) == 3:
+            self._color = [value[0], value[1], value[2]]
+        else:
+            raise TypeError("'value' must be a list with 3 elements: [r, g, b].")
+        self._color = [val / 255. for val in self._color]
 
     def shape(self):
         return self._shape
