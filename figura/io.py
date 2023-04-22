@@ -2,8 +2,10 @@ import OCC.Core.STEPControl as step
 from OCC.Core.IFSelect import IFSelect_RetDone
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
+from OCC.Core.Interface import Interface_Static
 import unicodedata
 import string
+import figura
 
 
 class STEPFile:
@@ -36,6 +38,7 @@ class STEPFile:
         :param shapes: List of shapes
         """
         step_writer = step.STEPControl_Writer()
+        Interface_Static.SetCVal("write.step.unit", figura.model.units.upper())
         for shp in shapes:
             step_writer.Transfer(shp.shape(), step.STEPControl_AsIs)
         step_writer.Write(self._file_name)

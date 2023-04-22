@@ -2,6 +2,10 @@ from .geometry import (Direction, Vector, Axis1, Axis2, Plane, Geometry)
 from .shapes import (Shape, Point, Edge, Wire, Face, Shell, Solid, Polygon, Line, ArcOfCircle, Circle)
 from .primitives import (Box, Cylinder, Sphere, Prism)
 from .io import (STEPFile, STLFile)
+from .model import (Model)
+
+
+model = Model()
 
 __all__ = [
     'Geometry',
@@ -26,5 +30,6 @@ __all__ = [
     'ArcOfCircle',
     'Circle',
     'STEPFile',
-    'STLFile'
+    'STLFile',
+    'model'
 ]
