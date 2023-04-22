@@ -23,8 +23,8 @@ def test_name():
     pt1 = Point(0, 0, 0)
     pt2 = Point(1, 2, 3)
     box = Box(pt1, pt2)
-    box.name("box")
-    assert box.name() == "box"
+    box.name = "box"
+    assert box.name == "box"
 
 
 def test_wrong_name_type():
@@ -32,7 +32,7 @@ def test_wrong_name_type():
     pt2 = Point(1, 2, 3)
     box = Box(pt1, pt2)
     with pytest.raises(TypeError):
-        box.name(123)
+        box.name = 123
 
 
 def test_box():

@@ -61,10 +61,13 @@ class Shape(object):
         else:
             raise TypeError("Wrong argument types")
 
-    def name(self, value=None):
-        if value is None:
-            return self._name
-        elif isinstance(value, str):
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str):
             self._name = value
         else:
             raise TypeError("'value' must be a 'string'.")

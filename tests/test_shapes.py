@@ -21,8 +21,8 @@ from OCC.Core.gp import (
 
 def test_point():
     pt = Point(1, 2, 3)
-    pt.name("pt1")
-    assert pt.name() == "pt1"
+    pt.name = "pt1"
+    assert pt.name == "pt1"
 
     assert pt.x == 1
     assert pt.y == 2
