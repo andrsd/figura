@@ -45,3 +45,13 @@ def test_stl_write():
 
     stl = STLFile(os.path.join("cube"))
     stl.write([box])
+
+
+def test_stl_write_named():
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+    box.name = "name"
+
+    stl = STLFile(os.path.join("cube.stl"))
+    stl.write([box])
