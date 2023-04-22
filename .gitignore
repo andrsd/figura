@@ -7,3 +7,6 @@ docs/.doctrees
 coverage.xml
 
 .idea
+build/*
+dist/*
+*.egg-info/*
