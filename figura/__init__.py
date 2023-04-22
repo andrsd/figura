@@ -3,9 +3,11 @@ from .shapes import (Shape, Point, Edge, Wire, Face, Shell, Solid, Polygon, Line
 from .primitives import (Box, Cylinder, Sphere, Prism)
 from .io import (STEPFile, STLFile)
 from .model import (Model)
+from .colormap import (ColorMap)
 
 
 model = Model()
+colors = ColorMap()
 
 __all__ = [
     'Geometry',
@@ -31,5 +33,6 @@ __all__ = [
     'Circle',
     'STEPFile',
     'STLFile',
-    'model'
+    'model',
+    'colors'
 ]
