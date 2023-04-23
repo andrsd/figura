@@ -11,7 +11,7 @@ from OCC.Core.TopoDS import (
 from .geometry import (
     Axis2
 )
-from .shapes import (Shape, Shell)
+from .shapes import (Shape, Shell, Solid)
 
 
 class Box(Shape):
@@ -54,7 +54,7 @@ class Cylinder(Shape):
         return Shell(self._cylinder.Shell())
 
     def solid(self):
-        return self._cylinder.Solid()
+        return Solid(self._cylinder.Solid())
 
 
 class Sphere(Shape):
@@ -70,7 +70,7 @@ class Sphere(Shape):
         return Shell(self._sphere.Shell())
 
     def solid(self):
-        return self._sphere.Solid()
+        return Solid(self._sphere.Solid())
 
 
 class Prism(Shape):
@@ -103,4 +103,4 @@ class Cone(Shape):
         return Shell(self._cone.Shell())
 
     def solid(self):
-        return self._cone.Solid()
+        return Solid(self._cone.Solid())

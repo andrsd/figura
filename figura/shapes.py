@@ -375,18 +375,17 @@ class Shell(Shape):
 
 class Solid(Shape):
 
-    def __init__(self, arg1):
-        super().__init__()
-        if isinstance(arg1, list):
+    def __init__(self, shapes=None):
+        if isinstance(shapes, TopoDS_Solid):
+            super().__init__(shape=shapes)
+        elif isinstance(shapes, list):
             solid = BRepBuilderAPI_MakeSolid()
-            for sh in arg1:
+            for sh in shapes:
                 solid.Add(sh.shape())
             solid.Build()
             if not solid.IsDone():
                 raise SystemExit("Solid was not created")  # pragma: no cover
-            self._shape = solid.Solid()
-        elif isinstance(arg1, TopoDS_Solid):
-            self._shape = arg1
+            super().__init__(shape=solid.Solid())
         else:
             raise TypeError("Wrong argument types")
 
