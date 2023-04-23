@@ -11,7 +11,7 @@ from OCC.Core.TopoDS import (
 from .geometry import (
     Axis2
 )
-from .shapes import (Shape)
+from .shapes import (Shape, Shell, Solid)
 
 
 class Box(Shape):
@@ -38,23 +38,23 @@ class Box(Shape):
 
         :return: Underlying OpenCascade object
         """
-        return self._box.Shell()
+        return Shell(self._box.Shell())
 
 
 class Cylinder(Shape):
 
     def __init__(self, axis, radius, height):
-        self._cylinder = BRepPrimAPI_MakeCylinder(axis.obj(), radius, height)
+        self._cylinder = BRepPrimAPI_MakeCylinder(axis.ax2(), radius, height)
         self._cylinder.Build()
         if not self._cylinder.IsDone():
             raise SystemExit("Cylinder was not created")  # pragma: no cover
         super().__init__(self._cylinder.Shape())
 
     def shell(self):
-        return self._cylinder.Shell()
+        return Shell(self._cylinder.Shell())
 
     def solid(self):
-        return self._cylinder.Solid()
+        return Solid(self._cylinder.Solid())
 
 
 class Sphere(Shape):
@@ -67,10 +67,10 @@ class Sphere(Shape):
         super().__init__(self._sphere.Shape())
 
     def shell(self):
-        return self._sphere.Shell()
+        return Shell(self._sphere.Shell())
 
     def solid(self):
-        return self._sphere.Solid()
+        return Solid(self._sphere.Solid())
 
 
 class Prism(Shape):
@@ -81,7 +81,7 @@ class Prism(Shape):
         shp = shape.shape()
         if not isinstance(shp, TopoDS_Shape):
             raise SystemExit("'shape' is not a TopoDS_Shape")
-        self._prism = BRepPrimAPI_MakePrism(shp, vec.obj())
+        self._prism = BRepPrimAPI_MakePrism(shp, vec.vec())
         self._prism.Build()
         if not self._prism.IsDone():
             raise SystemExit("Prism was not created")  # pragma: no cover
@@ -93,14 +93,14 @@ class Cone(Shape):
     def __init__(self, axis, radius1, radius2, height):
         if not isinstance(axis, Axis2):
             raise TypeError("'axis' must be a Axis2")
-        self._cone = BRepPrimAPI_MakeCone(axis.obj(), radius1, radius2, height)
+        self._cone = BRepPrimAPI_MakeCone(axis.ax2(), radius1, radius2, height)
         self._cone.Build()
         if not self._cone.IsDone():
             raise SystemExit("Cone was not created")  # pragma: no cover
         super().__init__(self._cone.Shape())
 
     def shell(self):
-        return self._cone.Shell()
+        return Shell(self._cone.Shell())
 
     def solid(self):
-        return self._cone.Solid()
+        return Solid(self._cone.Solid())

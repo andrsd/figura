@@ -33,7 +33,7 @@ def test_point():
     assert s == "<class 'figura.shapes.Point'>(x=1.0, y=2.0, z=3.0)"
 
     gp = gp_Pnt(3, 2, 1)
-    p = Point.from_obj(gp)
+    p = Point.from_pnt(gp)
     assert p.x == 3
     assert p.y == 2
     assert p.z == 1
