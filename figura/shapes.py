@@ -301,25 +301,30 @@ class ArcOfCircle(Edge):
 
 class Wire(Shape):
 
-    def __init__(self, arg1):
-        super().__init__()
-        if isinstance(arg1, list):
-            wire = BRepBuilderAPI_MakeWire()
-            for item in arg1:
-                if isinstance(item, Edge) or isinstance(item, Wire):
-                    wire.Add(item.shape())
-            wire.Build()
-            if not wire.IsDone():
-                raise SystemExit("Wire was not created")  # pragma: no cover
-            self._shape = wire.Wire()
-        elif isinstance(arg1, TopoDS_Wire):
-            self._shape = arg1
+    def __init__(self, edges=[], shape=None):
+        if isinstance(edges, list):
+            if len(edges) > 0:
+                wire = BRepBuilderAPI_MakeWire()
+                for item in edges:
+                    if isinstance(item, Edge) or isinstance(item, Wire):
+                        wire.Add(item.shape())
+                wire.Build()
+                if not wire.IsDone():
+                    raise SystemExit("Wire was not created")  # pragma: no cover
+                super().__init__(shape=wire.Wire())
+            else:
+                super().__init__(shape=shape)
         else:
-            raise TypeError("Wrong argument types")
+            raise TypeError("Argument 'edges' must be a list of 'Edges'")
 
     @classmethod
-    def from_shape(cls, obj):
-        return cls(obj)
+    def from_shape(cls, wire):
+        if isinstance(wire, TopoDS_Wire):
+            new = cls()
+            new._shape = wire
+            return new
+        else:
+            raise TypeError("Argument 'wire' must be of 'TopoDS_Wire' type")
 
 
 class Face(Shape):
