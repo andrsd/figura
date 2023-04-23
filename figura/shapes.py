@@ -42,11 +42,6 @@ from OCC.Core.GC import (
     GC_MakeArcOfCircle
 )
 import figura
-# from .geometry import (
-#     Plane,
-#     Axis1,
-#     Direction
-# )
 from .transformations import Mirror
 
 
@@ -91,7 +86,7 @@ class Shape(object):
         return self._shape
 
     def mirror(self, axis):
-        op = figura.transformations.Mirror(axis)
+        op = Mirror(axis)
         return self.__class__.from_obj(op.do(self))
 
     def fuse(self, shape):
@@ -161,7 +156,7 @@ class Shape(object):
         return Shape.from_obj(thick_solid.Shape())
 
     def extrude(self, vec):
-        prism = BRepPrimAPI_MakePrism(self._shape, vec.obj())
+        prism = BRepPrimAPI_MakePrism(self._shape, vec.vec())
         prism.Build()
         if not prism.IsDone():
             raise SystemExit("extrude failed")  # pragma: no cover
@@ -169,7 +164,7 @@ class Shape(object):
 
     def revolve(self, axis, angle=2.*math.pi):
         if isinstance(axis, figura.geometry.Axis1):
-            rev = BRepPrimAPI_MakeRevol(self._shape, axis.obj(), angle)
+            rev = BRepPrimAPI_MakeRevol(self._shape, axis.ax1(), angle)
             rev.Build()
             if not rev.IsDone():
                 raise SystemExit("revolve failed")  # pragma: no cover
@@ -238,8 +233,8 @@ class Point(Shape):
             self.__class__, self.x, self.y, self.z)
 
     @classmethod
-    def from_obj(cls, obj):
-        return cls(obj)
+    def from_pnt(cls, pnt):
+        return cls(pnt)
 
 
 class Edge(Shape):
@@ -274,7 +269,7 @@ class Circle(Edge):
 
     def __init__(self, center, radius, norm=figura.geometry.Direction(0, 0, 1)):
         super().__init__()
-        mk = GC_MakeCircle(center.pnt(), norm.obj(), radius)
+        mk = GC_MakeCircle(center.pnt(), norm.dir(), radius)
         if not mk.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
         self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
@@ -334,7 +329,8 @@ class Face(Shape):
         return surf_type == GeomAbs_Plane
 
     def plane(self):
-        return figura.geometry.Plane.from_obj(BRepAdaptor_Surface(self._shape, True).Plane())
+        pln = BRepAdaptor_Surface(self._shape, True).Plane()
+        return figura.geometry.Plane.from_pln(pln)
 
     @classmethod
     def from_obj(cls, obj):

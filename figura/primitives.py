@@ -44,7 +44,7 @@ class Box(Shape):
 class Cylinder(Shape):
 
     def __init__(self, axis, radius, height):
-        self._cylinder = BRepPrimAPI_MakeCylinder(axis.obj(), radius, height)
+        self._cylinder = BRepPrimAPI_MakeCylinder(axis.ax2(), radius, height)
         self._cylinder.Build()
         if not self._cylinder.IsDone():
             raise SystemExit("Cylinder was not created")  # pragma: no cover
@@ -81,7 +81,7 @@ class Prism(Shape):
         shp = shape.shape()
         if not isinstance(shp, TopoDS_Shape):
             raise SystemExit("'shape' is not a TopoDS_Shape")
-        self._prism = BRepPrimAPI_MakePrism(shp, vec.obj())
+        self._prism = BRepPrimAPI_MakePrism(shp, vec.vec())
         self._prism.Build()
         if not self._prism.IsDone():
             raise SystemExit("Prism was not created")  # pragma: no cover
@@ -93,7 +93,7 @@ class Cone(Shape):
     def __init__(self, axis, radius1, radius2, height):
         if not isinstance(axis, Axis2):
             raise TypeError("'axis' must be a Axis2")
-        self._cone = BRepPrimAPI_MakeCone(axis.obj(), radius1, radius2, height)
+        self._cone = BRepPrimAPI_MakeCone(axis.ax2(), radius1, radius2, height)
         self._cone.Build()
         if not self._cone.IsDone():
             raise SystemExit("Cone was not created")  # pragma: no cover

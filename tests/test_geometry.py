@@ -75,13 +75,13 @@ def test_vector():
     assert vec.x == 1
     assert vec.y == 2
     assert vec.z == 3
-    assert vec.obj().IsEqual(gp_Vec(1, 2, 3), 1e-15, 1e-15)
+    assert vec.vec().IsEqual(gp_Vec(1, 2, 3), 1e-15, 1e-15)
 
     s = str(vec)
     assert s == "<class 'figura.geometry.Vector'>(x=1.0, y=2.0, z=3.0)"
 
     gv = gp_Vec(3, 2, 1)
-    v = Vector.from_obj(gv)
+    v = Vector.from_vec(gv)
     assert v.x == 3
     assert v.y == 2
     assert v.z == 1
@@ -97,16 +97,10 @@ def test_direction():
     assert dir.x == 0.2672612419124244
     assert dir.y == 0.5345224838248488
     assert dir.z == 0.8017837257372732
-    assert dir.obj().IsEqual(gp_Dir(1, 2, 3), 1e-15)
+    assert dir.dir().IsEqual(gp_Dir(1, 2, 3), 1e-15)
 
     s = str(dir)
     assert s == "<class 'figura.geometry.Direction'>(x=0.2672612419124244, y=0.5345224838248488, z=0.8017837257372732)"
-
-    gd = gp_Dir(3, 2, 1)
-    d = Direction.from_obj(gd)
-    assert d.x == 0.8017837257372732
-    assert d.y == 0.5345224838248488
-    assert d.z == 0.2672612419124244
 
     opposite_dir = -dir
     assert opposite_dir.x == -0.2672612419124244
@@ -126,8 +120,8 @@ def test_axis1():
     assert ax1.direction.y == 0
     assert ax1.direction.z == 0
 
-    assert ax1.obj().Location().IsEqual(gp_Pnt(0, 1, 0), 1e-15)
-    assert ax1.obj().Direction().IsEqual(gp_Dir(1, 0, 0), 1e-15)
+    assert ax1.ax1().Location().IsEqual(gp_Pnt(0, 1, 0), 1e-15)
+    assert ax1.ax1().Direction().IsEqual(gp_Dir(1, 0, 0), 1e-15)
 
 
 def test_axis1_not_a_point():
@@ -154,8 +148,8 @@ def test_axis2():
     assert ax2.direction.y == 0
     assert ax2.direction.z == 0
 
-    assert ax2.obj().Location().IsEqual(gp_Pnt(0, 1, 0), 1e-15)
-    assert ax2.obj().Direction().IsEqual(gp_Dir(1, 0, 0), 1e-15)
+    assert ax2.ax2().Location().IsEqual(gp_Pnt(0, 1, 0), 1e-15)
+    assert ax2.ax2().Direction().IsEqual(gp_Dir(1, 0, 0), 1e-15)
 
 
 def test_axis2_not_a_point():

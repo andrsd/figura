@@ -3,15 +3,8 @@ from OCC.Core.gp import (
     gp_Dir,
     gp_Ax1,
     gp_Ax2,
-    gp_OX,
-    gp_OY,
-    gp_OZ,
-    gp_DX,
-    gp_DY,
-    gp_DZ,
     gp_Pln
 )
-# from .shapes import Point
 import figura
 
 
@@ -22,39 +15,33 @@ class Geometry(object):
 
     @staticmethod
     def OX():
-        ax1 = gp_OX()
-        pt = figura.shapes.Point.from_obj(ax1.Location())
-        direction = Direction.from_obj(ax1.Direction())
+        pt = figura.shapes.Point(0, 0, 0)
+        direction = Direction(1, 0, 0)
         return Axis1(pt, direction)
 
     @staticmethod
     def OY():
-        ax1 = gp_OY()
-        pt = figura.shapes.Point.from_obj(ax1.Location())
-        direction = Direction.from_obj(ax1.Direction())
+        pt = figura.shapes.Point(0, 0, 0)
+        direction = Direction(0, 1, 0)
         return Axis1(pt, direction)
 
     @staticmethod
     def OZ():
-        ax1 = gp_OZ()
-        pt = figura.shapes.Point.from_obj(ax1.Location())
-        direction = Direction.from_obj(ax1.Direction())
+        pt = figura.shapes.Point(0, 0, 0)
+        direction = Direction(0, 0, 1)
         return Axis1(pt, direction)
 
     @staticmethod
     def DX():
-        direction = gp_DX()
-        return Direction.from_obj(direction)
+        return Direction(1, 0, 0)
 
     @staticmethod
     def DY():
-        direction = gp_DY()
-        return Direction.from_obj(direction)
+        return Direction(0, 1, 0)
 
     @staticmethod
     def DZ():
-        direction = gp_DZ()
-        return Direction.from_obj(direction)
+        return Direction(0, 0, 1)
 
 
 class Vector(object):
@@ -63,6 +50,13 @@ class Vector(object):
     """
 
     def __init__(self, x, y, z):
+        """
+        Creates a point with its three cartesian coordinates.
+
+        :param x: x-coordinate
+        :param y: y-coordinate
+        :param z: z-coordinate
+        """
         self._vec = gp_Vec(x, y, z)
 
     @property
@@ -86,7 +80,7 @@ class Vector(object):
         """
         return self._vec.Z()
 
-    def obj(self):
+    def vec(self):
         """
         Get the underlying OpenCascade object
 
@@ -95,14 +89,14 @@ class Vector(object):
         return self._vec
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_vec(cls, vec):
         """
         Construct ``figura`` object from an OpenCascade ``gp_Vec`` object
 
-        :param obj: OpenCascade ``gp_Vec`` object
+        :param vec: OpenCascade ``gp_Vec`` object
         :return: :class:`.Vector` object
         """
-        return Vector(obj.X(), obj.Y(), obj.Z())
+        return Vector(vec.X(), vec.Y(), vec.Z())
 
     def __neg__(self):
         return Vector(-self.x, -self.y, -self.z)
@@ -114,10 +108,17 @@ class Vector(object):
 
 class Direction(object):
     """
-    Describes a unit vector in 3D space
+    Describes a unit vector in 3D space. This unit vector is also called "Direction".
     """
 
     def __init__(self, x, y, z):
+        """
+        Creates a direction with its 3 cartesian coordinates.
+
+        :param x: x-coordinate
+        :param y: y-coordinate
+        :param z: z-coordinate
+        """
         self._dir = gp_Dir(x, y, z)
 
     @property
@@ -141,7 +142,7 @@ class Direction(object):
         """
         return self._dir.Z()
 
-    def obj(self):
+    def dir(self):
         """
         Get the underlying OpenCascade object
 
@@ -150,14 +151,14 @@ class Direction(object):
         return self._dir
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_dir(cls, dir):
         """
         Construct ``figura`` object from an OpenCascade ``gp_Dir`` object
 
-        :param obj: OpenCascade ``gp_Dir`` object
+        :param dir: OpenCascade ``gp_Dir`` object
         :return: :class:`.Direction` object
         """
-        return Direction(obj.X(), obj.Y(), obj.Z())
+        return Direction(dir.X(), dir.Y(), dir.Z())
 
     def __neg__(self):
         return Direction(-self.x, -self.y, -self.z)
@@ -170,29 +171,45 @@ class Direction(object):
 class Axis1(object):
 
     def __init__(self, pt, direction):
+        """
+        Describes an axis in 3D space. An axis is defined by:
+
+        - its origin (also referred to as its "Location point"), and
+        - its unit vector (referred to as its "Direction" or "main Direction").
+
+        An axis is used:
+
+        - to describe 3D geometric entities (for example, the axis of a revolution entity). It serves the same purpose
+          as the STEP function "axis placement one axis", or
+        - to define geometric transformations (axis of symmetry, axis of rotation, and so on). For example, this entity
+          can be used to locate a geometric entity or to define a symmetry axis.
+
+        :param pt: :class:`.Point` the location point
+        :param direction: :class:`.Direction` the direction of the axis
+        """
         if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
         if not isinstance(direction, Direction):
             raise TypeError("'dir' must be a 'Direction'")
         self._location = pt
         self._direction = direction
-        self._ax1 = gp_Ax1(pt.pnt(), direction.obj())
+        self._ax1 = gp_Ax1(pt.pnt(), direction.dir())
 
     @property
     def location(self):
         """
-        Location of this axis
+        Location of this axis as :class:`.Point`
         """
         return self._location
 
     @property
     def direction(self):
         """
-        Direction of this axis
+        Direction of this axis as :class:`.Direction`
         """
         return self._direction
 
-    def obj(self):
+    def ax1(self):
         """
         Get the underlying OpenCascade object
 
@@ -202,6 +219,29 @@ class Axis1(object):
 
 
 class Axis2(object):
+    """
+    Describes a right-handed coordinate system in 3D space. A coordinate system is defined by:
+
+    - its origin (also referred to as its "Location point"), and
+    - three orthogonal unit vectors, termed respectively the "X Direction", the "Y Direction" and the "Direction" (also
+      referred to as the "main Direction"). The "Direction" of the coordinate system is called its "main Direction"
+      because whenever this unit vector is modified, the "X Direction" and the "Y Direction" are recomputed. However,
+      when we modify either the "X Direction" or the "Y Direction", "Direction" is not modified. The "main Direction" is
+      also the "Z Direction". Since an Ax2 coordinate system is right-handed, its "main Direction" is always equal to
+      the cross product of its "X Direction" and "Y Direction". To define a left-handed coordinate system, use `Axis3`.
+
+    A coordinate system is used:
+
+    - to describe geometric entities, in particular to position them. The local coordinate system of a geometric entity
+      serves the same purpose as the STEP function "axis placement two axes", or
+    - to define geometric transformations.
+
+    Note: we refer to the "X Axis", "Y Axis" and "Z Axis", respectively, as to axes having:
+
+    - the origin of the coordinate system as their origin, and
+    - the unit vectors "X Direction", "Y Direction" and "main Direction", respectively, as their unit vectors. The
+      "Z Axis" is also the "main Axis".
+    """
 
     def __init__(self, pt, direction):
         if not isinstance(pt, figura.shapes.Point):
@@ -210,23 +250,23 @@ class Axis2(object):
             raise TypeError("'dir' must be a 'Direction'")
         self._location = pt
         self._direction = direction
-        self._ax2 = gp_Ax2(pt.pnt(), direction.obj())
+        self._ax2 = gp_Ax2(pt.pnt(), direction.dir())
 
     @property
     def location(self):
         """
-        Location of this axis
+        Location of this axis as :class:`.Point`
         """
         return self._location
 
     @property
     def direction(self):
         """
-        Direction of this axis
+        Direction of this axis as :class:`.Direction`
         """
         return self._direction
 
-    def obj(self):
+    def ax2(self):
         """
         Get the underlying OpenCascade object
 
@@ -261,7 +301,7 @@ class Plane(object):
         """
         if isinstance(pt, figura.shapes.Point) and isinstance(normal, Direction):
             self._location = pt
-            self._pln = gp_Pln(pt.pnt(), normal.obj())
+            self._pln = gp_Pln(pt.pnt(), normal.dir())
         else:
             raise TypeError("Wrong argument types")
 
@@ -272,7 +312,7 @@ class Plane(object):
         """
         return self._location
 
-    def obj(self):
+    def pln(self):
         """
         Get the underlying OpenCascade object
 
@@ -281,13 +321,13 @@ class Plane(object):
         return self._pln
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_pln(cls, pln):
         """
         Construct ``figura`` object from an OpenCascade ``gp_Pln`` object
 
-        :param obj: OpenCascade ``gp_Pln`` object
+        :param pln: OpenCascade ``gp_Pln`` object
         :return: :class:`.Plane` object
         """
-        pt = figura.shapes.Point.from_obj(obj.Location())
-        normal = Direction.from_obj(obj.Axis().Direction())
+        pt = figura.shapes.Point.from_pnt(pln.Location())
+        normal = Direction.from_dir(pln.Axis().Direction())
         return Plane(pt, normal)
