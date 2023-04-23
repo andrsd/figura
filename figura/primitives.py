@@ -11,7 +11,7 @@ from OCC.Core.TopoDS import (
 from .geometry import (
     Axis2
 )
-from .shapes import (Shape)
+from .shapes import (Shape, Shell)
 
 
 class Box(Shape):
@@ -38,7 +38,7 @@ class Box(Shape):
 
         :return: Underlying OpenCascade object
         """
-        return self._box.Shell()
+        return Shell(self._box.Shell())
 
 
 class Cylinder(Shape):
@@ -51,7 +51,7 @@ class Cylinder(Shape):
         super().__init__(self._cylinder.Shape())
 
     def shell(self):
-        return self._cylinder.Shell()
+        return Shell(self._cylinder.Shell())
 
     def solid(self):
         return self._cylinder.Solid()
@@ -67,7 +67,7 @@ class Sphere(Shape):
         super().__init__(self._sphere.Shape())
 
     def shell(self):
-        return self._sphere.Shell()
+        return Shell(self._sphere.Shell())
 
     def solid(self):
         return self._sphere.Solid()
@@ -100,7 +100,7 @@ class Cone(Shape):
         super().__init__(self._cone.Shape())
 
     def shell(self):
-        return self._cone.Shell()
+        return Shell(self._cone.Shell())
 
     def solid(self):
         return self._cone.Solid()

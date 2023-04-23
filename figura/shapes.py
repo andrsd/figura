@@ -362,21 +362,15 @@ class Face(Shape):
 
 class Shell(Shape):
 
-    def __init__(self, arg1):
-        raise NotImplementedError()
-        if isinstance(arg1, TopoDS_Shell):
-            self._shape = arg1
+    def __init__(self, shape=None):
+        if isinstance(shape, TopoDS_Shell):
+            super().__init__(shape=shape)
         else:
-            super().__init__()
-            shell = BRepBuilderAPI_MakeShell()
-            shell.Build()
-            if not shell.IsDone():
-                raise SystemExit("Shell was not created")  # pragma: no cover
-            self._shape = shell.Shell()
+            raise TypeError("Argument 'shape' must be of 'TopoDS_Shell' type")
 
     @classmethod
     def from_shape(cls, obj):
-        return cls(obj)
+        return cls(shape=obj)
 
 
 class Solid(Shape):
