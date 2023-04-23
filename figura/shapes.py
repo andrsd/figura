@@ -329,16 +329,15 @@ class Wire(Shape):
 
 class Face(Shape):
 
-    def __init__(self, arg1):
-        super().__init__()
-        if isinstance(arg1, Wire):
-            face = BRepBuilderAPI_MakeFace(arg1.shape())
-            face.Build()
-            if not face.IsDone():
+    def __init__(self, wire=None, shape=None):
+        if wire is None:
+            super().__init__(shape=shape)
+        elif isinstance(wire, Wire):
+            wire = BRepBuilderAPI_MakeFace(wire.shape())
+            wire.Build()
+            if not wire.IsDone():
                 raise SystemExit("Face was not created")  # pragma: no cover
-            self._shape = face.Face()
-        elif isinstance(arg1, TopoDS_Face):
-            self._shape = arg1
+            super().__init__(shape=wire.Face())
         else:
             raise TypeError("Wrong argument types")
 
@@ -352,8 +351,13 @@ class Face(Shape):
         return figura.geometry.Plane.from_pln(pln)
 
     @classmethod
-    def from_shape(cls, obj):
-        return cls(obj)
+    def from_shape(cls, face):
+        if isinstance(face, TopoDS_Face):
+            new = cls()
+            new._shape = face
+            return new
+        else:
+            raise TypeError("Argument 'face' must be of 'TopoDS_Face' type")
 
 
 class Shell(Shape):
