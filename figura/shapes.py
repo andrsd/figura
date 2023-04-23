@@ -185,30 +185,24 @@ class Shape(object):
 
 class Point(Shape):
     """
-    Point
+    Defines a 3D cartesian point
     """
 
-    def __init__(self, x=None, y=None, z=None):
+    def __init__(self, x, y, z):
+        """
+        Creates a point with its 3 cartesian coordinates
+
+        :param x: x-coordinate
+        :param y: y-coordinate
+        :param z: z-coordinate
+        """
         super().__init__()
-        if isinstance(x, TopoDS_Vertex):
-            self._pnt = None
-            self._shape = x
-        elif isinstance(x, gp_Pnt):
-            self._pnt = x
-            vertex = BRepBuilderAPI_MakeVertex(self._pnt)
-            vertex.Build()
-            if not vertex.IsDone():
-                raise SystemExit("Point was not created")  # pragma: no cover
-            self._shape = vertex.Vertex()
-        elif x is not None and y is not None and z is not None:
-            self._pnt = gp_Pnt(x, y, z)
-            vertex = BRepBuilderAPI_MakeVertex(self._pnt)
-            vertex.Build()
-            if not vertex.IsDone():
-                raise SystemExit("Point was not created")  # pragma: no cover
-            self._shape = vertex.Vertex()
-        else:
-            raise TypeError("Wrong argument types")
+        self._pnt = gp_Pnt(x, y, z)
+        vertex = BRepBuilderAPI_MakeVertex(self._pnt)
+        vertex.Build()
+        if not vertex.IsDone():
+            raise SystemExit("Point was not created")  # pragma: no cover
+        self._shape = vertex.Vertex()
 
     def pnt(self):
         return self._pnt
@@ -240,7 +234,19 @@ class Point(Shape):
 
     @classmethod
     def from_pnt(cls, pnt):
-        return cls(pnt)
+        if isinstance(pnt, gp_Pnt):
+            return cls(pnt.X(), pnt.Y(), pnt.Z())
+        else:
+            raise TypeError("Argument 'pnt' must be of 'gp_Pnt' type")
+
+    @classmethod
+    def from_shape(cls, vertex):
+        if isinstance(vertex, TopoDS_Vertex):
+            cls._pnt = None
+            cls._shape = vertex
+            return cls
+        else:
+            raise TypeError("Argument 'vertex' must be of 'TopoDS_Vertex' type")
 
 
 class Edge(Shape):
