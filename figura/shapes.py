@@ -258,7 +258,7 @@ class Edge(Shape):
         edge.Build()
         if not edge.IsDone():
             raise SystemExit("Edge was not created")  # pragma: no cover
-        return edge.Edge()
+        self._shape = edge.Edge()
 
     @classmethod
     def from_shape(cls, edge):
@@ -274,7 +274,7 @@ class Line(Edge):
     def __init__(self, pt1, pt2):
         super().__init__()
         if isinstance(pt1, Point) and isinstance(pt2, Point):
-            self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(pt1.pnt(), pt2.pnt()))
+            self._build_edge(BRepBuilderAPI_MakeEdge(pt1.pnt(), pt2.pnt()))
         else:
             raise TypeError("Wrong argument types")
 
@@ -286,7 +286,7 @@ class Circle(Edge):
         mk = GC_MakeCircle(center.pnt(), norm.dir(), radius)
         if not mk.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
-        self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+        self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
 
 
 class ArcOfCircle(Edge):
@@ -296,7 +296,7 @@ class ArcOfCircle(Edge):
         mk = GC_MakeArcOfCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
         if not mk.IsDone():
             raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
-        self._shape = self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+        self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
 
 
 class Wire(Shape):
