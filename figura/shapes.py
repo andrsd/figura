@@ -91,7 +91,7 @@ class Shape(object):
             trsf = gp_Trsf()
             trsf.SetMirror(axis.ax1())
             brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
-            return self.__class__.from_obj(brep_trsf.Shape())
+            return self.__class__.from_shape(brep_trsf.Shape())
         else:
             raise SystemError("axis must be 'Axis1'")
 
@@ -101,7 +101,7 @@ class Shape(object):
             fuse.Build()
             if not fuse.IsDone():
                 raise SystemExit("Objects were not fused")  # pragma: no cover
-            return Shape.from_obj(fuse.Shape())
+            return Shape.from_shape(fuse.Shape())
         else:
             raise TypeError("`shape` object does not have `shape()` method")
 
@@ -111,7 +111,7 @@ class Shape(object):
             cut.Build()
             if not cut.IsDone():
                 raise SystemExit("Object was not cut")  # pragma: no cover
-            return Shape.from_obj(cut.Shape())
+            return Shape.from_shape(cut.Shape())
         else:
             raise TypeError("`tool` object does not have `shape()` method")
 
@@ -121,7 +121,7 @@ class Shape(object):
             isect.Build()
             if not isect.IsDone():
                 raise SystemExit("Object was not intersected")  # pragma: no cover
-            return Shape.from_obj(isect.Shape())
+            return Shape.from_shape(isect.Shape())
         else:
             raise TypeError("`tool` object does not have `shape()` method")
 
@@ -130,7 +130,7 @@ class Shape(object):
         edgs = []
         while exp.More():
             e = exp.Current()
-            edgs.append(Edge.from_obj(e))
+            edgs.append(Edge.from_shape(e))
             exp.Next()
         return edgs
 
@@ -139,7 +139,7 @@ class Shape(object):
         fcs = []
         while exp.More():
             f = exp.Current()
-            fcs.append(Face.from_obj(topods.Face(f)))
+            fcs.append(Face.from_shape(topods.Face(f)))
             exp.Next()
         return fcs
 
@@ -147,7 +147,7 @@ class Shape(object):
         fillet = BRepFilletAPI_MakeFillet(self.shape())
         for e in edges:
             fillet.Add(radius, e.shape())
-        return Shape.from_obj(fillet.Shape())
+        return Shape.from_shape(fillet.Shape())
 
     def hollow(self, faces_to_remove, thickness, tolerance):
         # TODO: check that `faces_to_remove` is a iterable object
@@ -159,14 +159,14 @@ class Shape(object):
         thick_solid = BRepOffsetAPI_MakeThickSolid()
         thick_solid.MakeThickSolidByJoin(self._shape, rem_faces, thickness, tolerance)
         thick_solid.Build()
-        return Shape.from_obj(thick_solid.Shape())
+        return Shape.from_shape(thick_solid.Shape())
 
     def extrude(self, vec):
         prism = BRepPrimAPI_MakePrism(self._shape, vec.vec())
         prism.Build()
         if not prism.IsDone():
             raise SystemExit("extrude failed")  # pragma: no cover
-        return Shape.from_obj(prism.Shape())
+        return Shape.from_shape(prism.Shape())
 
     def revolve(self, axis, angle=2.*math.pi):
         if isinstance(axis, figura.geometry.Axis1):
@@ -174,12 +174,12 @@ class Shape(object):
             rev.Build()
             if not rev.IsDone():
                 raise SystemExit("revolve failed")  # pragma: no cover
-            return Shape.from_obj(rev.Shape())
+            return Shape.from_shape(rev.Shape())
         else:
             raise TypeError("Wrong argument types")
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
 
 
@@ -257,7 +257,7 @@ class Edge(Shape):
         return edge.Edge()
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
 
 
@@ -310,7 +310,7 @@ class Wire(Shape):
             raise TypeError("Wrong argument types")
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
 
 
@@ -339,7 +339,7 @@ class Face(Shape):
         return figura.geometry.Plane.from_pln(pln)
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
 
 
@@ -358,7 +358,7 @@ class Shell(Shape):
             self._shape = shell.Shell()
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
 
 
@@ -380,7 +380,7 @@ class Solid(Shape):
             raise TypeError("Wrong argument types")
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
 
 
@@ -404,11 +404,11 @@ class Polygon(Shape):
             raise TypeError("Wrong argument types")
 
     def edge(self):
-        return Edge.from_obj(self._polygon.Edge())
+        return Edge.from_shape(self._polygon.Edge())
 
     def wire(self):
-        return Wire.from_obj(self._polygon.Wire())
+        return Wire.from_shape(self._polygon.Wire())
 
     @classmethod
-    def from_obj(cls, obj):
+    def from_shape(cls, obj):
         return cls(obj)
