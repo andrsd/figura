@@ -251,10 +251,8 @@ class Point(Shape):
 
 class Edge(Shape):
 
-    def __init__(self, arg1=None):
-        super().__init__()
-        if isinstance(arg1, TopoDS_Edge):
-            self._shape = arg1
+    def __init__(self, shape=None):
+        super().__init__(shape)
 
     def _build_edge(self, edge):
         edge.Build()
@@ -263,8 +261,12 @@ class Edge(Shape):
         return edge.Edge()
 
     @classmethod
-    def from_shape(cls, obj):
-        return cls(obj)
+    def from_shape(cls, edge):
+        if isinstance(edge, TopoDS_Edge):
+            new = cls(shape=edge)
+            return new
+        else:
+            raise TypeError("Argument 'edge' must be of 'TopoDS_Edge' type")
 
 
 class Line(Edge):
