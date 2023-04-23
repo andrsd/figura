@@ -1,5 +1,5 @@
 import math
-from OCC.Core.gp import gp_Pnt
+from OCC.Core.gp import (gp_Pnt, gp_Trsf)
 from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeVertex,
     BRepBuilderAPI_MakeEdge,
@@ -7,7 +7,8 @@ from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeFace,
     BRepBuilderAPI_MakeShell,
     BRepBuilderAPI_MakeSolid,
-    BRepBuilderAPI_MakePolygon
+    BRepBuilderAPI_MakePolygon,
+    BRepBuilderAPI_Transform
 )
 from OCC.Core.TopoDS import (
     TopoDS_Shape,
@@ -42,7 +43,7 @@ from OCC.Core.GC import (
     GC_MakeArcOfCircle
 )
 import figura
-from .transformations import Mirror
+from .geometry import Axis1
 
 
 class Shape(object):
@@ -86,8 +87,13 @@ class Shape(object):
         return self._shape
 
     def mirror(self, axis):
-        op = Mirror(axis)
-        return self.__class__.from_obj(op.do(self))
+        if isinstance(axis, Axis1):
+            trsf = gp_Trsf()
+            trsf.SetMirror(axis.ax1())
+            brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
+            return self.__class__.from_obj(brep_trsf.Shape())
+        else:
+            raise SystemError("axis must be 'Axis1'")
 
     def fuse(self, shape):
         if hasattr(shape, 'shape'):
