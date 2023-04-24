@@ -5,11 +5,34 @@
 
 # figura
 
+User-friendly python scripting for creating parametrical 3D models
+
+## Features
+
+- Using [Open CASCADE Technology](https://www.opencascade.com/open-cascade-technology/) as the 3D modeling kernel
+- User-friendly API
+- Support for [STEP files](https://en.wikipedia.org/wiki/ISO_10303-21)
+- Support for [STL files](https://en.wikipedia.org/wiki/STL_(file_format))
+
+## Installation
+
 Requirements:
 
 - `pythonocc-core` (>=7.6.0) (available via [conda-forge](https://conda-forge.org/))
 
-  Install via:
-  ```
-  $ conda install -c conda-forge pythonocc-core
-  ```
+  Install it via: ```$ conda install -c conda-forge pythonocc-core```
+
+Install figura:
+
+```
+$ cd /some/path
+$ git clone https://github.com/andrsd/figura.git
+$ cd figura
+$ python setup.py install
+```
+
+## FAQs
+
+*Q:* why is there no pip package?
+
+*A:* `figura` depends on `pythonocc-core` which is currently (April 2023) only available via conda-forge. Once it is avialable via pip, we can deploy via pip as well.
