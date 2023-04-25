@@ -1,6 +1,7 @@
 import math
 from multimethod import multimethod
 from OCC.Core.gp import (gp_Pnt, gp_Trsf)
+from OCC.Core.gce import (gce_MakePln)
 from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeVertex,
     BRepBuilderAPI_MakeEdge,
@@ -43,7 +44,7 @@ from OCC.Core.GC import (
     GC_MakeCircle,
     GC_MakeArcOfCircle
 )
-from .geometry import (Axis1, Direction, Plane)
+from .geometry import (Axis1, Direction, Vector, Plane)
 
 
 class Shape(object):
@@ -332,10 +333,42 @@ class Circle(Edge):
 
 
 class ArcOfCircle(Edge):
+    """
+    Describes an arc of a circle in 3D space.
+    """
 
-    def __init__(self, pt1, pt2, pt3):
+    @multimethod
+    def __init__(self, pt1: Point, pt2: Point, pt3: Point = None, center: Point = None):
         super().__init__()
-        mk = GC_MakeArcOfCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
+        print(pt3, center)
+        if pt3 is not None and center is None:
+            mk = GC_MakeArcOfCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
+            if not mk.IsDone():
+                raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
+            self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+        elif pt3 is None and center is not None:
+            radius = center.pnt().Distance(pt1.pnt())
+            pln = gce_MakePln(center.pnt(), pt1.pnt(), pt2.pnt()).Value()
+            ax2 = pln.Position().Ax2()
+            circ = GC_MakeCircle(ax2, radius).Value().Circ()
+            mk = GC_MakeArcOfCircle(circ, pt1.pnt(), pt2.pnt(), True)
+            if not mk.IsDone():
+                raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
+            self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+        else:
+            raise TypeError("Must specify either 'pt3' or 'center'.")
+
+    @multimethod
+    def __init__(self, pt1: Point, tangent: Vector, pt2: Point):
+        """
+        Construct an arc of a circle from a point, tangent at the point, and another point.
+
+        :param pt1: First point
+        :param tangent: Tangent at point `pt1`
+        :param pt2: Second point
+        """
+        super().__init__()
+        mk = GC_MakeArcOfCircle(pt1.pnt(), tangent.vec(), pt2.pnt())
         if not mk.IsDone():
             raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
         self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
