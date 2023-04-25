@@ -1,7 +1,7 @@
 from .geometry import (Direction, Vector, Axis1, Axis2, Plane, Geometry)
 from .shapes import (Shape, Point, Edge, Wire, Face, Shell, Solid, Polygon, Line, ArcOfCircle, Circle)
 from .primitives import (Box, Cylinder, Sphere, Prism)
-from .io import (STEPFile, STLFile)
+from .io import (STEPFile, STLFile, export)
 from .model import (Model)
 from .colormap import (ColorMap)
 
@@ -34,5 +34,6 @@ __all__ = [
     'STEPFile',
     'STLFile',
     'model',
-    'colors'
+    'colors',
+    'export'
 ]
