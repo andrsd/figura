@@ -1,4 +1,5 @@
 import math
+from multimethod import multimethod
 from OCC.Core.gp import (gp_Pnt, gp_Trsf)
 from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeVertex,
@@ -280,13 +281,55 @@ class Line(Edge):
 
 
 class Circle(Edge):
+    """
+    Describes a circle in 3D space. A circle is defined by its radius and positioned in space with a coordinate system.
+    """
 
-    def __init__(self, center, radius, norm=figura.geometry.Direction(0, 0, 1)):
+    @multimethod
+    def __init__(self, center: Point, radius: float, norm=figura.geometry.Direction(0, 0, 1)):
+        """
+        Construct a circle from a center point and a radius.
+
+        :param center: Center point
+        :param radius: Radius
+        :param norm: Normal of the plane
+        """
         super().__init__()
-        mk = GC_MakeCircle(center.pnt(), norm.dir(), radius)
-        if not mk.IsDone():
+        circ = GC_MakeCircle(center.pnt(), norm.dir(), radius)
+        if not circ.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
-        self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+        self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
+
+    @multimethod
+    def __init__(self, center: Point, pt: Point, norm=figura.geometry.Direction(0, 0, 1)):
+        """
+        Construct a circle from a center point and another point
+
+        :param center: Center point
+        :param pt: Point that is part of the circle
+        :param norm: Normal of the plane
+        """
+        super().__init__()
+        radius = center.pnt().Distance(pt.pnt())
+        circ = GC_MakeCircle(center.pnt(), norm.dir(), radius)
+        if not circ.IsDone():
+            raise SystemExit("Circle was not created")  # pragma: no cover
+        self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
+
+    @multimethod
+    def __init__(self, pt1: Point, pt2: Point, pt3: Point):
+        """
+        Construct a circle from three points
+
+        :param pt1: First point
+        :param pt2: Second point
+        :param pt3: Third point
+        """
+        super().__init__()
+        circ = GC_MakeCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
+        if not circ.IsDone():
+            raise SystemExit("Circle was not created")  # pragma: no cover
+        self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
 
 
 class ArcOfCircle(Edge):
