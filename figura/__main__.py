@@ -2,6 +2,7 @@
 
 import types
 from .io import export
+from ._version import __version__
 
 
 def load_file(file_name):
@@ -27,7 +28,10 @@ def save_file(shapes, file_name, file_format='step'):
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        prog='figura',
+        description='Create parametrical 3D models'
+    )
     parser.add_argument(
         "input",
         help="Input file"
@@ -42,6 +46,7 @@ def main():
         default='step',
         help="File format: [STEP | STL]"
     )
+    parser.add_argument("-v", "--version", version="figura version " + __version__, action="version")
     args = parser.parse_args()
 
     if args.input:
