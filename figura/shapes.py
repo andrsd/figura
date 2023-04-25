@@ -43,8 +43,7 @@ from OCC.Core.GC import (
     GC_MakeCircle,
     GC_MakeArcOfCircle
 )
-import figura
-from .geometry import Axis1
+from .geometry import (Axis1, Direction, Plane)
 
 
 class Shape(object):
@@ -170,7 +169,7 @@ class Shape(object):
         return Shape.from_shape(prism.Shape())
 
     def revolve(self, axis, angle=2.*math.pi):
-        if isinstance(axis, figura.geometry.Axis1):
+        if isinstance(axis, Axis1):
             rev = BRepPrimAPI_MakeRevol(self._shape, axis.ax1(), angle)
             rev.Build()
             if not rev.IsDone():
@@ -286,7 +285,7 @@ class Circle(Edge):
     """
 
     @multimethod
-    def __init__(self, center: Point, radius: float, norm=figura.geometry.Direction(0, 0, 1)):
+    def __init__(self, center: Point, radius: float, norm=Direction(0, 0, 1)):
         """
         Construct a circle from a center point and a radius.
 
@@ -301,7 +300,7 @@ class Circle(Edge):
         self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
 
     @multimethod
-    def __init__(self, center: Point, pt: Point, norm=figura.geometry.Direction(0, 0, 1)):
+    def __init__(self, center: Point, pt: Point, norm=Direction(0, 0, 1)):
         """
         Construct a circle from a center point and another point
 
@@ -391,7 +390,7 @@ class Face(Shape):
 
     def plane(self):
         pln = BRepAdaptor_Surface(self._shape, True).Plane()
-        return figura.geometry.Plane.from_pln(pln)
+        return Plane.from_pln(pln)
 
     @classmethod
     def from_shape(cls, face):
