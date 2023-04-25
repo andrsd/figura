@@ -109,3 +109,25 @@ class STLFile:
         valid_filename_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
         cleaned_file_name = unicodedata.normalize('NFKD', file_name).encode('ASCII', 'ignore').decode('ascii')
         return ''.join(c for c in cleaned_file_name if c in valid_filename_chars)
+
+
+def export(file_name, shapes, file_format='step'):
+    """
+    Export shapes into a file
+
+    :param file_name: Name of the file
+    :param shapes: List of shapes
+    :param file_format: File format ['step', 'stl']
+    """
+    if (isinstance(shapes, list)):
+        fmt = file_format.lower()
+        if fmt == 'step':
+            step = STEPFile(file_name)
+            step.write(shapes)
+        elif fmt == 'stl':
+            stl = STLFile(file_name)
+            stl.write(shapes)
+        else:
+            raise SystemExit("Unknown format {}.".format(file_format))
+    else:
+        raise TypeError("Parameter 'shapes' must be a list.")

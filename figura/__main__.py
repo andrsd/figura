@@ -1,7 +1,7 @@
 # Front end for figura
 
-from figura import STEPFile, STLFile
 import types
+from .io import export
 
 
 def load_file(file_name):
@@ -21,15 +21,7 @@ def load_file(file_name):
 
 
 def save_file(shapes, file_name, file_format='step'):
-    fmt = file_format.lower()
-    if fmt == 'step':
-        step = STEPFile(file_name)
-        step.write(shapes)
-    elif fmt == 'stl':
-        stl = STLFile(file_name)
-        stl.write(shapes)
-    else:
-        raise SystemExit("Unknown format {}.".format(file_format))
+    export(file_name, shapes, file_format)
 
 
 def main():
