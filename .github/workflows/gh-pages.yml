@@ -24,7 +24,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install sphinx sphinx_rtd_theme
-          conda install pythonocc-core
+          conda install pythonocc-core multimethod
       - name: Build doco
         shell: bash -l {0}
         run: |
