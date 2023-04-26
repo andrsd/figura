@@ -138,13 +138,67 @@
 <span id="shapes"></span><h1>Shapes<a class="headerlink" href="#module-figura.shapes" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="figura.shapes.ArcOfCircle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">ArcOfCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.ArcOfCircle" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">ArcOfCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#figura.shapes.Point" title="figura.shapes.Point"><span class="pre">figura.shapes.Point</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tangent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#figura.geometry.Vector" title="figura.geometry.Vector"><span class="pre">figura.geometry.Vector</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#figura.shapes.Point" title="figura.shapes.Point"><span class="pre">figura.shapes.Point</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.ArcOfCircle" title="Permalink to this definition"></a></dt>
+<dd><p>Construct an arc of a circle from a point, tangent at the point, and another point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt1</strong> – First point</p></li>
+<li><p><strong>tangent</strong> – Tangent at point <cite>pt1</cite></p></li>
+<li><p><strong>pt2</strong> – Second point</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="figura.shapes.Circle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center:</span> <span class="pre">figura.shapes.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f0835e66380&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Construct a circle from a center point and a radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param center<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Center point</p>
+</dd>
+<dt class="field-even">param radius<span class="colon">:</span></dt>
+<dd class="field-even"><p>Radius</p>
+</dd>
+<dt class="field-odd">param norm<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Normal of the plane</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__init__(self, center: figura.shapes.Point, pt: figura.shapes.Point, norm=&lt;figura.geometry.Direction object at 0x7f0835e66d10&gt;)</p>
+<blockquote>
+<div><p>Construct a circle from a center point and another point</p>
+<dl class="field-list simple">
+<dt class="field-odd">param center<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Center point</p>
+</dd>
+<dt class="field-even">param pt<span class="colon">:</span></dt>
+<dd class="field-even"><p>Point that is part of the circle</p>
+</dd>
+<dt class="field-odd">param norm<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Normal of the plane</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__init__(self, pt1: figura.shapes.Point, pt2: figura.shapes.Point, pt3: figura.shapes.Point)</p>
+<blockquote>
+<div><p>Construct a circle from three points</p>
+<dl class="field-list simple">
+<dt class="field-odd">param pt1<span class="colon">:</span></dt>
+<dd class="field-odd"><p>First point</p>
+</dd>
+<dt class="field-even">param pt2<span class="colon">:</span></dt>
+<dd class="field-even"><p>Second point</p>
+</dd>
+<dt class="field-odd">param pt3<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Third point</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="figura.shapes.Edge">
