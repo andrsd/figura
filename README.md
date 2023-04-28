@@ -28,7 +28,7 @@ Install figura:
 $ cd /some/path
 $ git clone https://github.com/andrsd/figura.git
 $ cd figura
-$ python setup.py install
+$ pip install .
 ```
 
 ## FAQs
