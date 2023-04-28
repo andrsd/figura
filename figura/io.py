@@ -48,7 +48,7 @@ class STEPFile:
         shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
         color_tool = XCAFDoc_DocumentTool.ColorTool(doc.Main())
         for shp in shapes:
-            label = shape_tool.AddShape(shp.shape())
+            label = shape_tool.AddShape(shp.shape(), False)
             if shp.name is not None:
                 TDataStd_Name.Set(label, TCollection_ExtendedString(shp.name))
 
