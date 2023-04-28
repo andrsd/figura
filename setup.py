@@ -9,7 +9,6 @@ tests_require = [
     'pytest>=7.1.0'
 ]
 setup_requires = [
-    'pythonocc-core>=7.6.0',
     'multimethod>=1.9.0'
 ]
 
