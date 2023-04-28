@@ -9,6 +9,7 @@ from OCC.Core.TDocStd import TDocStd_Document
 from OCC.Core.TDataStd import TDataStd_Name
 from OCC.Core.TCollection import TCollection_ExtendedString
 from OCC.Core.Quantity import Quantity_Color, Quantity_TypeOfColor
+from OCC.Core.Message import message
 import unicodedata
 import string
 import figura
@@ -43,6 +44,13 @@ class STEPFile:
 
         :param shapes: List of shapes
         """
+
+        # Supress any output. Don't even ask...
+        msgr = message.DefaultMessenger()
+        printers = msgr.Printers()
+        for idx in range(len(printers)):
+            msgr.RemovePrinter(printers.Value(idx + 1))
+
         doc = TDocStd_Document(TCollection_ExtendedString("figura-doc"))
 
         shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
@@ -64,6 +72,9 @@ class STEPFile:
         writer.SetNameMode(True)
         writer.Transfer(doc, STEPControl_AsIs)
         writer.Write(self._file_name)
+
+        for idx in range(len(printers)):
+            msgr.AddPrinter(printers.Value(idx + 1))
 
 
 class STLFile:
