@@ -305,6 +305,7 @@ class Circle(Edge):
         if not circ.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
         self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
+        self._circ = circ.Value().Circ()
 
     @multimethod
     def __init__(self, center: Point, pt: Point, norm=Direction(0, 0, 1)):
@@ -321,6 +322,7 @@ class Circle(Edge):
         if not circ.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
         self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
+        self._circ = circ.Value().Circ()
 
     @multimethod
     def __init__(self, pt1: Point, pt2: Point, pt3: Point):
@@ -336,6 +338,20 @@ class Circle(Edge):
         if not circ.IsDone():
             raise SystemExit("Circle was not created")  # pragma: no cover
         self._build_edge(BRepBuilderAPI_MakeEdge(circ.Value()))
+        self._circ = circ.Value().Circ()
+
+    @property
+    def area(self):
+        return self._circ.Area()
+
+    @property
+    def radius(self):
+        return self._circ.Radius()
+
+    @property
+    def location(self):
+        pnt = self._circ.Location()
+        return Point.from_pnt(pnt)
 
 
 class ArcOfCircle(Edge):

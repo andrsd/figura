@@ -1,3 +1,5 @@
+import math
+
 import pytest
 from figura.shapes import (
     Point,
@@ -198,17 +200,26 @@ def test_revolve():
 
 
 def test_circle_center_radius():
-    ctr = Point(0, 0, 0)
-    Circle(ctr, 1.)
+    ctr = Point(1, 2, 3)
+    circ = Circle(ctr, 1.)
+    assert circ.radius == 1.
+    assert circ.area == math.pi
+    assert circ.location.is_equal(Point(1, 2, 3))
 
 
 def test_circle_center_point():
     ctr = Point(0, 0, 0)
-    Circle(ctr, Point(1, 0, 0))
+    circ = Circle(ctr, Point(1, 0, 0))
+    assert circ.radius == 1.
+    assert circ.area == math.pi
+    assert circ.location.is_equal(Point(0, 0, 0))
 
 
 def test_circle_3pt_point():
-    Circle(Point(1, 0, 0), Point(0, 1, 0), Point(-1, 0, 0))
+    circ = Circle(Point(1, 0, 0), Point(0, 1, 0), Point(-1, 0, 0))
+    assert circ.radius == 1.
+    assert circ.location.is_equal(Point(0, 0, 0))
+    assert circ.area == math.pi
 
 
 def test_arcofcircle():
