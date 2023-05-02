@@ -207,3 +207,18 @@ def test_arcofcircle():
     pt2 = Point(1, 1, 0)
     pt3 = Point(2, 0, 0)
     ArcOfCircle(pt1, pt2, pt3)
+
+
+def test_color():
+    box = Box(Point(0, 0, 0), Point(1, 2, 3))
+    box.color = (127.5, 127.5, 127.5)
+    assert box.color == [0.5, 0.5, 0.5]
+
+    box.color = [127.5, 127.5, 127.5]
+    assert box.color == [0.5, 0.5, 0.5]
+
+
+def test_color_error():
+    box = Box(Point(0, 0, 0), Point(1, 2, 3))
+    with pytest.raises(TypeError):
+        box.color = 1
