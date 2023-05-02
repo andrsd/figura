@@ -362,12 +362,13 @@ class ArcOfCircle(Edge):
     @multimethod
     def __init__(self, pt1: Point, pt2: Point, pt3: Point = None, center: Point = None):
         super().__init__()
-        print(pt3, center)
+        self._arc = None
         if pt3 is not None and center is None:
             mk = GC_MakeArcOfCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
             if not mk.IsDone():
                 raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
             self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+            self._arc = mk.Value()
         elif pt3 is None and center is not None:
             radius = center.pnt().Distance(pt1.pnt())
             pln = gce_MakePln(center.pnt(), pt1.pnt(), pt2.pnt()).Value()
@@ -377,6 +378,7 @@ class ArcOfCircle(Edge):
             if not mk.IsDone():
                 raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
             self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+            self._arc = mk.Value()
         else:
             raise TypeError("Must specify either 'pt3' or 'center'.")
 
@@ -394,6 +396,17 @@ class ArcOfCircle(Edge):
         if not mk.IsDone():
             raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
         self._build_edge(BRepBuilderAPI_MakeEdge(mk.Value()))
+        self._arc = mk.Value()
+
+    @property
+    def start_point(self):
+        pnt = self._arc.StartPoint()
+        return Point.from_pnt(pnt)
+
+    @property
+    def end_point(self):
+        pnt = self._arc.EndPoint()
+        return Point.from_pnt(pnt)
 
 
 class Wire(Shape):

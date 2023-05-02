@@ -222,11 +222,31 @@ def test_circle_3pt_point():
     assert circ.area == math.pi
 
 
-def test_arcofcircle():
+def test_arcofcircle_3pt():
     pt1 = Point(0, 0, 0)
     pt2 = Point(1, 1, 0)
     pt3 = Point(2, 0, 0)
-    ArcOfCircle(pt1, pt2, pt3)
+    arc = ArcOfCircle(pt1, pt2, pt3)
+    assert arc.start_point.is_equal(Point(0, 0, 0))
+    assert arc.end_point.is_equal(Point(2, 0, 0))
+
+
+def test_arcofcircle_center():
+    pt1 = Point(1, 0, 0)
+    pt2 = Point(0, 1, 0)
+    ctr = Point(0, 0, 0)
+    arc = ArcOfCircle(pt1, pt2, center=ctr)
+    assert arc.start_point.is_equal(Point(1, 0, 0))
+    assert arc.end_point.is_equal(Point(0, 1, 0))
+
+
+def test_arcofcircle_tang():
+    pt1 = Point(1, 0, 0)
+    pt2 = Point(0, 1, 0)
+    tg = Vector(1, 0, 0)
+    arc = ArcOfCircle(pt2, tg, pt1)
+    assert arc.start_point.is_equal(Point(0, 1, 0))
+    assert arc.end_point.is_equal(Point(1, 0, 0))
 
 
 def test_color():
