@@ -36,7 +36,7 @@ jobs:
           coverage run --source=figura -m pytest
           coverage xml
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage-${{ matrix.python-version }}
           path: ${{ github.workspace }}/coverage.xml
@@ -48,7 +48,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
