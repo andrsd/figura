@@ -197,9 +197,18 @@ def test_revolve():
     edge.revolve(oz)
 
 
-def test_circle():
+def test_circle_center_radius():
     ctr = Point(0, 0, 0)
     Circle(ctr, 1.)
+
+
+def test_circle_center_point():
+    ctr = Point(0, 0, 0)
+    Circle(ctr, Point(1, 0, 0))
+
+
+def test_circle_3pt_point():
+    Circle(Point(1, 0, 0), Point(0, 1, 0), Point(-1, 0, 0))
 
 
 def test_arcofcircle():
