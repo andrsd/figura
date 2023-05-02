@@ -249,6 +249,12 @@ class Point(Shape):
         else:
             raise TypeError("Argument 'vertex' must be of 'TopoDS_Vertex' type")
 
+    def is_equal(self, pt, tol=1e-15):
+        if isinstance(pt, Point):
+            return self._pnt.IsEqual(pt.pnt(), tol)
+        else:
+            raise TypeError("Argument 'pt' must be of 'Point' type")
+
 
 class Edge(Shape):
 

@@ -27,7 +27,7 @@ def test_point():
     assert pt.x == 1
     assert pt.y == 2
     assert pt.z == 3
-    assert pt.pnt().IsEqual(gp_Pnt(1, 2, 3), 1e-15)
+    assert pt.is_equal(Point(1, 2, 3), 1e-15)
 
     s = str(pt)
     assert s == "<class 'figura.shapes.Point'>(x=1.0, y=2.0, z=3.0)"
