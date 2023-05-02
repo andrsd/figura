@@ -48,8 +48,17 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Shapes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.ArcOfCircle"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Circle"><code class="docutils literal notranslate"><span class="pre">Circle</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.ArcOfCircle"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.ArcOfCircle.end_point"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle.end_point</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.ArcOfCircle.start_point"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle.start_point</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Circle"><code class="docutils literal notranslate"><span class="pre">Circle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Circle.area"><code class="docutils literal notranslate"><span class="pre">Circle.area</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Circle.location"><code class="docutils literal notranslate"><span class="pre">Circle.location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Circle.radius"><code class="docutils literal notranslate"><span class="pre">Circle.radius</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Edge.from_shape"><code class="docutils literal notranslate"><span class="pre">Edge.from_shape()</span></code></a></li>
 </ul>
@@ -64,6 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.from_pnt"><code class="docutils literal notranslate"><span class="pre">Point.from_pnt()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.from_shape"><code class="docutils literal notranslate"><span class="pre">Point.from_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.is_equal"><code class="docutils literal notranslate"><span class="pre">Point.is_equal()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.pnt"><code class="docutils literal notranslate"><span class="pre">Point.pnt()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
@@ -149,11 +159,21 @@
 </ul>
 </dd>
 </dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.ArcOfCircle.end_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_point</span></span><a class="headerlink" href="#figura.shapes.ArcOfCircle.end_point" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.ArcOfCircle.start_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_point</span></span><a class="headerlink" href="#figura.shapes.ArcOfCircle.start_point" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="figura.shapes.Circle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center:</span> <span class="pre">figura.shapes.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f66e3f62260&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center:</span> <span class="pre">figura.shapes.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7ff55a3223b0&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Permalink to this definition"></a></dt>
 <dd><blockquote>
 <div><p>Construct a circle from a center point and a radius.</p>
 <dl class="field-list simple">
@@ -168,7 +188,7 @@
 </dd>
 </dl>
 </div></blockquote>
-<p>__init__(self, center: figura.shapes.Point, pt: figura.shapes.Point, norm=&lt;figura.geometry.Direction object at 0x7f66e3f62bf0&gt;)</p>
+<p>__init__(self, center: figura.shapes.Point, pt: figura.shapes.Point, norm=&lt;figura.geometry.Direction object at 0x7ff55a322d40&gt;)</p>
 <blockquote>
 <div><p>Construct a circle from a center point and another point</p>
 <dl class="field-list simple">
@@ -198,6 +218,21 @@
 </dd>
 </dl>
 </div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Circle.area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#figura.shapes.Circle.area" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Circle.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#figura.shapes.Circle.location" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Circle.radius">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#figura.shapes.Circle.radius" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -256,6 +291,11 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Point.from_shape">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.from_shape" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.is_equal">
+<span class="sig-name descname"><span class="pre">is_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.is_equal" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
