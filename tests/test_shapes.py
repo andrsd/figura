@@ -5,9 +5,11 @@ from figura.shapes import (
     Point,
     Wire,
     Face,
+    Edge,
     Line,
     Circle,
-    ArcOfCircle
+    ArcOfCircle,
+    Polygon
 )
 from figura.geometry import (
     Vector,
@@ -262,3 +264,28 @@ def test_color_error():
     box = Box(Point(0, 0, 0), Point(1, 2, 3))
     with pytest.raises(TypeError):
         box.color = 1
+
+
+def test_polygon():
+    pts = [
+        Point(1, 0, 0),
+        Point(0, 1, 0),
+        Point(-1, 0, 0)
+    ]
+    poly = Polygon(pts)
+    assert isinstance(poly.edge(), Edge)
+    assert isinstance(poly.wire(), Wire)
+
+
+def test_polygon_not_enough_points():
+    pts = [
+        Point(1, 0, 0)
+    ]
+    with pytest.raises(SystemExit):
+        Polygon(pts)
+
+
+def test_polygon_wrong_args():
+    pts = 1.
+    with pytest.raises(TypeError):
+        Polygon(pts)
