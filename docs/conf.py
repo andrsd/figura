@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 
 project = 'figura'
-copyright = '2022, David Andrs'
+copyright = '2022-2023, David Andrs'
 author = 'David Andrs'
 
 master_doc = 'index'
@@ -16,7 +16,8 @@ html_static_path = []
 html_show_sourcelink = False
 
 extensions = [
-    'sphinx.ext.autodoc'
+    'sphinx.ext.autodoc',
+    'sphinx_design'
 ]
 
 autoclass_content = "init"
