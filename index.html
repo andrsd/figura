@@ -4,20 +4,24 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to figura’s documentation! &mdash; figura  documentation</title>
+  <title>Figura User’s Guide &mdash; figura  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/design-tabs.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bottle" href="tutorials/bottle.html" /> 
+    <link rel="next" title="Installation" href="install.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,11 +43,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Figura Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="names-and-colors.html">Names and Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Export</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/2d-geometry.html">2D geometry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/bottle.html">Bottle</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shapes.html">Shapes</a></li>
@@ -65,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to figura’s documentation!</li>
+      <li class="breadcrumb-item active">Figura User’s Guide</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -74,76 +87,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-figura-s-documentation">
-<h1>Welcome to figura’s documentation!<a class="headerlink" href="#welcome-to-figura-s-documentation" title="Permalink to this heading"></a></h1>
+  <section id="figura-user-s-guide">
+<h1>Figura User’s Guide<a class="headerlink" href="#figura-user-s-guide" title="Permalink to this heading"></a></h1>
+<p>Figura is a python package that allows you to create 3D parametrical models in a user-friendly
+fashion using the python language and all its strengths.
+Figura provides basic modeling entities to build geometries which can be then exported into industry
+standard file formats (STEP).</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/bottle.html">Bottle</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="geometry.html#figura.geometry.Axis1"><code class="docutils literal notranslate"><span class="pre">Axis1</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry.html#figura.geometry.Axis2"><code class="docutils literal notranslate"><span class="pre">Axis2</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry.html#figura.geometry.Direction"><code class="docutils literal notranslate"><span class="pre">Direction</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry.html#figura.geometry.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry.html#figura.geometry.Plane"><code class="docutils literal notranslate"><span class="pre">Plane</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="geometry.html#figura.geometry.Vector"><code class="docutils literal notranslate"><span class="pre">Vector</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="shapes.html">Shapes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.ArcOfCircle"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Circle"><code class="docutils literal notranslate"><span class="pre">Circle</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Face"><code class="docutils literal notranslate"><span class="pre">Face</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Shape"><code class="docutils literal notranslate"><span class="pre">Shape</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Shell"><code class="docutils literal notranslate"><span class="pre">Shell</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Solid"><code class="docutils literal notranslate"><span class="pre">Solid</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="shapes.html#figura.shapes.Wire"><code class="docutils literal notranslate"><span class="pre">Wire</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="primitives.html">Primitives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="primitives.html#figura.primitives.Box"><code class="docutils literal notranslate"><span class="pre">Box</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="primitives.html#figura.primitives.Cone"><code class="docutils literal notranslate"><span class="pre">Cone</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="primitives.html#figura.primitives.Cylinder"><code class="docutils literal notranslate"><span class="pre">Cylinder</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="primitives.html#figura.primitives.Prism"><code class="docutils literal notranslate"><span class="pre">Prism</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="primitives.html#figura.primitives.Sphere"><code class="docutils literal notranslate"><span class="pre">Sphere</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="io.html">Input/Output</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="io.html#figura.io.STEPFile"><code class="docutils literal notranslate"><span class="pre">STEPFile</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="io.html#figura.io.STLFile"><code class="docutils literal notranslate"><span class="pre">STLFile</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="io.html#figura.io.export"><code class="docutils literal notranslate"><span class="pre">export()</span></code></a></li>
-</ul>
-</li>
-</ul>
 </div>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorials/bottle.html" class="btn btn-neutral float-right" title="Bottle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, David Andrs.</p>
+    <p>&#169; Copyright 2022-2023, David Andrs.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
