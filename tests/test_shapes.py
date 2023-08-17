@@ -9,7 +9,8 @@ from figura.shapes import (
     Line,
     Circle,
     ArcOfCircle,
-    Polygon
+    Polygon,
+    Spline
 )
 from figura.geometry import (
     Vector,
@@ -289,3 +290,14 @@ def test_polygon_wrong_args():
     pts = 1.
     with pytest.raises(TypeError):
         Polygon(pts)
+
+
+def test_spline():
+    pts = [
+        Point(0, 0.5, 0),
+        Point(1, 0, 0),
+        Point(4, 1, 0)
+    ]
+    tg = Vector(1, 0, 0)
+    spline = Spline(pts, initial_tangent=tg, final_tangent=-tg)
+    assert isinstance(spline, Edge)
