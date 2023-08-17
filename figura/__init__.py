@@ -4,7 +4,7 @@ from .primitives import (Box, Cylinder, Sphere, Prism)
 from .io import (STEPFile, STLFile, export)
 from .model import (Model)
 from .colormap import (ColorMap)
-
+from ._version import __version__
 
 model = Model()
 colors = ColorMap()
@@ -35,5 +35,6 @@ __all__ = [
     'STLFile',
     'model',
     'colors',
-    'export'
+    'export',
+    __version__
 ]
