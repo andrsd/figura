@@ -16,6 +16,7 @@ User-friendly python scripting for creating parametrical 3D models
 - User-friendly API
 - Support for [STEP files](https://en.wikipedia.org/wiki/ISO_10303-21)
 - Support for [STL files](https://en.wikipedia.org/wiki/STL_(file_format))
+- Block names and colors
 
 ## Installation
 
