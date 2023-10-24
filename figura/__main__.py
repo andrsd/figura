@@ -1,8 +1,8 @@
 # Front end for figura
 
 import types
-from .io import export
-from ._version import __version__
+from figura.io import export
+from figura._version import __version__
 
 
 def load_file(file_name):
@@ -46,7 +46,9 @@ def main():
         default='step',
         help="File format: [STEP | STL]"
     )
-    parser.add_argument("-v", "--version", version="figura version " + __version__, action="version")
+    parser.add_argument("-v", "--version",
+                        version="figura version " + __version__,
+                        action="version")
     args = parser.parse_args()
 
     if args.input:
