@@ -102,6 +102,7 @@ class Shape(object):
         if hasattr(shape, 'shape'):
             fuse = BRepAlgoAPI_Fuse(self.shape(), shape.shape())
             fuse.Build()
+            fuse.SimplifyResult()
             if not fuse.IsDone():
                 raise SystemExit("Objects were not fused")  # pragma: no cover
             return Shape.from_shape(fuse.Shape())
