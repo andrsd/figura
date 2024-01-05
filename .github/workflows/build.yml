@@ -18,15 +18,12 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           auto-update-conda: false
-          channels: conda-forge,defaults
-          miniforge-version: latest
-          miniforge-variant: Mambaforge
-          use-mamba: true
+          channels: conda-forge
 
       - name: Install dependencies
         shell: bash -l {0}
         run: |
-          mamba install \
+          conda install \
             pythonocc-core \
             multimethod \
             coverage \
