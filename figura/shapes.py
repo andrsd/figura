@@ -181,6 +181,44 @@ class Shape(object):
         else:
             raise TypeError("Wrong argument types")
 
+    @multimethod
+    def translate(self, v: Vector):
+        if isinstance(v, Vector):
+            trsf = gp_Trsf()
+            trsf.SetTranslation(v.vec())
+            brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
+            return Shape.from_shape(brep_trsf.Shape())
+        else:
+            raise SystemError("v must be 'Vector'")
+
+    @multimethod
+    def translate(self, p1, p2):
+        if isinstance(p1, Point) and isinstance(p2, Point):
+            trsf = gp_Trsf()
+            trsf.SetTranslation(p1.pnt(), p2.pnt())
+            brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
+            return Shape.from_shape(brep_trsf.Shape())
+        else:
+            raise SystemError("p1 and p2 must be 'Point'")
+
+    def scale(self, s):
+        if isinstance(s, float) or isinstance(s, int):
+            trsf = gp_Trsf()
+            trsf.SetScaleFactor(s)
+            brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
+            return Shape.from_shape(brep_trsf.Shape())
+        else:
+            raise SystemError("s must be a 'float' or an 'int'")
+
+    def rotate(self, axis: Axis1, angle: float):
+        if isinstance(axis, Axis1) and (isinstance(angle, float) or isinstance(angle, int)):
+            trsf = gp_Trsf()
+            trsf.SetRotation(axis.ax1(), angle)
+            brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
+            return Shape.from_shape(brep_trsf.Shape())
+        else:
+            raise SystemError("axis must be 'Axis1' and angle must a 'float' or an 'int'")
+
     @classmethod
     def from_shape(cls, obj):
         return cls(obj)
