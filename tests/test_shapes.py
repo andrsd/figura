@@ -14,7 +14,9 @@ from figura.shapes import (
 )
 from figura.geometry import (
     Vector,
-    Geometry
+    Geometry,
+    Axis1,
+    Direction
 )
 from figura.primitives import (
     Box
@@ -200,6 +202,35 @@ def test_revolve():
     edge = Line(pt1, pt2)
     oz = Geometry.OZ()
     edge.revolve(oz)
+
+
+def test_translate_vec():
+    pt1 = Point(1, -0.5, 0)
+    pt2 = Point(1, 0.5, 0)
+    edge = Line(pt1, pt2)
+    m = edge.translate(Vector(-1, 0, 0))
+
+
+def test_translate_2pts():
+    pt1 = Point(1, -0.5, 0)
+    pt2 = Point(1, 0.5, 0)
+    edge = Line(pt1, pt2)
+    m = edge.translate(Point(1, 1, 0), Point(-1, 2, 0))
+
+
+def test_scale():
+    pt1 = Point(1, -0.5, 0)
+    pt2 = Point(1, 0.5, 0)
+    edge = Line(pt1, pt2)
+    m = edge.scale(0.25)
+
+
+def test_rotate():
+    pt1 = Point(1, -0.5, 0)
+    pt2 = Point(1, 0.5, 0)
+    ax1 = Axis1(pt1, Direction(0, 0, 1))
+    edge = Line(pt1, pt2)
+    m = edge.rotate(ax1, 0.25)
 
 
 def test_circle_center_radius():
