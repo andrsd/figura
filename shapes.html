@@ -115,7 +115,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.mirror"><code class="docutils literal notranslate"><span class="pre">Shape.mirror()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.name"><code class="docutils literal notranslate"><span class="pre">Shape.name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.revolve"><code class="docutils literal notranslate"><span class="pre">Shape.revolve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.rotate"><code class="docutils literal notranslate"><span class="pre">Shape.rotate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.scale"><code class="docutils literal notranslate"><span class="pre">Shape.scale()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.shape"><code class="docutils literal notranslate"><span class="pre">Shape.shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.translate"><code class="docutils literal notranslate"><span class="pre">Shape.translate()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Shell"><code class="docutils literal notranslate"><span class="pre">Shell</span></code></a><ul>
@@ -189,7 +192,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="figura.shapes.Circle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center:</span> <span class="pre">figura.shapes.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7ff5d5b9fee0&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center:</span> <span class="pre">figura.shapes.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f0791970880&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Link to this definition"></a></dt>
 <dd><blockquote>
 <div><p>Construct a circle from a center point and a radius.</p>
 <dl class="field-list simple">
@@ -204,7 +207,7 @@
 </dd>
 </dl>
 </div></blockquote>
-<p>__init__(self, center: figura.shapes.Point, pt: figura.shapes.Point, norm=&lt;figura.geometry.Direction object at 0x7ff5d5be4850&gt;)</p>
+<p>__init__(self, center: figura.shapes.Point, pt: figura.shapes.Point, norm=&lt;figura.geometry.Direction object at 0x7f0791970a60&gt;)</p>
 <blockquote>
 <div><p>Construct a circle from a center point and another point</p>
 <dl class="field-list simple">
@@ -428,8 +431,23 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#figura.geometry.Axis1" title="figura.geometry.Axis1"><span class="pre">Axis1</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.rotate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="figura.shapes.Shape.shape">
 <span class="sig-name descname"><span class="pre">shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#figura.geometry.Vector" title="figura.geometry.Vector"><span class="pre">Vector</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.translate" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
