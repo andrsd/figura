@@ -1,6 +1,5 @@
 # Front end for figura
 import os
-import types
 from pathlib import Path
 from figura.io import export
 from figura._version import __version__
@@ -8,14 +7,11 @@ from figura._version import __version__
 
 def load_file(file_name):
     with open(file_name) as fp:
-        src = "from figura import *\n"
-        src += fp.read()
-        code = compile(src, file_name, "exec")
-    module = types.ModuleType("<script>")
-    exec(code, globals(), module.__dict__)
-
-    if hasattr(module, 'export'):
-        return module.export
+        code = fp.read()
+    loc = locals()
+    exec(code, locals(), loc)
+    if ('export' in loc) and (not callable(loc['export'])):
+        return loc['export']
     else:
         raise SystemExit("No shapes were specified for export")
 
