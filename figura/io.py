@@ -3,7 +3,6 @@ from OCC.Core.STEPCAFControl import STEPCAFControl_Writer
 from OCC.Core.IFSelect import IFSelect_RetDone
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
-from OCC.Core.Interface import Interface_Static
 from OCC.Core.XCAFDoc import (XCAFDoc_DocumentTool, XCAFDoc_ColorGen)
 from OCC.Core.TDocStd import TDocStd_Document
 from OCC.Core.TDataStd import TDataStd_Name
@@ -68,7 +67,6 @@ class STEPFile:
                 color_tool.SetColor(label, color, XCAFDoc_ColorGen)
 
         writer = STEPCAFControl_Writer()
-        Interface_Static.SetCVal("write.step.unit", figura.model.units.upper())
         writer.SetNameMode(True)
         writer.Transfer(doc, STEPControl_AsIs)
         writer.Write(self._file_name)

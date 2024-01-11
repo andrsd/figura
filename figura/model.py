@@ -1,3 +1,4 @@
+from OCC.Core.Interface import Interface_Static
 
 class Model:
 
@@ -13,5 +14,6 @@ class Model:
         # can be: "mm", "cm", "m"
         if value in ["mm", "cm", "m"]:
             self._units = value
+            Interface_Static.SetCVal("write.step.unit", value.upper())
         else:
             raise ValueError("Units can be either 'mm', 'cm' or 'm'.")
