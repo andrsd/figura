@@ -1,3 +1,5 @@
+from figura import *
+
 HEIGHT = 50
 WIDTH = 70
 THICKNESS = 30
