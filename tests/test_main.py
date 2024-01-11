@@ -9,16 +9,16 @@ assets_dir = os.path.join(
 )
 
 
-def test_step():
+def test_step(tmp_path):
     file = os.path.join(assets_dir, "box.figura")
     shapes = load_file(file)
-    save_file(shapes, "out.step", file_format='STEP')
+    save_file(shapes, "out.step", tmp_path, file_format='STEP')
 
 
-def test_stl():
+def test_stl(tmp_path):
     file = os.path.join(assets_dir, "box.figura")
     shapes = load_file(file)
-    save_file(shapes, "out", file_format='STL')
+    save_file(shapes, "out", tmp_path, file_format='STL')
 
 
 def test_wrong_unit():
