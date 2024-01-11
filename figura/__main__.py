@@ -1,6 +1,7 @@
 # Front end for figura
-
+import os
 import types
+from pathlib import Path
 from figura.io import export
 from figura._version import __version__
 
@@ -13,16 +14,18 @@ def load_file(file_name):
     module = types.ModuleType("<script>")
     exec(code, globals(), module.__dict__)
 
-    shps = []
     if hasattr(module, 'export'):
-        for obj in module.export:
-            shps.append(obj)
+        return module.export
+    else:
+        raise SystemExit("No shapes were specified for export")
 
-    return shps
+
+def save_file(shapes, file_name, output_dir, file_format='step'):
+    export(os.path.join(output_dir, file_name), shapes, file_format)
 
 
-def save_file(shapes, file_name, file_format='step'):
-    export(file_name, shapes, file_format)
+def get_file_ext(fmt):
+    return "." + fmt
 
 
 def main():
@@ -37,7 +40,8 @@ def main():
         help="Input file"
     )
     parser.add_argument(
-        "output",
+        "-o",
+        "--output-file",
         help="Output file"
     )
     parser.add_argument(
@@ -46,14 +50,28 @@ def main():
         default='step',
         help="File format: [STEP | STL]"
     )
+    parser.add_argument(
+        "-O",
+        "--output-dir",
+        default=os.getcwd(),
+        help="Output directory"
+    )
     parser.add_argument("-v", "--version",
                         version="figura version " + __version__,
                         action="version")
     args = parser.parse_args()
 
     if args.input:
-        shapes = load_file(args.input)
-        save_file(shapes, args.output, file_format=args.format)
+        try:
+            shapes = load_file(args.input)
+            if isinstance(shapes, list):
+                if args.output_file is None:
+                    args.output_file = Path(Path(args.input).name).with_suffix(
+                        get_file_ext(args.format))
+                save_file(shapes, args.output_file, args.output_dir,
+                          file_format=args.format)
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
