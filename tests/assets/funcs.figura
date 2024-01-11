@@ -1,0 +1,30 @@
+# tests that functions can be used
+
+from figura import *
+
+
+def inch(i):
+    return i * 25.4
+
+
+pt1 = Point(0, 0, 0)
+pt2 = Point(inch(1), inch(1), inch(1))
+box = Box(pt1, pt2)
+
+
+def nested():
+    pt1 = Point(1, 1, 1)
+    pt2 = Point(2, 2, 2)
+    return Box(pt1, pt2)
+
+
+class Krabice(Box):
+
+    def __init__(self):
+        A = inch(1)
+        pt1 = Point(0, 0, 0)
+        pt2 = Point(A, A, A)
+        super().__init__(pt1, pt2)
+
+
+export = [box, nested(), Krabice()]

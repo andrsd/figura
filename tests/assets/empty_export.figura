@@ -1,0 +1,3 @@
+from figura import *
+
+export = None
