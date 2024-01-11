@@ -1,0 +1,20 @@
+from figura import *
+
+model.units = "mm"
+
+pt1 = Point(0, 0, 0)
+pt2 = Point(1, 1, 1)
+box1 = Box(pt1, pt2)
+box1.name = "box1"
+box1.color = colors.light_blue
+
+pt3 = Point(0, 1, 0)
+pt4 = Point(1, 2, 1)
+box2 = Box(pt3, pt4)
+box2.name = "box2"
+box2.color = colors.light_blue
+
+export = {
+    "f1.step": [box1],
+    "f2.step": [box2]
+}

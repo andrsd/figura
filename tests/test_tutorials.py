@@ -10,3 +10,8 @@ tuts_dir = os.path.join(
 def test_bottle():
     file = os.path.join(tuts_dir, "bottle/bottle.figura")
     load_file(file)
+
+
+def test_2d_geometry():
+    file = os.path.join(tuts_dir, "2d-geometry/channel.figura")
+    load_file(file)

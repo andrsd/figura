@@ -1,3 +1,5 @@
+from figura import *
+
 model.units = "m"
 
 pt1 = Point(0, 0, 0)
