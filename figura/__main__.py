@@ -70,6 +70,13 @@ def main():
                         get_file_ext(args.format))
                 save_file(shapes, args.output_file, args.output_dir,
                           file_format=args.format)
+            elif isinstance(shapes, dict):
+                for f, shs in shapes.items():
+                    out_file = f
+                    save_file(shs, out_file, args.output_dir,
+                              file_format=args.format)
+            else:
+                raise SystemExit("I don't know how to export shapes.")
         except Exception as e:
             print(e)
 
