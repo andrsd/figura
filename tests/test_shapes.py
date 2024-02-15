@@ -225,12 +225,22 @@ def test_scale():
     m = edge.scale(0.25)
 
 
+def test_rotate_point():
+    pt1 = Point(-1, 0., 0)
+    ax1 = Axis1(Point(0, 0, 0), Direction(0, 0, -1))
+    pt2 = pt1.rotate(ax1, 90)
+    assert math.isclose(pt2.x, 0., abs_tol=1e-10)
+    assert math.isclose(pt2.y, 1., abs_tol=1e-10)
+    assert math.isclose(pt2.z, 0., abs_tol=1e-10)
+
+
 def test_rotate():
     pt1 = Point(1, -0.5, 0)
     pt2 = Point(1, 0.5, 0)
     ax1 = Axis1(pt1, Direction(0, 0, 1))
     edge = Line(pt1, pt2)
-    m = edge.rotate(ax1, 0.25)
+    m = edge.rotate(ax1, 90)
+    assert isinstance(m, Edge)
 
 
 def test_circle_center_radius():
