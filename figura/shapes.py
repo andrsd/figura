@@ -36,6 +36,7 @@ from OCC.Core.BRepPrimAPI import (
 from OCC.Core.BRepFilletAPI import BRepFilletAPI_MakeFillet
 from OCC.Core.GeomAbs import GeomAbs_Plane
 from OCC.Core.BRepAdaptor import BRepAdaptor_Surface
+from OCC.Core.BRep import BRep_Tool
 from OCC.Core.TopoDS import topods
 from OCC.Core.TopExp import TopExp_Explorer
 from OCC.Core.TopAbs import TopAbs_EDGE, TopAbs_FACE
@@ -212,11 +213,18 @@ class Shape(object):
             raise SystemError("s must be a 'float' or an 'int'")
 
     def rotate(self, axis: Axis1, angle: float):
+        """
+        Rotate point about axis by an angle
+
+        :param axis: Axis of rotation
+        :param angle: Angle [in degrees]
+        :return: Rotated shape
+        """
         if isinstance(axis, Axis1) and (isinstance(angle, float) or isinstance(angle, int)):
             trsf = gp_Trsf()
-            trsf.SetRotation(axis.ax1(), angle)
+            trsf.SetRotation(axis.ax1(), math.radians(angle))
             brep_trsf = BRepBuilderAPI_Transform(self.shape(), trsf)
-            return Shape.from_shape(brep_trsf.Shape())
+            return self.__class__.from_shape(brep_trsf.Shape())
         else:
             raise SystemError("axis must be 'Axis1' and angle must a 'float' or an 'int'")
 
@@ -284,9 +292,8 @@ class Point(Shape):
     @classmethod
     def from_shape(cls, vertex):
         if isinstance(vertex, TopoDS_Vertex):
-            cls._pnt = None
-            cls._shape = vertex
-            return cls
+            pnt = BRep_Tool.Pnt(vertex)
+            return cls(pnt.X(), pnt.Y(), pnt.Z())
         else:
             raise TypeError("Argument 'vertex' must be of 'TopoDS_Vertex' type")
 
@@ -311,7 +318,7 @@ class Edge(Shape):
     @classmethod
     def from_shape(cls, edge):
         if isinstance(edge, TopoDS_Edge):
-            new = cls(shape=edge)
+            new = Edge(shape=edge)
             return new
         else:
             raise TypeError("Argument 'edge' must be of 'TopoDS_Edge' type")
