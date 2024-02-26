@@ -14,6 +14,9 @@ from OCC.Core.TopoDS import (
     TopoDS_Wire,
     TopoDS_Face,
 )
+from OCC.Core.GCE2d import (
+    GCE2d_MakeArcOfCircle,
+)
 from ._geometry import (Axis, Direction)
 
 
@@ -185,6 +188,44 @@ class Circle(Edge):
     @property
     def location(self):
         pnt = self._circ.Location()
+        return Point.from_shape(pnt)
+
+
+class ArcOfCircle(Edge):
+    """
+    Describes an arc of a circle in 3D space.
+    """
+
+    @multimethod
+    def __init__(self, pt1: Point, pt2: Point, pt3: Point = None, center: Point = None):
+        super().__init__()
+        self._arc = None
+        if pt3 is not None and center is None:
+            mk = GCE2d_MakeArcOfCircle(pt1.pnt(), pt2.pnt(), pt3.pnt())
+            if not mk.IsDone():
+                raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
+            self._build_edge(BRepBuilderAPI_MakeEdge2d(mk.Value()))
+            self._arc = mk.Value()
+        elif pt3 is None and center is not None:
+            radius = center.pnt().Distance(pt1.pnt())
+            ax = Axis(center, Direction(1, 0))
+            circ = gp_Circ2d(ax.ax(), radius)
+            mk = GCE2d_MakeArcOfCircle(circ, pt1.pnt(), pt2.pnt(), True)
+            if not mk.IsDone():
+                raise SystemExit("ArcOfCircle was not created")  # pragma: no cover
+            self._build_edge(BRepBuilderAPI_MakeEdge2d(mk.Value()))
+            self._arc = mk.Value()
+        else:
+            raise TypeError("Must specify either 'pt3' or 'center'.")
+
+    @property
+    def start_point(self):
+        pnt = self._arc.StartPoint()
+        return Point.from_shape(pnt)
+
+    @property
+    def end_point(self):
+        pnt = self._arc.EndPoint()
         return Point.from_shape(pnt)
 
 

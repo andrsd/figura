@@ -64,3 +64,21 @@ def test_circle_center_point_2d():
     assert circ.radius == 1.
     assert circ.area == math.pi
     assert circ.location.is_equal(Point(0, 0))
+
+
+def test_arcofcircle_3pt_2d():
+    pt1 = Point(0, 0)
+    pt2 = Point(1, 1)
+    pt3 = Point(2, 0)
+    arc = ArcOfCircle(pt1, pt2, pt3)
+    assert arc.start_point.is_equal(Point(0, 0))
+    assert arc.end_point.is_equal(Point(2, 0))
+
+
+def test_arcofcircle_center_2d():
+    pt1 = Point(1, 0)
+    pt2 = Point(0, 1)
+    ctr = Point(0, 0)
+    arc = ArcOfCircle(pt1, pt2, center=ctr)
+    assert arc.start_point.is_equal(Point(1, 0))
+    assert arc.end_point.is_equal(Point(0, 1))
