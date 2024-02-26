@@ -82,3 +82,14 @@ def test_arcofcircle_center_2d():
     arc = ArcOfCircle(pt1, pt2, center=ctr)
     assert arc.start_point.is_equal(Point(1, 0))
     assert arc.end_point.is_equal(Point(0, 1))
+
+
+def test_spline():
+    pts = [
+        Point(0, 0.5),
+        Point(1, 0),
+        Point(4, 1)
+    ]
+    tg = Vector(1, 0)
+    spline = Spline(pts, initial_tangent=tg, final_tangent=-tg)
+    assert isinstance(spline, Edge)

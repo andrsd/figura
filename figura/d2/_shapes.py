@@ -17,7 +17,9 @@ from OCC.Core.TopoDS import (
 from OCC.Core.GCE2d import (
     GCE2d_MakeArcOfCircle,
 )
-from ._geometry import (Axis, Direction)
+from OCC.Core.Geom2dAPI import Geom2dAPI_Interpolate
+from OCC.Core.TColgp import TColgp_HArray1OfPnt2d
+from ._geometry import (Axis, Direction, Vector)
 
 
 class Shape(object):
@@ -279,3 +281,34 @@ class Face(Shape):
             return new
         else:
             raise TypeError("Argument 'face' must be of 'TopoDS_Face' type")
+
+
+class Spline(Edge):
+
+    def __init__(self, points, initial_tangent=None, final_tangent=None):
+        """
+        Construct a B-spline that is passing through an array of points.
+        If tangency is specified, the continuity will be C1. If not, then the
+        continuity will be C2
+
+        :param points: Array of :class:`.Vertex` s
+        :param initial_tangent: Tangent (:class:`.Vector`) at the first node
+        :param final_tangent: Tangent (:class:`.Vector`) at the last node
+        """
+        if isinstance(points, list):
+            super().__init__()
+            pnts = TColgp_HArray1OfPnt2d(1, len(points))
+            for (idx, pt) in enumerate(points):
+                pnts.SetValue(idx + 1, pt.pnt())
+            mk = Geom2dAPI_Interpolate(pnts, False, 1e-8)
+            if isinstance(initial_tangent, Vector) and \
+                isinstance(final_tangent, Vector):
+                final_tangent = -final_tangent
+                mk.Load(initial_tangent.vec(), final_tangent.vec())
+            mk.Perform()
+            if not mk.IsDone():
+                raise SystemExit("Spline was not created")  # pragma: no cover
+            self._build_edge(BRepBuilderAPI_MakeEdge2d(mk.Curve()))
+            self._spline = mk.Curve()
+        else:
+            raise TypeError("Wrong argument type")
