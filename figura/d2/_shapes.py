@@ -1,4 +1,8 @@
-from OCC.Core.gp import (gp_Pnt2d)
+from multimethod import multimethod
+from OCC.Core.gp import (
+    gp_Pnt2d,
+    gp_Circ2d,
+)
 from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeEdge2d,
     BRepBuilderAPI_MakeWire,
@@ -10,6 +14,7 @@ from OCC.Core.TopoDS import (
     TopoDS_Wire,
     TopoDS_Face,
 )
+from ._geometry import (Axis, Direction)
 
 
 class Shape(object):
@@ -135,6 +140,52 @@ class Line(Edge):
             self._build_edge(BRepBuilderAPI_MakeEdge2d(pt1.pnt(), pt2.pnt()))
         else:
             raise TypeError("Wrong argument types")
+
+
+class Circle(Edge):
+    """
+    Describes a circle in 2D space. A circle is defined by its radius and
+    position in space with a coordinate system.
+    """
+
+    @multimethod
+    def __init__(self, center: Point, radius: float):
+        """
+        Construct a circle from a center point and a radius.
+
+        :param center: Center point
+        :param radius: Radius
+        """
+        super().__init__()
+        ax = Axis(center, Direction(1, 0))
+        self._circ = gp_Circ2d(ax.ax(), radius)
+        self._build_edge(BRepBuilderAPI_MakeEdge2d(self._circ))
+
+    @multimethod
+    def __init__(self, center: Point, pt: Point):
+        """
+        Construct a circle from a center point and another point
+
+        :param center: Center point
+        :param pt: Point that is part of the circle
+        """
+        radius = center.pnt().Distance(pt.pnt())
+        ax = Axis(center, Direction(1, 0))
+        self._circ = gp_Circ2d(ax.ax(), radius)
+        self._build_edge(BRepBuilderAPI_MakeEdge2d(self._circ))
+
+    @property
+    def area(self):
+        return self._circ.Area()
+
+    @property
+    def radius(self):
+        return self._circ.Radius()
+
+    @property
+    def location(self):
+        pnt = self._circ.Location()
+        return Point.from_shape(pnt)
 
 
 class Wire(Shape):

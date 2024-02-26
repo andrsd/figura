@@ -1,4 +1,5 @@
 import pytest
+import math
 from figura.d2 import *
 from OCC.Core.gp import (
     gp_Pnt2d
@@ -47,3 +48,19 @@ def test_face_2d():
     edge3 = Line(v3, v1)
     wire = Wire([edge1, edge2, edge3])
     Face(wire)
+
+
+def test_circle_center_radius_2d():
+    ctr = Point(1, 2)
+    circ = Circle(ctr, 1.)
+    assert circ.radius == 1.
+    assert circ.area == math.pi
+    assert circ.location.is_equal(Point(1, 2))
+
+
+def test_circle_center_point_2d():
+    ctr = Point(0, 0)
+    circ = Circle(ctr, Point(1, 0))
+    assert circ.radius == 1.
+    assert circ.area == math.pi
+    assert circ.location.is_equal(Point(0, 0))
