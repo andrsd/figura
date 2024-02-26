@@ -12,6 +12,7 @@ from OCC.Core.Message import message
 import unicodedata
 import string
 import figura
+import figura.d3
 
 
 class STEPFile:
