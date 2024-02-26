@@ -1,6 +1,10 @@
 from OCC.Core.gp import (gp_Pnt2d)
+from OCC.Core.BRepBuilderAPI import (
+    BRepBuilderAPI_MakeEdge2d,
+)
 from OCC.Core.TopoDS import (
     TopoDS_Shape,
+    TopoDS_Edge,
 )
 
 
@@ -97,3 +101,33 @@ class Point(Shape):
             return self._pnt.IsEqual(pt.pnt(), tol)
         else:
             raise TypeError("Argument 'pt' must be of 'Point' type")
+
+
+class Edge(Shape):
+
+    def __init__(self, shape=None):
+        super().__init__(shape)
+
+    def _build_edge(self, edge):
+        edge.Build()
+        if not edge.IsDone():
+            raise SystemExit("Edge was not created")  # pragma: no cover
+        self._shape = edge.Edge()
+
+    @classmethod
+    def from_shape(cls, edge):
+        if isinstance(edge, TopoDS_Edge):
+            new = Edge(shape=edge)
+            return new
+        else:
+            raise TypeError("Argument 'edge' must be of 'TopoDS_Edge' type")
+
+
+class Line(Edge):
+
+    def __init__(self, pt1, pt2):
+        super().__init__()
+        if isinstance(pt1, Point) and isinstance(pt2, Point):
+            self._build_edge(BRepBuilderAPI_MakeEdge2d(pt1.pnt(), pt2.pnt()))
+        else:
+            raise TypeError("Wrong argument types")

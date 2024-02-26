@@ -21,3 +21,9 @@ def test_point_2d():
     p = Point.from_shape(gp)
     assert p.x == 3
     assert p.y == 2
+
+
+def test_line_2d():
+    v1 = Point(0, 0)
+    v2 = Point(1, 0)
+    Line(v1, v2)
