@@ -1,10 +1,14 @@
 from OCC.Core.gp import (gp_Pnt2d)
 from OCC.Core.BRepBuilderAPI import (
     BRepBuilderAPI_MakeEdge2d,
+    BRepBuilderAPI_MakeWire,
+    BRepBuilderAPI_MakeFace,
 )
 from OCC.Core.TopoDS import (
     TopoDS_Shape,
     TopoDS_Edge,
+    TopoDS_Wire,
+    TopoDS_Face,
 )
 
 
@@ -131,3 +135,55 @@ class Line(Edge):
             self._build_edge(BRepBuilderAPI_MakeEdge2d(pt1.pnt(), pt2.pnt()))
         else:
             raise TypeError("Wrong argument types")
+
+
+class Wire(Shape):
+
+    def __init__(self, edges=[], shape=None):
+        if isinstance(edges, list):
+            if len(edges) > 0:
+                wire = BRepBuilderAPI_MakeWire()
+                for item in edges:
+                    if isinstance(item, Edge) or isinstance(item, Wire):
+                        wire.Add(item.shape())
+                wire.Build()
+                if not wire.IsDone():
+                    raise SystemExit("Wire was not created")  # pragma: no cover
+                super().__init__(shape=wire.Wire())
+            else:
+                super().__init__(shape=shape)
+        else:
+            raise TypeError("Argument 'edges' must be a list of 'Edges'")
+
+    @classmethod
+    def from_shape(cls, wire):
+        if isinstance(wire, TopoDS_Wire):
+            new = cls()
+            new._shape = wire
+            return new
+        else:
+            raise TypeError("Argument 'wire' must be of 'TopoDS_Wire' type")
+
+
+class Face(Shape):
+
+    def __init__(self, wire=None, shape=None):
+        if wire is None:
+            super().__init__(shape=shape)
+        elif isinstance(wire, Wire):
+            wire = BRepBuilderAPI_MakeFace(wire.shape())
+            wire.Build()
+            if not wire.IsDone():
+                raise SystemExit("Face was not created")  # pragma: no cover
+            super().__init__(shape=wire.Face())
+        else:
+            raise TypeError("Wrong argument types")
+
+    @classmethod
+    def from_shape(cls, face):
+        if isinstance(face, TopoDS_Face):
+            new = cls()
+            new._shape = face
+            return new
+        else:
+            raise TypeError("Argument 'face' must be of 'TopoDS_Face' type")

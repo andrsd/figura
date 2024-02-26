@@ -27,3 +27,23 @@ def test_line_2d():
     v1 = Point(0, 0)
     v2 = Point(1, 0)
     Line(v1, v2)
+
+
+def test_wire_2d():
+    v1 = Point(0, 0)
+    v2 = Point(1, 0)
+    v3 = Point(2, 0)
+    edge1 = Line(v1, v2)
+    edge2 = Line(v2, v3)
+    Wire([edge1, edge2])
+
+
+def test_face_2d():
+    v1 = Point(0, 0)
+    v2 = Point(1, 0)
+    v3 = Point(2, 0)
+    edge1 = Line(v1, v2)
+    edge2 = Line(v2, v3)
+    edge3 = Line(v3, v1)
+    wire = Wire([edge1, edge2, edge3])
+    Face(wire)
