@@ -1,6 +1,7 @@
 # tests that functions can be used
 
 from figura import *
+from figura.d3 import *
 
 
 def inch(i):

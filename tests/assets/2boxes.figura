@@ -1,4 +1,5 @@
 from figura import *
+from figura.d3 import *
 
 model.units = "mm"
 
