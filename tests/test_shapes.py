@@ -1,5 +1,26 @@
+import math
+
 import pytest
-from figura.d3 import *
+from figura.shapes import (
+    Point,
+    Wire,
+    Face,
+    Edge,
+    Line,
+    Circle,
+    ArcOfCircle,
+    Polygon,
+    Spline
+)
+from figura.geometry import (
+    Vector,
+    Geometry,
+    Axis1,
+    Direction
+)
+from figura.primitives import (
+    Box
+)
 from OCC.Core.gp import (
     gp_Pnt
 )
@@ -16,7 +37,7 @@ def test_point():
     assert pt.is_equal(Point(1, 2, 3), 1e-15)
 
     s = str(pt)
-    assert s == "<class 'figura.d3._shapes.Point'>(x=1.0, y=2.0, z=3.0)"
+    assert s == "<class 'figura.shapes.Point'>(x=1.0, y=2.0, z=3.0)"
 
     gp = gp_Pnt(3, 2, 1)
     p = Point.from_pnt(gp)

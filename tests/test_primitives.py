@@ -1,5 +1,22 @@
 import pytest
-from figura.d3 import *
+from figura.shapes import (
+    Point,
+    Line,
+    Face,
+    Wire
+)
+from figura.geometry import (
+    Vector,
+    Direction,
+    Axis2
+)
+from figura.primitives import (
+    Box,
+    Cylinder,
+    Sphere,
+    Cone,
+    Prism
+)
 
 
 def test_name():
