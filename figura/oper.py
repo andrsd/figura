@@ -1,9 +1,13 @@
-from figura.shapes import Shape, Face
+from figura.shapes import Shape, Face, Plane
 from figura.geometry import (Axis1)
+from OCC.Core.BRepBuilderAPI import (
+    BRepBuilderAPI_MakeFace
+)
 from OCC.Core.BRepAlgoAPI import (
     BRepAlgoAPI_Fuse,
     BRepAlgoAPI_Cut,
-    BRepAlgoAPI_Common
+    BRepAlgoAPI_Common,
+    BRepAlgoAPI_Section
 )
 from OCC.Core.TopTools import TopTools_ListOfShape
 from OCC.Core.BRepOffsetAPI import (
@@ -96,3 +100,12 @@ def revolve(shape, axis, angle=2. * math.pi):
         return Shape.from_shape(result.Shape())
     else:
         raise TypeError("Wrong argument types")
+
+
+def section(shape: Shape, plane: Plane):
+    face = BRepBuilderAPI_MakeFace(plane)
+    result = BRepAlgoAPI_Section(shape, face)
+    result.Build()
+    if not result.IsDone():
+        raise SystemExit("Section operation failed")  # pragma: no cover
+    return Shape.from_shape(result.Shape())
