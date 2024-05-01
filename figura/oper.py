@@ -1,9 +1,13 @@
-from figura.shapes import Shape, Face
+from figura.shapes import Shape, Face, Plane, Wire
 from figura.geometry import (Axis1)
+from OCC.Core.BRepBuilderAPI import (
+    BRepBuilderAPI_MakeWire
+)
 from OCC.Core.BRepAlgoAPI import (
     BRepAlgoAPI_Fuse,
     BRepAlgoAPI_Cut,
-    BRepAlgoAPI_Common
+    BRepAlgoAPI_Common,
+    BRepAlgoAPI_Section
 )
 from OCC.Core.TopTools import TopTools_ListOfShape
 from OCC.Core.BRepOffsetAPI import (
@@ -96,3 +100,24 @@ def revolve(shape, axis, angle=2. * math.pi):
         return Shape.from_shape(result.Shape())
     else:
         raise TypeError("Wrong argument types")
+
+
+def section(shape: Shape, plane: Plane):
+    """
+    Compute section between a shape and a plane
+
+    :param shape: Shape
+    :param plane: Plane
+    :return: Wire that forms the computed section
+    """
+    result = BRepAlgoAPI_Section(shape.shape(), plane.pln())
+    result.Build()
+    if not result.IsDone():
+        raise SystemExit("Section operation failed")  # pragma: no cover
+    section_edges = result.SectionEdges();
+    wire = BRepBuilderAPI_MakeWire()
+    wire.Add(section_edges)
+    wire.Build()
+    if not wire.IsDone():
+        raise SystemExit("Wire was not created")  # pragma: no cover
+    return Wire.from_shape(wire.Wire())
