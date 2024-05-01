@@ -1,5 +1,7 @@
 from OCC.Core.STEPControl import (STEPControl_AsIs, STEPControl_Reader)
 from OCC.Core.STEPCAFControl import STEPCAFControl_Writer
+from OCC.Core.IGESControl import (IGESControl_Reader)
+from OCC.Core.IGESCAFControl import IGESCAFControl_Writer
 from OCC.Core.IFSelect import IFSelect_RetDone
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
@@ -11,7 +13,6 @@ from OCC.Core.Quantity import Quantity_Color, Quantity_TypeOfColor
 from OCC.Core.Message import message
 import unicodedata
 import string
-import figura
 
 
 class STEPFile:
@@ -120,15 +121,76 @@ class STLFile:
         return ''.join(c for c in cleaned_file_name if c in valid_filename_chars)
 
 
+class IGESFile:
+
+    def __init__(self, file_name):
+        """
+        IGES file
+
+        :param file_name: The name of the IGES file
+        """
+        self._file_name = file_name
+
+    def read(self):
+        """
+        Read the file
+
+        :return: The shape that is contained on the IGES file
+        """
+        reader = IGESControl_Reader()
+        if reader.ReadFile(self._file_name) != IFSelect_RetDone:
+            raise SystemExit("Unable to load '{}'".format(self._file_name))
+        reader.NbRootsForTransfer()
+        reader.TransferOneRoot()
+        return reader.OneShape()
+
+    def write(self, shapes):
+        """
+        Write shapes into the file
+
+        :param shapes: List of shapes
+        """
+
+        # Supress any output. Don't even ask...
+        msgr = message.DefaultMessenger()
+        printers = msgr.Printers()
+        for idx in range(len(printers)):
+            msgr.RemovePrinter(printers.Value(idx + 1))
+
+        doc = TDocStd_Document(TCollection_ExtendedString("figura-doc"))
+
+        shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
+        color_tool = XCAFDoc_DocumentTool.ColorTool(doc.Main())
+        for shp in shapes:
+            label = shape_tool.AddShape(shp.shape(), False)
+            if shp.name is not None:
+                TDataStd_Name.Set(label, TCollection_ExtendedString(shp.name))
+
+            if shp.color is not None:
+                r = shp.color[0]
+                g = shp.color[1]
+                b = shp.color[2]
+                color = Quantity_Color(r, g, b, Quantity_TypeOfColor.Quantity_TOC_RGB)
+                color_tool.SetColor(label, color, XCAFDoc_ColorGen)
+
+        writer = IGESCAFControl_Writer()
+        writer.SetNameMode(True)
+        writer.Transfer(doc)
+        writer.Write(self._file_name)
+
+        for idx in range(len(printers)):
+            msgr.AddPrinter(printers.Value(idx + 1))
+
+
 def export(file_name, shapes, file_format='step'):
     """
     Export shapes into a file
 
     :param file_name: Name of the file
     :param shapes: List of shapes
-    :param file_format: File format ['step', 'stl']
+    :param file_format: File format ['step', 'stl', 'iges']
     """
-    if (isinstance(shapes, list)):
+    if isinstance(shapes, list):
         fmt = file_format.lower()
         if fmt == 'step':
             step = STEPFile(file_name)
@@ -136,7 +198,27 @@ def export(file_name, shapes, file_format='step'):
         elif fmt == 'stl':
             stl = STLFile(file_name)
             stl.write(shapes)
+        elif fmt == 'iges':
+            stl = IGESFile(file_name)
+            stl.write(shapes)
         else:
             raise SystemExit("Unknown format {}.".format(file_format))
     else:
         raise TypeError("Parameter 'shapes' must be a list.")
+
+
+def read(file_name):
+    """
+    Read shapes from a file
+
+    :param file_name: Name of the file
+    :return: Shape(s) from the file
+    """
+    if file_name.endswith('.step'):
+        step = STEPFile(file_name)
+        return step.read()
+    elif file_name.endswith('.iges'):
+        iges = IGESFile(file_name)
+        return iges.read()
+    else:
+        raise TypeError(f"Unknown file format '{file_name}'.")
