@@ -1,5 +1,4 @@
 from figura import *
-from figura.d3 import *
 
 HEIGHT = 50
 WIDTH = 70

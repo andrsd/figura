@@ -5,7 +5,7 @@ from OCC.Core.gp import (
     gp_Ax2,
     gp_Pln
 )
-import figura.d3
+import figura
 
 
 class Geometry(object):
@@ -15,19 +15,19 @@ class Geometry(object):
 
     @staticmethod
     def OX():
-        pt = figura.d3.Point(0, 0, 0)
+        pt = figura.shapes.Point(0, 0, 0)
         direction = Direction(1, 0, 0)
         return Axis1(pt, direction)
 
     @staticmethod
     def OY():
-        pt = figura.d3.Point(0, 0, 0)
+        pt = figura.shapes.Point(0, 0, 0)
         direction = Direction(0, 1, 0)
         return Axis1(pt, direction)
 
     @staticmethod
     def OZ():
-        pt = figura.d3.Point(0, 0, 0)
+        pt = figura.shapes.Point(0, 0, 0)
         direction = Direction(0, 0, 1)
         return Axis1(pt, direction)
 
@@ -187,7 +187,7 @@ class Axis1(object):
         :param pt: :class:`.Point` the location point
         :param direction: :class:`.Direction` the direction of the axis
         """
-        if not isinstance(pt, figura.d3.Point):
+        if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
         if not isinstance(direction, Direction):
             raise TypeError("'dir' must be a 'Direction'")
@@ -244,7 +244,7 @@ class Axis2(object):
     """
 
     def __init__(self, pt, direction):
-        if not isinstance(pt, figura.d3.Point):
+        if not isinstance(pt, figura.shapes.Point):
             raise TypeError("'pt' must be a 'Point'")
         if not isinstance(direction, Direction):
             raise TypeError("'dir' must be a 'Direction'")
@@ -299,7 +299,7 @@ class Plane(object):
         :param pt: Point :py:class:`.Point`
         :param normal: Normal :py:class:`.Direction`
         """
-        if isinstance(pt, figura.d3.Point) and isinstance(normal, Direction):
+        if isinstance(pt, figura.shapes.Point) and isinstance(normal, Direction):
             self._location = pt
             self._pln = gp_Pln(pt.pnt(), normal.dir())
         else:
@@ -328,6 +328,6 @@ class Plane(object):
         :param pln: OpenCascade ``gp_Pln`` object
         :return: :class:`.Plane` object
         """
-        pt = figura.d3.Point.from_pnt(pln.Location())
+        pt = figura.shapes.Point.from_pnt(pln.Location())
         normal = Direction.from_dir(pln.Axis().Direction())
         return Plane(pt, normal)
