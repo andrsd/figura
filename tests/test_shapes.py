@@ -51,7 +51,8 @@ def test_point():
 def test_line():
     v1 = Point(0, 0, 0)
     v2 = Point(1, 0, 0)
-    Line(v1, v2)
+    ln = Line(v1, v2)
+    assert math.isclose(ln.length(), 1., rel_tol=1e-10)
 
 
 def test_wire():
@@ -259,6 +260,7 @@ def test_circle_center_radius():
     assert circ.radius == 1.
     assert circ.area == math.pi
     assert circ.location.is_equal(Point(1, 2, 3))
+    assert math.isclose(circ.length(), 2. * math.pi, rel_tol=1e-10)
 
 
 def test_circle_center_point():
@@ -267,6 +269,7 @@ def test_circle_center_point():
     assert circ.radius == 1.
     assert circ.area == math.pi
     assert circ.location.is_equal(Point(0, 0, 0))
+    assert math.isclose(circ.length(), 2. * math.pi, rel_tol=1e-10)
 
 
 def test_circle_3pt_point():
@@ -274,6 +277,7 @@ def test_circle_3pt_point():
     assert circ.radius == 1.
     assert circ.location.is_equal(Point(0, 0, 0))
     assert circ.area == math.pi
+    assert math.isclose(circ.length(), 2. * math.pi, rel_tol=1e-10)
 
 
 def test_arcofcircle_3pt():
@@ -283,6 +287,7 @@ def test_arcofcircle_3pt():
     arc = ArcOfCircle(pt1, pt2, pt3)
     assert arc.start_point.is_equal(Point(0, 0, 0))
     assert arc.end_point.is_equal(Point(2, 0, 0))
+    assert math.isclose(arc.length(), math.pi, rel_tol=1e-10)
 
 
 def test_arcofcircle_center():
@@ -352,3 +357,4 @@ def test_spline():
     tg = Vector(1, 0, 0)
     spline = Spline(pts, initial_tangent=tg, final_tangent=-tg)
     assert isinstance(spline, Edge)
+    assert math.isclose(spline.length(), 4.42384280405, rel_tol=1e-10)

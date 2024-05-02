@@ -317,6 +317,16 @@ class Edge(Shape):
             raise SystemExit("Edge was not created")  # pragma: no cover
         self._shape = edge.Edge()
 
+    def length(self):
+        """
+        Compute the length of the edge
+
+        :return: Length of the edge
+        """
+        props = GProp_GProps()
+        brepgprop.LinearProperties(self.shape(), props)
+        return props.Mass()
+
     @classmethod
     def from_shape(cls, edge):
         if isinstance(edge, TopoDS_Edge):
