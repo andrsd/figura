@@ -1,4 +1,5 @@
 import pytest
+import math
 from figura.shapes import (
     Point,
     Line,
@@ -40,6 +41,7 @@ def test_box():
     pt2 = Point(1, 2, 3)
     box = Box(pt1, pt2)
     box.shell()
+    assert math.isclose(box.volume(), 6., rel_tol=1e-10)
 
 
 def test_cylinder():
@@ -49,6 +51,7 @@ def test_cylinder():
     cyl = Cylinder(axis, 0.5, 2)
     cyl.shell()
     cyl.solid()
+    assert math.isclose(cyl.volume(), 0.5 * math.pi, rel_tol=1e-10)
 
 
 def test_sphere():
@@ -56,6 +59,7 @@ def test_sphere():
     sph = Sphere(pt, 2)
     sph.shell()
     sph.solid()
+    assert math.isclose(sph.volume(), 33.5103216382, rel_tol=1e-10)
 
 
 def test_prism():
@@ -68,7 +72,8 @@ def test_prism():
     wire = Wire([edge1, edge2, edge3])
     face = Face(wire)
     vec = Vector(0, 0, 1)
-    Prism(face, vec)
+    prism = Prism(face, vec)
+    assert math.isclose(prism.volume(), 0.5, rel_tol=1e-10)
 
 
 def test_cone():
@@ -78,3 +83,4 @@ def test_cone():
     cone = Cone(axis, 2, 0.5, 5)
     cone.shell()
     cone.solid()
+    assert math.isclose(cone.volume(), 27.4889357189, rel_tol=1e-10)

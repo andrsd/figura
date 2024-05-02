@@ -14,7 +14,7 @@ from .geometry import (
 from .shapes import (Shape, Shell, Solid)
 
 
-class Box(Shape):
+class Box(Solid):
     """
     Box
     """
@@ -41,7 +41,7 @@ class Box(Shape):
         return Shell(self._box.Shell())
 
 
-class Cylinder(Shape):
+class Cylinder(Solid):
 
     def __init__(self, axis, radius, height):
         self._cylinder = BRepPrimAPI_MakeCylinder(axis.ax2(), radius, height)
@@ -57,7 +57,7 @@ class Cylinder(Shape):
         return Solid(self._cylinder.Solid())
 
 
-class Sphere(Shape):
+class Sphere(Solid):
 
     def __init__(self, center, radius):
         self._sphere = BRepPrimAPI_MakeSphere(center.pnt(), radius)
@@ -73,7 +73,7 @@ class Sphere(Shape):
         return Solid(self._sphere.Solid())
 
 
-class Prism(Shape):
+class Prism(Solid):
 
     def __init__(self, shape, vec):
         if not hasattr(shape, "shape"):
@@ -88,7 +88,7 @@ class Prism(Shape):
         super().__init__(self._prism.Shape())
 
 
-class Cone(Shape):
+class Cone(Solid):
 
     def __init__(self, axis, radius1, radius2, height):
         if not isinstance(axis, Axis2):

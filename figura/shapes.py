@@ -47,6 +47,8 @@ from OCC.Core.GC import (
 )
 from OCC.Core.GeomAPI import GeomAPI_Interpolate
 from OCC.Core.TColgp import TColgp_HArray1OfPnt
+from OCC.Core.BRepGProp import brepgprop
+from OCC.Core.GProp import GProp_GProps
 from .geometry import (Axis1, Direction, Vector, Plane)
 
 
@@ -315,6 +317,16 @@ class Edge(Shape):
             raise SystemExit("Edge was not created")  # pragma: no cover
         self._shape = edge.Edge()
 
+    def length(self):
+        """
+        Compute the length of the edge
+
+        :return: Length of the edge
+        """
+        props = GProp_GProps()
+        brepgprop.LinearProperties(self.shape(), props)
+        return props.Mass()
+
     @classmethod
     def from_shape(cls, edge):
         if isinstance(edge, TopoDS_Edge):
@@ -508,6 +520,16 @@ class Face(Shape):
         pln = BRepAdaptor_Surface(self._shape, True).Plane()
         return Plane.from_pln(pln)
 
+    def area(self):
+        """
+        Compute the surface area of the face
+
+        :return: Surface area of the face
+        """
+        props = GProp_GProps()
+        brepgprop.SurfaceProperties(self.shape(), props)
+        return props.Mass()
+
     @classmethod
     def from_shape(cls, face):
         if isinstance(face, TopoDS_Face):
@@ -546,6 +568,16 @@ class Solid(Shape):
             super().__init__(shape=solid.Solid())
         else:
             raise TypeError("Wrong argument types")
+
+    def volume(self):
+        """
+        Compute the volume of the shape
+
+        :return: Volume of the shape
+        """
+        props = GProp_GProps()
+        brepgprop.VolumeProperties(self.shape(), props)
+        return props.Mass()
 
     @classmethod
     def from_shape(cls, obj):
