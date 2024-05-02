@@ -62,7 +62,80 @@
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Shapes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Shapes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.ArcOfCircle"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.ArcOfCircle.end_point"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle.end_point</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.ArcOfCircle.start_point"><code class="docutils literal notranslate"><span class="pre">ArcOfCircle.start_point</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Circle"><code class="docutils literal notranslate"><span class="pre">Circle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Circle.area"><code class="docutils literal notranslate"><span class="pre">Circle.area</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Circle.location"><code class="docutils literal notranslate"><span class="pre">Circle.location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Circle.radius"><code class="docutils literal notranslate"><span class="pre">Circle.radius</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Edge.from_shape"><code class="docutils literal notranslate"><span class="pre">Edge.from_shape()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Face"><code class="docutils literal notranslate"><span class="pre">Face</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Face.from_shape"><code class="docutils literal notranslate"><span class="pre">Face.from_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Face.is_plane"><code class="docutils literal notranslate"><span class="pre">Face.is_plane()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Face.plane"><code class="docutils literal notranslate"><span class="pre">Face.plane()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.from_pnt"><code class="docutils literal notranslate"><span class="pre">Point.from_pnt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.from_shape"><code class="docutils literal notranslate"><span class="pre">Point.from_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.is_equal"><code class="docutils literal notranslate"><span class="pre">Point.is_equal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.pnt"><code class="docutils literal notranslate"><span class="pre">Point.pnt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.x"><code class="docutils literal notranslate"><span class="pre">Point.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.y"><code class="docutils literal notranslate"><span class="pre">Point.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Point.z"><code class="docutils literal notranslate"><span class="pre">Point.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Polygon.edge"><code class="docutils literal notranslate"><span class="pre">Polygon.edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Polygon.from_shape"><code class="docutils literal notranslate"><span class="pre">Polygon.from_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Polygon.wire"><code class="docutils literal notranslate"><span class="pre">Polygon.wire()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Shape"><code class="docutils literal notranslate"><span class="pre">Shape</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.color"><code class="docutils literal notranslate"><span class="pre">Shape.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.cut"><code class="docutils literal notranslate"><span class="pre">Shape.cut()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.edges"><code class="docutils literal notranslate"><span class="pre">Shape.edges()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.extrude"><code class="docutils literal notranslate"><span class="pre">Shape.extrude()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.faces"><code class="docutils literal notranslate"><span class="pre">Shape.faces()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.fillet"><code class="docutils literal notranslate"><span class="pre">Shape.fillet()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.from_shape"><code class="docutils literal notranslate"><span class="pre">Shape.from_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.fuse"><code class="docutils literal notranslate"><span class="pre">Shape.fuse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.hollow"><code class="docutils literal notranslate"><span class="pre">Shape.hollow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.intersect"><code class="docutils literal notranslate"><span class="pre">Shape.intersect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.mirror"><code class="docutils literal notranslate"><span class="pre">Shape.mirror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.name"><code class="docutils literal notranslate"><span class="pre">Shape.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.revolve"><code class="docutils literal notranslate"><span class="pre">Shape.revolve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.rotate"><code class="docutils literal notranslate"><span class="pre">Shape.rotate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.scale"><code class="docutils literal notranslate"><span class="pre">Shape.scale()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.shape"><code class="docutils literal notranslate"><span class="pre">Shape.shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shape.translate"><code class="docutils literal notranslate"><span class="pre">Shape.translate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Shell"><code class="docutils literal notranslate"><span class="pre">Shell</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Shell.from_shape"><code class="docutils literal notranslate"><span class="pre">Shell.from_shape()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Solid"><code class="docutils literal notranslate"><span class="pre">Solid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Solid.from_shape"><code class="docutils literal notranslate"><span class="pre">Solid.from_shape()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Spline"><code class="docutils literal notranslate"><span class="pre">Spline</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.shapes.Wire"><code class="docutils literal notranslate"><span class="pre">Wire</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.shapes.Wire.from_shape"><code class="docutils literal notranslate"><span class="pre">Wire.from_shape()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="primitives.html">Primitives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">Input/Output</a></li>
 </ul>
@@ -90,8 +163,354 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="shapes">
-<h1>Shapes<a class="headerlink" href="#shapes" title="Link to this heading"></a></h1>
+  <section id="module-figura.shapes">
+<span id="shapes"></span><h1>Shapes<a class="headerlink" href="#module-figura.shapes" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.ArcOfCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">ArcOfCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#figura.shapes.Point" title="figura.shapes.Point"><span class="pre">figura.shapes.Point</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tangent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#figura.geometry.Vector" title="figura.geometry.Vector"><span class="pre">figura.geometry.Vector</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#figura.shapes.Point" title="figura.shapes.Point"><span class="pre">figura.shapes.Point</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.ArcOfCircle" title="Link to this definition"></a></dt>
+<dd><p>Construct an arc of a circle from a point, tangent at the point, and another point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt1</strong> – First point</p></li>
+<li><p><strong>tangent</strong> – Tangent at point <cite>pt1</cite></p></li>
+<li><p><strong>pt2</strong> – Second point</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.ArcOfCircle.end_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_point</span></span><a class="headerlink" href="#figura.shapes.ArcOfCircle.end_point" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.ArcOfCircle.start_point">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_point</span></span><a class="headerlink" href="#figura.shapes.ArcOfCircle.start_point" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Circle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center:</span> <span class="pre">figura.shapes.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm=&lt;figura.geometry.Direction</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f1cc5adcdf0&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Circle" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Construct a circle from a center point and a radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param center<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Center point</p>
+</dd>
+<dt class="field-even">param radius<span class="colon">:</span></dt>
+<dd class="field-even"><p>Radius</p>
+</dd>
+<dt class="field-odd">param norm<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Normal of the plane</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__init__(self, center: figura.shapes.Point, pt: figura.shapes.Point, norm=&lt;figura.geometry.Direction object at 0x7f1cc5adcfd0&gt;)</p>
+<blockquote>
+<div><p>Construct a circle from a center point and another point</p>
+<dl class="field-list simple">
+<dt class="field-odd">param center<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Center point</p>
+</dd>
+<dt class="field-even">param pt<span class="colon">:</span></dt>
+<dd class="field-even"><p>Point that is part of the circle</p>
+</dd>
+<dt class="field-odd">param norm<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Normal of the plane</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__init__(self, pt1: figura.shapes.Point, pt2: figura.shapes.Point, pt3: figura.shapes.Point)</p>
+<blockquote>
+<div><p>Construct a circle from three points</p>
+<dl class="field-list simple">
+<dt class="field-odd">param pt1<span class="colon">:</span></dt>
+<dd class="field-odd"><p>First point</p>
+</dd>
+<dt class="field-even">param pt2<span class="colon">:</span></dt>
+<dd class="field-even"><p>Second point</p>
+</dd>
+<dt class="field-odd">param pt3<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Third point</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Circle.area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#figura.shapes.Circle.area" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Circle.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#figura.shapes.Circle.location" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Circle.radius">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#figura.shapes.Circle.radius" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Edge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Edge" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Edge.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Edge.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Face">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wire</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Face.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Face.is_plane">
+<span class="sig-name descname"><span class="pre">is_plane</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face.is_plane" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Face.plane">
+<span class="sig-name descname"><span class="pre">plane</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Face.plane" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Line">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Line" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Point">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point" title="Link to this definition"></a></dt>
+<dd><p>Creates a point with its 3 cartesian coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – x-coordinate</p></li>
+<li><p><strong>y</strong> – y-coordinate</p></li>
+<li><p><strong>z</strong> – z-coordinate</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.from_pnt">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pnt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.from_pnt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.is_equal">
+<span class="sig-name descname"><span class="pre">is_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.is_equal" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Point.pnt">
+<span class="sig-name descname"><span class="pre">pnt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Point.pnt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Point.x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#figura.shapes.Point.x" title="Link to this definition"></a></dt>
+<dd><p>X-coordinate of this point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Point.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#figura.shapes.Point.y" title="Link to this definition"></a></dt>
+<dd><p>Y-coordinate of this point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Point.z">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#figura.shapes.Point.z" title="Link to this definition"></a></dt>
+<dd><p>Z-coordinate of this point</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Polygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Polygon" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Polygon.edge">
+<span class="sig-name descname"><span class="pre">edge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Polygon.edge" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Polygon.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Polygon.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Polygon.wire">
+<span class="sig-name descname"><span class="pre">wire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Polygon.wire" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Shape">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape" title="Link to this definition"></a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Shape.color">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#figura.shapes.Shape.color" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.cut">
+<span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.cut" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.edges">
+<span class="sig-name descname"><span class="pre">edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.edges" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.extrude">
+<span class="sig-name descname"><span class="pre">extrude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.extrude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.faces">
+<span class="sig-name descname"><span class="pre">faces</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.faces" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.fillet">
+<span class="sig-name descname"><span class="pre">fillet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.fillet" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.fuse">
+<span class="sig-name descname"><span class="pre">fuse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.fuse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.hollow">
+<span class="sig-name descname"><span class="pre">hollow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">faces_to_remove</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.hollow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.intersect">
+<span class="sig-name descname"><span class="pre">intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.intersect" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.mirror">
+<span class="sig-name descname"><span class="pre">mirror</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.mirror" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="figura.shapes.Shape.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#figura.shapes.Shape.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.revolve">
+<span class="sig-name descname"><span class="pre">revolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.283185307179586</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.revolve" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#figura.geometry.Axis1" title="figura.geometry.Axis1"><span class="pre">Axis1</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.rotate" title="Link to this definition"></a></dt>
+<dd><p>Rotate point about axis by an angle</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis</strong> – Axis of rotation</p></li>
+<li><p><strong>angle</strong> – Angle [in degrees]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Rotated shape</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.shape">
+<span class="sig-name descname"><span class="pre">shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shape.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#figura.geometry.Vector" title="figura.geometry.Vector"><span class="pre">Vector</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shape.translate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Shell">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shell" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Shell.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Shell.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Solid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Solid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Solid" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Solid.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Solid.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Spline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Spline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_tangent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_tangent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Spline" title="Link to this definition"></a></dt>
+<dd><p>Construct a B-spline that is passing through an array of points.
+If tangency is specified, the continuity will be C1. If not, then the
+continuity will be C2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Array of <code class="xref py py-class docutils literal notranslate"><span class="pre">Vertex</span></code> s</p></li>
+<li><p><strong>initial_tangent</strong> – Tangent (<a class="reference internal" href="geometry.html#figura.geometry.Vector" title="figura.geometry.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) at the first node</p></li>
+<li><p><strong>final_tangent</strong> – Tangent (<a class="reference internal" href="geometry.html#figura.geometry.Vector" title="figura.geometry.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) at the last node</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.shapes.Wire">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.shapes.</span></span><span class="sig-name descname"><span class="pre">Wire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Wire" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="figura.shapes.Wire.from_shape">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wire</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.shapes.Wire.from_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
