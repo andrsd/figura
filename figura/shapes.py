@@ -569,6 +569,16 @@ class Solid(Shape):
         else:
             raise TypeError("Wrong argument types")
 
+    def volume(self):
+        """
+        Compute the volume of the shape
+
+        :return: Volume of the shape
+        """
+        props = GProp_GProps()
+        brepgprop.VolumeProperties(self.shape(), props)
+        return props.Mass()
+
     @classmethod
     def from_shape(cls, obj):
         return cls(obj)
