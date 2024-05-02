@@ -64,6 +64,11 @@
 <li class="toctree-l1"><a class="reference internal" href="shapes.html">Shapes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="primitives.html">Primitives</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Input/Output</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#figura.io.IGESFile"><code class="docutils literal notranslate"><span class="pre">IGESFile</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figura.io.IGESFile.read"><code class="docutils literal notranslate"><span class="pre">IGESFile.read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#figura.io.IGESFile.write"><code class="docutils literal notranslate"><span class="pre">IGESFile.write()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.io.STEPFile"><code class="docutils literal notranslate"><span class="pre">STEPFile</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#figura.io.STEPFile.read"><code class="docutils literal notranslate"><span class="pre">STEPFile.read()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#figura.io.STEPFile.write"><code class="docutils literal notranslate"><span class="pre">STEPFile.write()</span></code></a></li>
@@ -74,6 +79,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#figura.io.export"><code class="docutils literal notranslate"><span class="pre">export()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#figura.io.read"><code class="docutils literal notranslate"><span class="pre">read()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -103,6 +109,39 @@
              
   <section id="module-figura.io">
 <span id="input-output"></span><h1>Input/Output<a class="headerlink" href="#module-figura.io" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="figura.io.IGESFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.io.</span></span><span class="sig-name descname"><span class="pre">IGESFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.io.IGESFile" title="Link to this definition"></a></dt>
+<dd><p>IGES file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> – The name of the IGES file</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.io.IGESFile.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#figura.io.IGESFile.read" title="Link to this definition"></a></dt>
+<dd><p>Read the file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The shape that is contained on the IGES file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="figura.io.IGESFile.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.io.IGESFile.write" title="Link to this definition"></a></dt>
+<dd><p>Write shapes into the file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shapes</strong> – List of shapes</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="figura.io.STEPFile">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">figura.io.</span></span><span class="sig-name descname"><span class="pre">STEPFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.io.STEPFile" title="Link to this definition"></a></dt>
@@ -170,8 +209,22 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file_name</strong> – Name of the file</p></li>
 <li><p><strong>shapes</strong> – List of shapes</p></li>
-<li><p><strong>file_format</strong> – File format [‘step’, ‘stl’]</p></li>
+<li><p><strong>file_format</strong> – File format [‘step’, ‘stl’, ‘iges’]</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="figura.io.read">
+<span class="sig-prename descclassname"><span class="pre">figura.io.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#figura.io.read" title="Link to this definition"></a></dt>
+<dd><p>Read shapes from a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> – Name of the file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shape(s) from the file</p>
 </dd>
 </dl>
 </dd></dl>
