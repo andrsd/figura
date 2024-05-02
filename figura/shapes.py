@@ -47,6 +47,8 @@ from OCC.Core.GC import (
 )
 from OCC.Core.GeomAPI import GeomAPI_Interpolate
 from OCC.Core.TColgp import TColgp_HArray1OfPnt
+from OCC.Core.BRepGProp import brepgprop
+from OCC.Core.GProp import GProp_GProps
 from .geometry import (Axis1, Direction, Vector, Plane)
 
 
@@ -507,6 +509,16 @@ class Face(Shape):
     def plane(self):
         pln = BRepAdaptor_Surface(self._shape, True).Plane()
         return Plane.from_pln(pln)
+
+    def area(self):
+        """
+        Compute the surface area of the face
+
+        :return: Surface area of the face
+        """
+        props = GProp_GProps()
+        brepgprop.SurfaceProperties(self.shape(), props)
+        return props.Mass()
 
     @classmethod
     def from_shape(cls, face):
