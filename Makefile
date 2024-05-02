@@ -21,4 +21,4 @@ doc:
 	@sphinx-build -c docs -b html -d docs/.doctrees docs html
 
 install:
-	@pip install . --no-deps -vv
+	@python -m pip install . --no-deps -vv

@@ -1,5 +1,14 @@
 import pytest
-from figura.d3 import *
+from figura.geometry import (
+    Vector,
+    Direction,
+    Axis1,
+    Axis2,
+    Geometry
+)
+from figura.shapes import (
+    Point
+)
 from OCC.Core.gp import (
     gp_Pnt,
     gp_Vec,
@@ -69,7 +78,7 @@ def test_vector():
     assert vec.vec().IsEqual(gp_Vec(1, 2, 3), 1e-15, 1e-15)
 
     s = str(vec)
-    assert s == "<class 'figura.d3._geometry.Vector'>(x=1.0, y=2.0, z=3.0)"
+    assert s == "<class 'figura.geometry.Vector'>(x=1.0, y=2.0, z=3.0)"
 
     gv = gp_Vec(3, 2, 1)
     v = Vector.from_vec(gv)
@@ -91,7 +100,7 @@ def test_direction():
     assert dir.dir().IsEqual(gp_Dir(1, 2, 3), 1e-15)
 
     s = str(dir)
-    assert s == "<class 'figura.d3._geometry.Direction'>(x=0.2672612419124244, y=0.5345224838248488, z=0.8017837257372732)"
+    assert s == "<class 'figura.geometry.Direction'>(x=0.2672612419124244, y=0.5345224838248488, z=0.8017837257372732)"
 
     opposite_dir = -dir
     assert opposite_dir.x == -0.2672612419124244

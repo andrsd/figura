@@ -5,7 +5,12 @@ from figura.io import (
     STEPFile,
     STLFile
 )
-from figura.d3 import *
+from figura.primitives import (
+    Box
+)
+from figura.shapes import (
+    Point
+)
 
 
 assets_dir = os.path.join(

@@ -47,7 +47,7 @@ from OCC.Core.GC import (
 )
 from OCC.Core.GeomAPI import GeomAPI_Interpolate
 from OCC.Core.TColgp import TColgp_HArray1OfPnt
-from ._geometry import (Axis1, Direction, Vector, Plane)
+from .geometry import (Axis1, Direction, Vector, Plane)
 
 
 class Shape(object):

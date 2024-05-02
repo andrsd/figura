@@ -8,10 +8,10 @@ from OCC.Core.BRepPrimAPI import (
 from OCC.Core.TopoDS import (
     TopoDS_Shape
 )
-from ._geometry import (
+from .geometry import (
     Axis2
 )
-from ._shapes import (Shape, Shell, Solid)
+from .shapes import (Shape, Shell, Solid)
 
 
 class Box(Shape):
