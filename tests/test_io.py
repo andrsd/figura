@@ -3,7 +3,8 @@ from pathlib import Path
 import os
 from figura.io import (
     STEPFile,
-    STLFile
+    STLFile,
+    IGESFile
 )
 from figura.primitives import (
     Box
@@ -39,6 +40,8 @@ def test_step_write(tmp_path):
     step.write([box])
 
 
+# STEP
+
 def test_stl_write(tmp_path):
     pt1 = Point(0, 0, 0)
     pt2 = Point(1, 1, 1)
@@ -56,3 +59,25 @@ def test_stl_write_named(tmp_path):
 
     stl = STLFile(os.path.join(Path(tmp_path), "cube.stl"))
     stl.write([box])
+
+
+# IGES
+
+def test_iges_read():
+    file = IGESFile(os.path.join(assets_dir, "cube.iges"))
+    file.read()
+
+
+def test_iges_read_non_existent():
+    with pytest.raises(SystemExit):
+        file = IGESFile(os.path.join(assets_dir, "non-existent.iges"))
+        file.read()
+
+
+def test_iges_write(tmp_path):
+    pt1 = Point(0, 0, 0)
+    pt2 = Point(1, 1, 1)
+    box = Box(pt1, pt2)
+
+    file = IGESFile(os.path.join(Path(tmp_path), "cube.iges"))
+    file.write([box])
