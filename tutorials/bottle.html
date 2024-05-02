@@ -237,7 +237,7 @@ This is the way how we tell the code which shapes should be exported into the ou
 <span class="n">neck_height</span> <span class="o">=</span> <span class="n">HEIGHT</span> <span class="o">/</span> <span class="mi">10</span>
 <span class="n">neck</span> <span class="o">=</span> <span class="n">Cylinder</span><span class="p">(</span><span class="n">neck_ax2</span><span class="p">,</span> <span class="n">neck_radius</span><span class="p">,</span> <span class="n">neck_height</span><span class="p">)</span>
 
-<span class="n">body</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">fuse</span><span class="p">(</span><span class="n">neck</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">fuse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">neck</span><span class="p">)</span>
 
 <span class="n">z_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
 <span class="n">top_face</span> <span class="o">=</span> <span class="kc">None</span>
