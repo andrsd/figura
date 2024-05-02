@@ -184,7 +184,20 @@ class IGESFile:
 
 def export(file_name, shapes, file_format='step'):
     """
-    Export shapes into a file
+    Deprecated. Use `write` instead.
+
+    :param file_name: File name
+    :param shapes: List of shapes
+    :param file_format: File format
+    :return:
+    """
+    print(f"'export' is deprecated, use 'write' instead.")
+    write(file_name, shapes, file_format)
+
+
+def write(file_name, shapes, file_format='step'):
+    """
+    Write shapes into a file
 
     :param file_name: Name of the file
     :param shapes: List of shapes
