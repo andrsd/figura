@@ -21,6 +21,8 @@ from figura.geometry import (
 from figura.primitives import (
     Box
 )
+from figura.oper import *
+
 from OCC.Core.gp import (
     gp_Pnt
 )
@@ -89,6 +91,7 @@ def test_fuse():
     tool = Box(pt3, pt4)
 
     box1.fuse(tool)
+    fuse(box1, tool)
 
 
 def test_fuse_wrong_tool_type():
@@ -109,6 +112,7 @@ def test_cut():
     tool = Box(pt1, pt3)
 
     box1.cut(tool)
+    cut(box1, tool)
 
 
 def test_cut_wrong_tool_type():
@@ -130,6 +134,7 @@ def test_intersect():
     tool = Box(pt3, pt4)
 
     box1.intersect(tool)
+    intersect(box1, tool)
 
 
 def test_intersect_wrong_tool_type():
@@ -166,6 +171,7 @@ def test_fillet():
 
     edges = box.edges()
     box.fillet(edges, 0.1)
+    fillet(box, edges, 0.1)
 
 
 def test_hollow():
@@ -175,6 +181,7 @@ def test_hollow():
 
     face = box.faces()[0]
     box.hollow([face], 0.1, 1e-3)
+    hollow(box, [face], 0.1, 1e-3)
 
 
 def test_plane():
@@ -194,6 +201,7 @@ def test_extrude():
     pt1 = Point(0, 0, 0)
     vec = Vector(1, 0, 0)
     pt1.extrude(vec)
+    extrude(pt1, vec)
 
 
 def test_revolve():
@@ -202,6 +210,7 @@ def test_revolve():
     edge = Line(pt1, pt2)
     oz = Geometry.OZ()
     edge.revolve(oz)
+    revolve(edge, oz)
 
 
 def test_translate_vec():

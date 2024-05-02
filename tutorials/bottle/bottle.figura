@@ -37,7 +37,7 @@ neck_radius = THICKNESS / 4.
 neck_height = HEIGHT / 10
 neck = Cylinder(neck_ax2, neck_radius, neck_height)
 
-body = body.fuse(neck)
+body = fuse(body, neck)
 
 z_max = -1.
 top_face = None
