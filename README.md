@@ -38,3 +38,8 @@ $ pip install .
 *Q:* why is there no pip package?
 
 *A:* `figura` depends on `pythonocc-core` which is currently (April 2023) only available via conda-forge. Once it is avialable via pip, we can deploy via pip as well.
+
+*Q:* Is this project dead?
+
+*A:* Yes, but the development continues in project [formo](https://github.com/andrsd/formo)
+
